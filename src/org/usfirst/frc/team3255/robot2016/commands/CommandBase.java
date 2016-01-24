@@ -13,6 +13,9 @@ public abstract class CommandBase extends Command {
 	//Keep Navigation at the top!
 	
 	public static Drivetrain drivetrain;
+	public static Collector collector;
+	public static ObstacleArm obstaclearm;
+	public static Shooter shooter;
 	public static Camera camera;
 	public static OI oi;
 	
@@ -26,6 +29,9 @@ public abstract class CommandBase extends Command {
 		//Keep Navigation at the top!
 		
 		drivetrain = new Drivetrain(1.0, 2.0, 0.5);
+		collector = new Collector();
+		obstaclearm = new ObstacleArm();
+		shooter = new Shooter();
 		camera = new Camera();
 		oi = new OI();
 	}

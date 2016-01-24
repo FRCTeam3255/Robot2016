@@ -40,12 +40,12 @@ public class Drivetrain extends PIDSubsystem {
 	
 	public void init() {
 		// CANTalons
-		leftFrontTalon = new CANTalon(RobotMap.LEFT_FRONT_TALON);
-		leftMiddleTalon = new CANTalon(RobotMap.LEFT_MIDDLE_TALON);
-		leftBackTalon = new CANTalon(RobotMap.LEFT_BACK_TALON);
-		rightFrontTalon = new CANTalon(RobotMap.RIGHT_FRONT_TALON);
-		rightMiddleTalon = new CANTalon(RobotMap.RIGHT_MIDDLE_TALON);
-		rightBackTalon = new CANTalon(RobotMap.RIGHT_BACK_TALON);
+		leftFrontTalon = new CANTalon(RobotMap.DRIVETRAIN_LEFT_FRONT_TALON);
+		leftMiddleTalon = new CANTalon(RobotMap.DRIVETRAIN_LEFT_MIDDLE_TALON);
+		leftBackTalon = new CANTalon(RobotMap.DRIVETRAIN_LEFT_BACK_TALON);
+		rightFrontTalon = new CANTalon(RobotMap.DRIVETRAIN_RIGHT_FRONT_TALON);
+		rightMiddleTalon = new CANTalon(RobotMap.DRIVETRAIN_RIGHT_MIDDLE_TALON);
+		rightBackTalon = new CANTalon(RobotMap.DRIVETRAIN_RIGHT_BACK_TALON);
 		
 		leftFrontTalon.setSafetyEnabled(false);
 		leftMiddleTalon.setSafetyEnabled(false);
@@ -116,6 +116,8 @@ public class Drivetrain extends PIDSubsystem {
 	
 	public void updateEncoderRatio() {
 		// TODO Set constants for encoder distance
+		leftDriveTrainEncoder.setDistancePerPulse(5.0 / RobotPreferences.getDriveTrainPulsePer5Feet());
+		rightDriveTrainEncoder.setDistancePerPulse(5.0 / RobotPreferences.getDriveTrainPulsePer5Feet());
 	}
 	
 	public double getEncoderDistance() {

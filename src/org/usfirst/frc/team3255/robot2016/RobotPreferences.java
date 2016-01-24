@@ -15,5 +15,29 @@ public class RobotPreferences {
 	public static double driveSensitivity() {
 		return Preferences.getInstance().getDouble("DriveSensitivity", 1.0);
 	}
+	
+	// Encoder Ratios
+	public static double getDriveTrainPulsePer5Feet(){
+		return Preferences.getInstance().getDouble("DriveTrainPulsePer5Feet", 0.0);
+	}
+	
+	public static double getObstacleArmPulsePerRotation(){
+		return Preferences.getInstance().getDouble("ObstacleArmPulsePerRotation", 0.0);
+	}
+	
+	public static double getShooterPulsePerRotation(){
+		return Preferences.getInstance().getDouble("ShooterPulsePerRotation", 0.0);
+	}
+	public static double getCollectorPulsePerRotation(){
+		return Preferences.getInstance().getDouble("CollectorPulsePerRotation", 0.0);
+	}
 
+	public static double sallyPortPosition() {
+		return Preferences.getInstance().getDouble("Sally Port Position", 0.0);
+	}
+	
+	public static double obstaclearmHomePosition() {
+		return Preferences.getInstance().getDouble("Home Position", 0.0);
+	}
+	
 }
