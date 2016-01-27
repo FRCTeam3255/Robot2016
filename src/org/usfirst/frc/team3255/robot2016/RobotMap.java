@@ -60,4 +60,7 @@ public class RobotMap {
 	public static final int OBSTACLEARM_SOLENOID_CHA = 2;
 	public static final int OBSTACLEARM_SOLENOID_CHB = 3;
 	
+	// Relays
+	public static final int LIGHTING_BLUE_RELAY = 0;
+	public static final int LIGHTING_RED_RELAY = 1;
 }
