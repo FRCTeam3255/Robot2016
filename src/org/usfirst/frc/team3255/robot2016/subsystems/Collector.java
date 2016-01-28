@@ -20,8 +20,17 @@ public class Collector extends Subsystem {
 
 	Encoder collectorEncoder = null;
     
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
+    public Collector() {
+		super();
+		
+		init();
+	}
+
+	public Collector(String name) {
+		super(name);
+		
+		init();
+	}
 
 	public void init(){
 		intakeTalon = new Talon(RobotMap.COLLECTOR_INTAKE_TALON);
@@ -36,7 +45,6 @@ public class Collector extends Subsystem {
 	}
 	
 	// Talons
-	
 	public void setIntakeSpeed(double s){
 		intakeTalon.set(s);
 	}
@@ -50,7 +58,6 @@ public class Collector extends Subsystem {
 	}
 	
 	// Encoders
-	
 	public void updateEncoderRatio() {
 		// TODO Set constants for encoder distance
 		collectorEncoder.setDistancePerPulse(1.0 / RobotPreferences.getCollectorPulsePerRotation());

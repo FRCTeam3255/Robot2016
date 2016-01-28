@@ -21,6 +21,18 @@ public class ObstacleArm extends Subsystem {
     
     Encoder armEncoder = null;
     
+    public ObstacleArm() {
+		super();
+		
+		init();
+	}
+
+	public ObstacleArm(String name) {
+		super(name);
+		
+		init();
+	}
+    
     public void init() {
     	armTalon = new Talon(RobotMap.OBSTACLEARM_TALON);
     	

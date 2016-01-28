@@ -20,8 +20,17 @@ public class Shooter extends Subsystem {
 	
 	Encoder shooterEncoder = null;
 	
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
+    public Shooter() {
+		super();
+		
+		init();
+	}
+
+	public Shooter(String name) {
+		super(name);
+		
+		init();
+	}
 
 	public void init() {
 		// Talons

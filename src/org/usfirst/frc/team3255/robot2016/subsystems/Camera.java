@@ -15,6 +15,18 @@ public class Camera extends Subsystem {
 	
 	int session;
     Image frame;
+    
+    public Camera() {
+		super();
+		
+		cameraInit();
+	}
+
+	public Camera(String name) {
+		super(name);
+		
+		cameraInit();
+	}
 	
 	public void cameraInit() {
     	frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
