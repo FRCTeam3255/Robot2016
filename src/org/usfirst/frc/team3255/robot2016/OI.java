@@ -14,13 +14,16 @@ public class OI {
 	public static Joystick manipulatorStick = new Joystick(RobotMap.JOYSTICK_MANIPULATOR);
 	public static Joystick driverStick = new Joystick(RobotMap.JOYSTICK_DRIVER);
 	
+	// manipulatorStick
 	Button M1 = new JoystickButton(manipulatorStick, 1);
+	
+	// driveStick
 	Button D5 = new JoystickButton(driverStick, 5);
 	
 	public OI() {
-		//manipulatorStick	
+		// manipulatorStick	
 		
-		//driveStick
+		// driveStick
 	}
 }
 

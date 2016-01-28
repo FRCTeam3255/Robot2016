@@ -33,11 +33,19 @@ public class RobotPreferences {
 	}
 
 	public static double sallyPortPosition() {
-		return Preferences.getInstance().getDouble("Sally Port Position", 0.0);
+		return Preferences.getInstance().getDouble("SallyPortPosition", 0.0);
 	}
 	
 	public static double obstaclearmHomePosition() {
-		return Preferences.getInstance().getDouble("Home Position", 0.0);
+		return Preferences.getInstance().getDouble("HomePosition", 0.0);
+	}
+
+	public static double collectorDeployPosition() {
+		return Preferences.getInstance().getDouble("CollectorDeploy", 0.0);
+	}
+
+	public static double CollectorHomePosition() {
+		return Preferences.getInstance().getDouble("CollectorHome", 0.0);
 	}
 	
 }
