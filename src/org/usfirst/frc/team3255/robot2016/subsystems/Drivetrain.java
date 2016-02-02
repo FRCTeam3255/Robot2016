@@ -46,6 +46,12 @@ public class Drivetrain extends PIDSubsystem {
 		init();
 	}
 	
+    public Drivetrain(double p, double i, double d) {
+		super(p, i, d);
+
+		init();
+    }
+
 	public void init() {
 		// CANTalons
 		leftFrontTalon = new CANTalon(RobotMap.DRIVETRAIN_LEFT_FRONT_TALON);
@@ -72,10 +78,6 @@ public class Drivetrain extends PIDSubsystem {
 		
 		// Double Solenoids
 		shifterSolenoid = new DoubleSolenoid(RobotMap.DRIVETRAIN_SHIFT_UP, RobotMap.DRIVETRAIN_SHIFT_DOWN);
-	}
-
-    public Drivetrain(double p, double i, double d) {
-		super(p, i, d);
 	}
 
 	@Override

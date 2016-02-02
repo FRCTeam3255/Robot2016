@@ -37,7 +37,7 @@ public class Collector extends Subsystem {
 		intakeTalon.set(s);
 	}
 	
-	public void setArmSpeed (double s){
+	public void setArmSpeed (double s) {
 		armTalon.set(s);
 	}
 

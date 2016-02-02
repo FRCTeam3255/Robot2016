@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3255.robot2016.commands;
 
+import org.usfirst.frc.team3255.robot2016.subsystems.Telemetry;
 import org.usfirst.frc.team3255.robot2016.OI;
 import org.usfirst.frc.team3255.robot2016.subsystems.*;
 
@@ -16,7 +17,8 @@ public abstract class CommandBase extends Command {
 	public static Collector collector;
 	public static ObstacleArm obstaclearm;
 	public static Shooter shooter;
-	public static Vision camera;
+	public static Vision vision;
+	public static Telemetry telemetry;
 	public static OI oi;
 	
 	public CommandBase() {
@@ -32,7 +34,8 @@ public abstract class CommandBase extends Command {
 		collector = new Collector();
 		obstaclearm = new ObstacleArm();
 		shooter = new Shooter();
-		camera = new Vision();
+		vision = new Vision();
+		telemetry = new Telemetry();
 		oi = new OI();
 	}
 
