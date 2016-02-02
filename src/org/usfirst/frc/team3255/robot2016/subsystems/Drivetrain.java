@@ -1,4 +1,5 @@
 package org.usfirst.frc.team3255.robot2016.subsystems;
+
 import org.usfirst.frc.team3255.robot2016.RobotMap;
 import org.usfirst.frc.team3255.robot2016.OI;
 import org.usfirst.frc.team3255.robot2016.RobotPreferences;
@@ -7,7 +8,6 @@ import org.usfirst.frc.team3255.robot2016.commands.DriveArcade;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
@@ -30,11 +30,7 @@ public class Drivetrain extends PIDSubsystem {
 	
 	// Robot Drive
 	RobotDrive robotDrive = null;
-	
-	// Encoders
-	Encoder leftDriveTrainEncoder = null;
-	Encoder rightDriveTrainEncoder = null;
-	
+
 	// Double Solenoids
 	DoubleSolenoid shifterSolenoid = null;
 	
@@ -74,12 +70,8 @@ public class Drivetrain extends PIDSubsystem {
 		robotDrive = new RobotDrive(leftThreeMotorDrive, rightThreeMotorDrive);
 		robotDrive.setSafetyEnabled(false);
 		
-		// Encoders
-		leftDriveTrainEncoder = new Encoder(RobotMap.LEFT_DRIVETRAIN_ENCODER_CHA, RobotMap.LEFT_DRIVETRAIN_ENCODER_CHB);
-		rightDriveTrainEncoder = new Encoder(RobotMap.RIGHT_DRIVETRAIN_ENCODER_CHA, RobotMap.RIGHT_DRIVETRAIN_ENCODER_CHB);
-		
 		// Double Solenoids
-		shifterSolenoid = new DoubleSolenoid(RobotMap.DRIVETRAIN_SHIFTER_UP, RobotMap.DRIVETRAIN_SHIFTER_DOWN);
+		shifterSolenoid = new DoubleSolenoid(RobotMap.DRIVETRAIN_SHIFT_UP, RobotMap.DRIVETRAIN_SHIFT_DOWN);
 	}
 
     public Drivetrain(double p, double i, double d) {
@@ -122,22 +114,21 @@ public class Drivetrain extends PIDSubsystem {
 	
 	// Encoders
 	public void resetEncoders() {
-		leftDriveTrainEncoder.reset();
-		rightDriveTrainEncoder.reset();
+		leftFrontTalon.setEncPosition(0);
 	}
 	
 	public void updateEncoderRatio() {
-		// TODO Set constants for encoder distance
-		leftDriveTrainEncoder.setDistancePerPulse(5.0 / RobotPreferences.getDriveTrainPulsePer5Feet());
-		rightDriveTrainEncoder.setDistancePerPulse(5.0 / RobotPreferences.getDriveTrainPulsePer5Feet());
+		// DriveTrainEncoder.setDistancePerPulse(5.0 / RobotPreferences.getDriveTrainPulsePer5Feet());
 	}
 	
 	public double getEncoderDistance() {
-		return leftDriveTrainEncoder.getDistance();
+		return leftFrontTalon.getEncPosition();
 	}
 	
+	// TODO Is this neccesacry?
 	public double getEncoderRaw() {
-		return leftDriveTrainEncoder.getRaw();
+		// return DriveTrainEncoder.getRaw();
+		return 0.0;
 	}
 	
 	public void initDefaultCommand() {

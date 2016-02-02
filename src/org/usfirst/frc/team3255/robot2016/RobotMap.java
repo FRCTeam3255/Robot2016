@@ -35,30 +35,21 @@ public class RobotMap {
 	public static final int COLLECTOR_ARM_TALON = 10;
 	
 	// Digital Inputs
-	public static final int LEFT_DRIVETRAIN_ENCODER_CHA = 0;
-	public static final int LEFT_DRIVETRAIN_ENCODER_CHB = 1;
-	public static final int RIGHT_DRIVETRAIN_ENCODER_CHA = 2;
-	public static final int RIGHT_DRIVETRAIN_ENCODER_CHB = 3;
-
-	public static final int COLLECTOR_INTAKE_SWITCH = 4;
+	public static final int SHOOTER_INPUT_SWITCH = 0;
+	public static final int SHOOTER_OUTPUT_SWITCH = 1;
 	
-	public static final int SHOOTER_SHOOT_SWITCH = 5;
-	
-	public static final int SHOOTER_ENCODER_CHA = 6;
-	public static final int SHOOTER_ENCODER_CHB = 7;
-	
-	public static final int OBSTACLEARM_ENCODER_CHA = 8;
-	public static final int OBSTACLEARM_ENCODER_CHB = 9;
-	
-	public static final int COLLECTOR_ENCODER_CHA = 10;
-	public static final int COLLECTOR_ENCODER_CHB = 11;
+	public static final int OBSTACLEARM_DEPLOYED_SWITCH = 2;
+	public static final int OBSTACLEARM_RETRACTED_SWITCH = 3;
 	
 	// Solenoids
-	public static final int DRIVETRAIN_SHIFTER_UP = 0;
-	public static final int DRIVETRAIN_SHIFTER_DOWN = 1;
+	public static final int OBSTACLEARM_SOLENOID_CHA = 0;
+	public static final int OBSTACLEARM_SOLENOID_CHB = 1;
 	
-	public static final int OBSTACLEARM_SOLENOID_CHA = 2;
-	public static final int OBSTACLEARM_SOLENOID_CHB = 3;
+	public static final int SHOOTER_PITCH_SOLENOID_CHA = 2;
+	public static final int SHOOTER_PITCH_SOLENOID_CHB = 3;
+	
+	public static final int DRIVETRAIN_SHIFT_UP = 4;
+	public static final int DRIVETRAIN_SHIFT_DOWN = 5;
 	
 	// Relays
 	public static final int LIGHTING_BLUE_RELAY = 0;

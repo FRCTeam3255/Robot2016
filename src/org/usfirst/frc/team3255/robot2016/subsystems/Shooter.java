@@ -1,11 +1,11 @@
 package org.usfirst.frc.team3255.robot2016.subsystems;
 
 import org.usfirst.frc.team3255.robot2016.RobotMap;
-import org.usfirst.frc.team3255.robot2016.RobotPreferences;
 
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -13,12 +13,13 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Shooter extends Subsystem {
  
-	Talon leftTalon = null;
-	Talon rightTalon = null;
+	CANTalon leftTalon = null;
+	CANTalon rightTalon = null;
 	
-	DigitalInput shootSwitch = null;
+	DigitalInput inputSwitch = null;
+	DigitalInput outputSwitch = null;
 	
-	Encoder shooterEncoder = null;
+	DoubleSolenoid pitchSolenoid = null;
 	
     public Shooter() {
 		super();
@@ -34,45 +35,59 @@ public class Shooter extends Subsystem {
 
 	public void init() {
 		// Talons
-		leftTalon = new Talon(RobotMap.SHOOTER_LEFT_TALON);
-		rightTalon = new Talon(RobotMap.SHOOTER_RIGHT_TALON);
+		leftTalon = new CANTalon(RobotMap.SHOOTER_LEFT_TALON);
+		rightTalon = new CANTalon(RobotMap.SHOOTER_RIGHT_TALON);
 		
 		leftTalon.setSafetyEnabled(false);
 		rightTalon.setSafetyEnabled(false);
 
-		//Limit Switches
-		shootSwitch = new DigitalInput(RobotMap.SHOOTER_SHOOT_SWITCH);
+		// Limit Switches
+		inputSwitch = new DigitalInput(RobotMap.SHOOTER_INPUT_SWITCH);
+		outputSwitch = new DigitalInput(RobotMap.SHOOTER_OUTPUT_SWITCH);
 		
-		//Encoders
-		shooterEncoder = new Encoder(RobotMap.SHOOTER_ENCODER_CHA,RobotMap.SHOOTER_ENCODER_CHB);
+		// Solenoid
+		pitchSolenoid = new DoubleSolenoid(RobotMap.SHOOTER_PITCH_SOLENOID_CHA, RobotMap.SHOOTER_PITCH_SOLENOID_CHB);
 	}
 	
+	// Talons
 	public void setSpeed(double s){
 		leftTalon.set(s);
 		rightTalon.set(-s);
 	}
 	
 	// Limit Switches
-	
-	public boolean isShootSwitchClosed() {
-		return (shootSwitch.get() == false);
+	public boolean isInputSwitchClosed() {
+		return (inputSwitch.get() == false);
 	}
 	
+	public boolean isOutputSwitchClosed() {
+		return (outputSwitch.get() == false);
+	}
+	
+	// Encoders
 	public void updateEncoderRatio() {
-		// TODO Set constants for encoder distance
-		shooterEncoder.setDistancePerPulse(1.0 / RobotPreferences.getShooterPulsePerRotation());
+		// pitchEncoder.setDistancePerPulse(1.0 / RobotPreferences.getShooterPulsePerRotation());
 	}
 	
 	public void resetEncoders() {
-		shooterEncoder.reset();
+		// pitchEncoder.reset();
 	}
-		
+	
+	// TODO Do we need this?
 	public double getShooterEncoderCount(){
-		return shooterEncoder.get();
+		return 0.0;
 	}
 	
 	public double getShooterEncoderDistance(){
-		return shooterEncoder.getDistance();
+		return leftTalon.getEncPosition();
+	}
+	
+	public void pitchUp() {
+		pitchSolenoid.set(Value.kForward);
+	}
+	
+	public void pitchDown() {
+		pitchSolenoid.set(Value.kReverse);
 	}
 	
     public void initDefaultCommand() {

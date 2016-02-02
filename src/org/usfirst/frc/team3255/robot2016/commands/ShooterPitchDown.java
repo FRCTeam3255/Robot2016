@@ -1,22 +1,18 @@
 package org.usfirst.frc.team3255.robot2016.commands;
 
+
 /**
  *
  */
-public class ShooterSpinUp extends CommandBase {
+public class ShooterPitchDown extends CommandBase {
 
-    public ShooterSpinUp() {
+    public ShooterPitchDown() {
     	requires(shooter);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if (shooter.isInputSwitchClosed()) {
-    		shooter.setSpeed(0.5);
-    	}
-    	else {
-    		end();
-    	}
+    	shooter.pitchDown();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -30,7 +26,6 @@ public class ShooterSpinUp extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	shooter.setSpeed(0.0);
     }
 
     // Called when another command which requires one or more of the same
