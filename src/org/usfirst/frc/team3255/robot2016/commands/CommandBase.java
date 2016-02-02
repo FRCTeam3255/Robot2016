@@ -16,7 +16,7 @@ public abstract class CommandBase extends Command {
 	public static Collector collector;
 	public static ObstacleArm obstaclearm;
 	public static Shooter shooter;
-	public static Camera camera;
+	public static Vision camera;
 	public static OI oi;
 	
 	public CommandBase() {
@@ -32,7 +32,7 @@ public abstract class CommandBase extends Command {
 		collector = new Collector();
 		obstaclearm = new ObstacleArm();
 		shooter = new Shooter();
-		camera = new Camera();
+		camera = new Vision();
 		oi = new OI();
 	}
 

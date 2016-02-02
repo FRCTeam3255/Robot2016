@@ -11,18 +11,18 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class Camera extends Subsystem {
+public class Vision extends Subsystem {
 	
 	int session;
     Image frame;
     
-    public Camera() {
+    public Vision() {
 		super();
 		
 		cameraInit();
 	}
 
-	public Camera(String name) {
+	public Vision(String name) {
 		super(name);
 		
 		cameraInit();
