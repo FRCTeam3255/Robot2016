@@ -1,19 +1,18 @@
 package org.usfirst.frc.team3255.robot2016.commands;
 
-import org.usfirst.frc.team3255.robot2016.RobotPreferences;
-
 /**
  *
  */
-public class CollectorMoveToHome extends CommandBase {
+public class CollectorPickUpBall extends CommandBase {
 
-    public CollectorMoveToHome() {
+    public CollectorPickUpBall() {
     	requires(collector);
+    	requires(shooter);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	collector.setArmSpeed(-0.3);
+    	collector.setIntakeSpeed(1.0);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -22,7 +21,7 @@ public class CollectorMoveToHome extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if (collector.getCollectorEncoderDistance() < RobotPreferences.CollectorHomePosition()) {
+        if (shooter.isInputSwitchClosed()) {
         	return true;
         }
         else {
@@ -32,7 +31,6 @@ public class CollectorMoveToHome extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	collector.setArmSpeed(0.0);
     }
 
     // Called when another command which requires one or more of the same

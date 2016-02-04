@@ -8,8 +8,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class ShooterShoot extends CommandGroup {
     
     public  ShooterShoot() {
-    	addSequential(new ShooterResetEncoders());
-    	addSequential(new ShooterSpinUp());
-    	//TODO Add stop for shooter
+    	//1
+    	addParallel(new CollectorFeed());
+    	addParallel(new DoDelay(0.3));
     }
 }

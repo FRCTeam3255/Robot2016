@@ -1,23 +1,19 @@
 package org.usfirst.frc.team3255.robot2016.commands;
 
-import org.usfirst.frc.team3255.robot2016.RobotPreferences;
-
-import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
-
 /**
  *
  */
-public class ShooterSpinUp extends CommandBase {
-//2
-    public ShooterSpinUp() {
-    	requires(shooter);
+public class CollectorFeed extends CommandBase {
+
+    public CollectorFeed() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	requires(collector);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	shooter.setControlMode(TalonControlMode.Voltage);
-    	shooter.setTalonVoltageRamp(RobotPreferences.shooterVoltageRamp());
-    	shooter.set(RobotPreferences.talonVoltageSpeed());
+    	collector.setIntakeSpeed(1.0);
     }
 
     // Called repeatedly when this Command is scheduled to run

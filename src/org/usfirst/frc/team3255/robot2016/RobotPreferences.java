@@ -4,16 +4,29 @@ import edu.wpi.first.wpilibj.Preferences;
 
 public class RobotPreferences {
 
-	//Ordered by Subsystems
+	// Ordered by Subsystems
 	
-	//Camera
+	// Camera
 	public static String cameraName() {
 		return Preferences.getInstance().getString("CameraName", "cam0");
 	}
 	
-	//Drivetrain
+	// Drivetrain
 	public static double driveSensitivity() {
 		return Preferences.getInstance().getDouble("DriveSensitivity", 1.0);
+	}
+	
+	// Shooter
+	public static double shooterVoltageRamp() {
+		return Preferences.getInstance().getDouble("shooterVoltageRamp", 0.0);
+	}
+
+	public static double talonVoltageSpeed() {
+		return Preferences.getInstance().getDouble("shooterVoltageSpeed", 0.0);
+	}
+
+	public static double talonVBusSpeed() {
+		return Preferences.getInstance().getDouble("shooterVBusSpeed", 0.0);
 	}
 	
 	// Encoder Ratios

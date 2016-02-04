@@ -1,5 +1,7 @@
 package org.usfirst.frc.team3255.robot2016;
 
+import org.usfirst.frc.team3255.robot2016.commands.*;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -16,14 +18,22 @@ public class OI {
 	
 	// manipulatorStick
 	Button M1 = new JoystickButton(manipulatorStick, 1);
+	Button M2 = new JoystickButton(manipulatorStick, 2);
+	Button M3 = new JoystickButton(manipulatorStick, 3);
 	
 	// driveStick
 	Button D5 = new JoystickButton(driverStick, 5);
+	Button D6 = new JoystickButton(driverStick, 6);
 	
 	public OI() {
-		// manipulatorStick	
+		// manipulatorStick
+		M1.whenPressed(new ShooterShoot());
+		M2.whenPressed(new ShooterSpinUp());
+		M3.whenPressed(new CollectorPrepShooter());
 		
 		// driveStick
+		D5.whenPressed(new DriveShiftDown());
+		D6.whenPressed(new DriveShiftUp());
 	}
 }
 

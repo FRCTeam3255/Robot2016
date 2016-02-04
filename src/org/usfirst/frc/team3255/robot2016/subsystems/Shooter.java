@@ -3,6 +3,7 @@ package org.usfirst.frc.team3255.robot2016.subsystems;
 import org.usfirst.frc.team3255.robot2016.RobotMap;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
@@ -50,7 +51,7 @@ public class Shooter extends Subsystem {
 	}
 	
 	// Talons
-	public void setSpeed(double s){
+	public void set(double s){
 		leftTalon.set(s);
 		rightTalon.set(-s);
 	}
@@ -88,6 +89,17 @@ public class Shooter extends Subsystem {
 	
 	public void pitchDown() {
 		pitchSolenoid.set(Value.kReverse);
+	}
+	
+	public void setControlMode(TalonControlMode mode) {
+		leftTalon.changeControlMode(mode);
+		rightTalon.changeControlMode(mode);
+	}
+	
+	public void setTalonVoltageRamp(double v) {
+		// 0V to 12V in 500ms with value of 24.0
+		leftTalon.setVoltageCompensationRampRate(v);
+		rightTalon.setVoltageCompensationRampRate(v);
 	}
 	
     public void initDefaultCommand() {

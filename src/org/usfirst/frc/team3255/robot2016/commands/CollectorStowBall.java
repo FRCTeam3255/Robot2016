@@ -3,15 +3,16 @@ package org.usfirst.frc.team3255.robot2016.commands;
 /**
  *
  */
-public class CollectorWaitForBall extends CommandBase {
+public class CollectorStowBall extends CommandBase {
 
-    public CollectorWaitForBall() {
+    public CollectorStowBall() {
     	requires(collector);
+    	requires(shooter);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	collector.setIntakeSpeed(1.0);
+    	collector.setIntakeSpeed(-0.5);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -20,7 +21,7 @@ public class CollectorWaitForBall extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if (collector.isIntakeSwitchClosed()) {
+        if (shooter.isInputSwitchClosed()) {
         	return true;
         }
         else {

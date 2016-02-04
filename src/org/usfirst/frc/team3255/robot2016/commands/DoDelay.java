@@ -1,17 +1,23 @@
 package org.usfirst.frc.team3255.robot2016.commands;
 
+import edu.wpi.first.wpilibj.command.Command;
+
 /**
  *
  */
-public class CollectorSpinIn extends CommandBase {
+public class DoDelay extends Command {
+	
+	double timeOut;
 
-    public CollectorSpinIn() {
-    	requires(collector);
+    public DoDelay(double seconds) {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	timeOut = seconds;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	collector.setIntakeSpeed(0.8);
+    	this.setTimeout(timeOut);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -20,7 +26,7 @@ public class CollectorSpinIn extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return collector.isIntakeSwitchClosed();
+        return this.isTimedOut();
     }
 
     // Called once after isFinished returns true
@@ -30,5 +36,6 @@ public class CollectorSpinIn extends CommandBase {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }

@@ -2,22 +2,18 @@ package org.usfirst.frc.team3255.robot2016.commands;
 
 import org.usfirst.frc.team3255.robot2016.RobotPreferences;
 
-import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
-
 /**
  *
  */
-public class ShooterSpinUp extends CommandBase {
-//2
-    public ShooterSpinUp() {
-    	requires(shooter);
+public class CollectorMoveToStow extends CommandBase {
+
+    public CollectorMoveToStow() {
+    	requires(collector);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	shooter.setControlMode(TalonControlMode.Voltage);
-    	shooter.setTalonVoltageRamp(RobotPreferences.shooterVoltageRamp());
-    	shooter.set(RobotPreferences.talonVoltageSpeed());
+    	collector.setArmSpeed(-0.3);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -26,11 +22,17 @@ public class ShooterSpinUp extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        if (collector.getCollectorEncoderDistance() < RobotPreferences.CollectorHomePosition()) {
+        	return true;
+        }
+        else {
+        	return false;
+        }
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	collector.setArmSpeed(0.0);
     }
 
     // Called when another command which requires one or more of the same
