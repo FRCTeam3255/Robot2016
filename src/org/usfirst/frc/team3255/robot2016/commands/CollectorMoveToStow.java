@@ -22,7 +22,7 @@ public class CollectorMoveToStow extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if (collector.getCollectorEncoderDistance() < RobotPreferences.CollectorHomePosition()) {
+        if (collector.getEncoderPosition() < RobotPreferences.CollectorHomePosition() || collector.isCollectorHome() == true) {
         	return true;
         }
         else {
@@ -33,6 +33,7 @@ public class CollectorMoveToStow extends CommandBase {
     // Called once after isFinished returns true
     protected void end() {
     	collector.setArmSpeed(0.0);
+    	collector.resetEncoders();
     }
 
     // Called when another command which requires one or more of the same
