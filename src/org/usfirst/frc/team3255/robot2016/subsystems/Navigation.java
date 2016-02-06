@@ -45,6 +45,10 @@ public class Navigation extends Subsystem {
 		ahrs.reset();
 	}
 	
+	public boolean isNavXBooted() {
+		return ahrs.isMagnetometerCalibrated();
+		return 
+	}
 
     public void initDefaultCommand() {
     	
