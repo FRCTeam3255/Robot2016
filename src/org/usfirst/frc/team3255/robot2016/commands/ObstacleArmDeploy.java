@@ -5,9 +5,9 @@ import org.usfirst.frc.team3255.robot2016.RobotPreferences;
 /**
  *
  */
-public class ObstacleArmMoveToHome extends CommandBase {
+public class ObstacleArmDeploy extends CommandBase {
 
-    public ObstacleArmMoveToHome() {
+    public ObstacleArmDeploy() {
     	requires(obstaclearm);
     }
 
@@ -22,7 +22,7 @@ public class ObstacleArmMoveToHome extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (obstaclearm.getArmEncoderDistance() > RobotPreferences.obstaclearmHomePosition());
+        return (obstaclearm.getArmEncoderDistance() > RobotPreferences.sallyPortPosition());
     }
 
     // Called once after isFinished returns true
