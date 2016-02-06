@@ -13,8 +13,10 @@ public class RobotMap {
 	public static final int JOYSTICK_MANIPULATOR = 1;
 	
 	// Axes
-	public static final int AXIS_ARCADE_MOVE = 1;
-	public static final int AXIS_ARCADE_ROTATE = 2;
+	public static final int DRIVER_AXIS_MOVE = 1;
+	public static final int DRIVER_AXIS_ROTATE = 2;
+	
+	public static final int MANIPULATOR_AXIS_INTAKE = 1;
 	
 	// CANTalons
 	public static final int DRIVETRAIN_LEFT_FRONT_TALON = 0;

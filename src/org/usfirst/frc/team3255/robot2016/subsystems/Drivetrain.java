@@ -96,8 +96,8 @@ public class Drivetrain extends Subsystem {
 	
 	public void arcadeDrive() {
 		// negate the drive axis so that pushing stick forward is +1
-		double moveSpeed = -OI.driverStick.getRawAxis(RobotMap.AXIS_ARCADE_MOVE);
-		double rotateSpeed = -OI.driverStick.getRawAxis(RobotMap.AXIS_ARCADE_ROTATE);
+		double moveSpeed = -OI.driverStick.getRawAxis(RobotMap.DRIVER_AXIS_MOVE);
+		double rotateSpeed = -OI.driverStick.getRawAxis(RobotMap.DRIVER_AXIS_ROTATE);
 		double arcadeSensitivity = RobotPreferences.driveSensitivity();
 		
 		robotDrive.arcadeDrive(moveSpeed * arcadeSensitivity, rotateSpeed * arcadeSensitivity);
