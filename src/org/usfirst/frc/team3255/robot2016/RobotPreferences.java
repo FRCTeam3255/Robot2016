@@ -233,4 +233,9 @@ public class RobotPreferences {
 	public static double collectorIntakeSpeed() {
 		return Preferences.getInstance().getDouble("CollectorIntakeSpeed", 0.0);
 	}
+	
+	// ================== Sally Arm ==================
+	public static double sallyArmSensitivity() {
+		return Preferences.getInstance().getDouble("SallySensitivity", 0.5);
+	}
 }

@@ -48,7 +48,7 @@ public class Shooter extends Subsystem {
 		ballHoldSwitch = new DigitalInput(RobotMap.SHOOTER_BALL_HOLD_SWITCH);
 		
 		// Solenoid
-		pitchSolenoid = new DoubleSolenoid(RobotMap.SHOOTER_PITCH_SOLENOID_CHA, RobotMap.SHOOTER_PITCH_SOLENOID_CHB);
+		pitchSolenoid = new DoubleSolenoid(RobotMap.SHOOTER_PITCH_SOLENOID_DEPLOY, RobotMap.SHOOTER_PITCH_SOLENOID_RETRACT);
 	}
 	
 	private void setVoltageMode() {

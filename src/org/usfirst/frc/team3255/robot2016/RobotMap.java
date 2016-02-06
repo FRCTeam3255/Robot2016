@@ -16,7 +16,7 @@ public class RobotMap {
 	public static final int DRIVER_AXIS_MOVE = 1;
 	public static final int DRIVER_AXIS_ROTATE = 2;
 	
-	public static final int MANIPULATOR_AXIS_INTAKE = 1;
+	public static final int MANIPULATOR_AXIS_Y = 1;
 	
 	// CANTalons
 	public static final int DRIVETRAIN_LEFT_FRONT_TALON = 0;
@@ -29,7 +29,7 @@ public class RobotMap {
 	public static final int SHOOTER_LEFT_TALON = 6;
 	public static final int SHOOTER_RIGHT_TALON = 7;
 	
-	public static final int OBSTACLEARM_TALON = 8;
+	public static final int SALLYARM_TALON = 8;
 	
 	public static final int COLLECTOR_INTAKE_TALON = 9;
 	public static final int COLLECTOR_ARM_TALON = 10;
@@ -37,15 +37,15 @@ public class RobotMap {
 	// Digital Inputs
 	public static final int SHOOTER_BALL_HOLD_SWITCH = 0;
 	
-	public static final int OBSTACLEARM_DEPLOYED_SWITCH = 2;
-	public static final int OBSTACLEARM_RETRACTED_SWITCH = 3;
+	public static final int SALLYARM_DEPLOYED_SWITCH = 2;
+	public static final int SALLYARM_RETRACTED_SWITCH = 3;
 	
 	// Solenoids
-	public static final int OBSTACLEARM_SOLENOID_CHA = 0;
-	public static final int OBSTACLEARM_SOLENOID_CHB = 1;
+	public static final int SALLYARM_SOLENOID_DEPLOY = 0;
+	public static final int SALLYARM_SOLENOID_RETRACT = 1;
 	
-	public static final int SHOOTER_PITCH_SOLENOID_CHA = 2;
-	public static final int SHOOTER_PITCH_SOLENOID_CHB = 3;
+	public static final int SHOOTER_PITCH_SOLENOID_DEPLOY = 2;
+	public static final int SHOOTER_PITCH_SOLENOID_RETRACT = 3;
 	
 	public static final int DRIVETRAIN_SHIFT_UP = 4;
 	public static final int DRIVETRAIN_SHIFT_DOWN = 5;

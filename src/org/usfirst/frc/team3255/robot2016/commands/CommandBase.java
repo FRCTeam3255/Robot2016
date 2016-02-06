@@ -15,7 +15,7 @@ public abstract class CommandBase extends Command {
 	
 	public static Drivetrain drivetrain;
 	public static Collector collector;
-	public static ObstacleArm obstaclearm;
+	public static SallyArm sallyArm;
 	public static Shooter shooter;
 	public static Lighting lighting;
 	public static Vision vision;
@@ -33,7 +33,7 @@ public abstract class CommandBase extends Command {
 		
 		drivetrain = new Drivetrain();
 		collector = new Collector();
-		obstaclearm = new ObstacleArm();
+		sallyArm = new SallyArm();
 		shooter = new Shooter();
 		lighting = new Lighting();
 		vision = new Vision();

@@ -11,38 +11,38 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class ObstacleArm extends Subsystem {
+public class SallyArm extends Subsystem {
     
 
 	CANTalon armTalon = null;
     
     DoubleSolenoid armSolenoid = null;
     
-    DigitalInput deployPosition = null;
-    DigitalInput retractPosition = null;
+    DigitalInput deploySwitch = null;
+    DigitalInput retractSwitch = null;
     
-    public ObstacleArm() {
+    public SallyArm() {
 		super();
 		
 		init();
 	}
 
-	public ObstacleArm(String name) {
+	public SallyArm(String name) {
 		super(name);
 		
 		init();
 	}
     
     public void init() {
-    	armTalon = new CANTalon(RobotMap.OBSTACLEARM_TALON);
+    	armTalon = new CANTalon(RobotMap.SALLYARM_TALON);
     	
     	armTalon.setSafetyEnabled(false);
     	
-    	armSolenoid = new DoubleSolenoid(RobotMap.OBSTACLEARM_SOLENOID_CHA, RobotMap.OBSTACLEARM_SOLENOID_CHB);
+    	armSolenoid = new DoubleSolenoid(RobotMap.SALLYARM_SOLENOID_DEPLOY, 
+    			RobotMap.SALLYARM_SOLENOID_RETRACT);
     	
-    	deployPosition = new DigitalInput(RobotMap.OBSTACLEARM_DEPLOYED_SWITCH);
-    	retractPosition = new DigitalInput(RobotMap.OBSTACLEARM_RETRACTED_SWITCH);
-    	//TODO shooterEncoder.setDistancePerPulse(12.0 / ENCODER_COUNT_PER_ROTATION);
+    	deploySwitch = new DigitalInput(RobotMap.SALLYARM_DEPLOYED_SWITCH);
+    	retractSwitch = new DigitalInput(RobotMap.SALLYARM_RETRACTED_SWITCH);
     }
     
     // Talons
@@ -51,20 +51,20 @@ public class ObstacleArm extends Subsystem {
 	}
     
     // Solenoids
-    public void open() {
+    public void deploy() {
     	armSolenoid.set(Value.kForward);
     }
     
-    public void close() {
+    public void retract() {
     	armSolenoid.set(Value.kReverse);
     }
     
-    public void resetEncoders() {
-    	armTalon.setEncPosition(0);
+    public boolean isDeployed() {
+    	return !deploySwitch.get();
     }
     
-    public double getArmEncoderDistance() {
-		return armTalon.getEncPosition();
+    public boolean isRetracted() {
+    	return !retractSwitch.get();
     }
     
     public void initDefaultCommand() {

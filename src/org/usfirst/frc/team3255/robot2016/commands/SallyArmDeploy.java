@@ -1,18 +1,17 @@
 package org.usfirst.frc.team3255.robot2016.commands;
 
-
 /**
  *
  */
-public class ObstacleArmResetEncoders extends CommandBase {
+public class SallyArmDeploy extends CommandBase {
 
-    public ObstacleArmResetEncoders() {
-    	requires(obstaclearm);
+    public SallyArmDeploy() {
+    	requires(sallyArm);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	obstaclearm.resetEncoders();
+    	sallyArm.deploy();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -21,7 +20,7 @@ public class ObstacleArmResetEncoders extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+    	return true;
     }
 
     // Called once after isFinished returns true
