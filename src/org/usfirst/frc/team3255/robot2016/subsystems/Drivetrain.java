@@ -1,7 +1,6 @@
 package org.usfirst.frc.team3255.robot2016.subsystems;
 
 import org.usfirst.frc.team3255.robot2016.RobotMap;
-import org.usfirst.frc.team3255.robot2016.commands.CommandBase;
 import org.usfirst.frc.team3255.robot2016.OI;
 import org.usfirst.frc.team3255.robot2016.RobotPreferences;
 import org.usfirst.frc.team3255.robot2016.commands.DriveArcade;
@@ -10,12 +9,12 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
  */
-public class Drivetrain extends PIDSubsystem {
+public class Drivetrain extends Subsystem {
 	
 	// CAN Talons
 	CANTalon leftFrontTalon = null;
@@ -35,23 +34,20 @@ public class Drivetrain extends PIDSubsystem {
 	// Double Solenoids
 	DoubleSolenoid shifterSolenoid = null;
 	
+	// PID Navigation Control
+	NavigationRotatePID navigationRotatePID = null;
+	
     public Drivetrain() {
-		super(0, 0, 0);
-		
+		super();
+    	
 		init();
 	}
 
 	public Drivetrain(String name) {
-		super(name, 0, 0, 0);
+		super(name);
 		
 		init();
 	}
-	
-    public Drivetrain(double p, double i, double d) {
-		super(p, i, d);
-
-		init();
-    }
 
 	public void init() {
 		// CANTalons
@@ -79,16 +75,9 @@ public class Drivetrain extends PIDSubsystem {
 		
 		// Double Solenoids
 		shifterSolenoid = new DoubleSolenoid(RobotMap.DRIVETRAIN_SHIFT_UP, RobotMap.DRIVETRAIN_SHIFT_DOWN);
-	}
-
-	@Override
-	protected double returnPIDInput() {
-		return 0;
-	}
-
-	@Override
-	protected void usePIDOutput(double output) {
 		
+		// PID Navigation Control
+		navigationRotatePID = new NavigationRotatePID();
 	}
 	
 	// Talons
@@ -108,7 +97,7 @@ public class Drivetrain extends PIDSubsystem {
 	
 	public void straightDrive(){
 		double moveSpeed = RobotPreferences.autoObstacleDriveSpeed();
-		double moveRotate = CommandBase.navigation.getYaw() * RobotPreferences.yawScale();
+		double moveRotate = -navigationRotatePID.getOutput();
 		
 		robotDrive.arcadeDrive(moveSpeed, moveRotate);
 	}

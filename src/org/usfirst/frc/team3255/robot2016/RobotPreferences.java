@@ -12,7 +12,7 @@ public class RobotPreferences {
 	}
 	
 	public static double maxYawCorrectSpeed() {
-		return Preferences.getInstance().getDouble("maxYawCorrectSpeed", 0.5);
+		return Preferences.getInstance().getDouble("maxYawCorrectSpeed", 0.6);
 	}
 	
 	public static double yawScale() {
@@ -160,6 +160,19 @@ public class RobotPreferences {
 
 	public static double autoFlatDistance() {
 		return Preferences.getInstance().getDouble("AutoFlatThreshold", 0.0);
+	}
+
+	// ================== Navigation Rotate PID ==================
+	public static double navRotateP() {
+		return Preferences.getInstance().getDouble("NavRotateP", 0.0);
+	}
+
+	public static double navRotateI() {
+		return Preferences.getInstance().getDouble("NavRotateI", 0.0);
+	}
+
+	public static double navRotateD() {
+		return Preferences.getInstance().getDouble("NavRotateD", 0.0);
 	}
 	
 }
