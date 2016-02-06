@@ -25,7 +25,6 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
     	CommandBase.init();
-    	CommandBase.vision.cameraInit();
     }
 	
 	/**

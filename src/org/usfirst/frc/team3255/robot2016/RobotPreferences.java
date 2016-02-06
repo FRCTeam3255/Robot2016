@@ -6,11 +6,6 @@ public class RobotPreferences {
 
 	// Ordered by Subsystems
 	
-	// Camera
-	public static String cameraName() {
-		return Preferences.getInstance().getString("CameraName", "cam0");
-	}
-	
 	// Drivetrain
 	public static double driveSensitivity() {
 		return Preferences.getInstance().getDouble("DriveSensitivity", 1.0);
@@ -59,6 +54,47 @@ public class RobotPreferences {
 
 	public static double CollectorHomePosition() {
 		return Preferences.getInstance().getDouble("CollectorHome", 0.0);
+	}
+
+	// Vision
+	public static String cameraName() {
+		return Preferences.getInstance().getString("CameraName", "cam0");
+	}
+	
+	public static String frontCamera() {
+		return Preferences.getInstance().getString("FrontCamera", "cam0");
+	}
+
+	public static String rearCamera() {
+		return Preferences.getInstance().getString("RearCamera", "cam1");
+	}
+	
+	public static boolean visionEnabled() {
+		return Preferences.getInstance().getBoolean("VisionEnabled", true);
+	}
+
+	public static int visionHueMin() {
+		return Preferences.getInstance().getInt("HueMin", 30);
+	}
+
+	public static int visionSatMin() {
+		return Preferences.getInstance().getInt("SatMin", 30);
+	}
+
+	public static int visionValMin() {
+		return Preferences.getInstance().getInt("ValMin", 30);
+	}
+
+	public static int visionHueMax() {
+		return Preferences.getInstance().getInt("HueMax", 60);
+	}
+
+	public static int visionSatMax() {
+		return Preferences.getInstance().getInt("SatMax", 60);
+	}
+
+	public static int visionValMax() {
+		return Preferences.getInstance().getInt("ValMax", 60);
 	}
 	
 }

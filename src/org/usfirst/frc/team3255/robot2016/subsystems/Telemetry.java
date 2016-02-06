@@ -40,5 +40,15 @@ public class Telemetry extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     	setDefaultCommand(new TelemetryUpdate());
     }
+
+	public float getAreaMin() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public boolean isProcessed() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
 
