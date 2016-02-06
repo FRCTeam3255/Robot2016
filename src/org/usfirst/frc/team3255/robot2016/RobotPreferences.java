@@ -60,5 +60,9 @@ public class RobotPreferences {
 	public static double CollectorHomePosition() {
 		return Preferences.getInstance().getDouble("CollectorHome", 0.0);
 	}
+
+	public static double autoOnRampConstant() {
+		return Preferences.getInstance().getDouble("AutoOnRampConstant", 0.0);
+	}
 	
 }
