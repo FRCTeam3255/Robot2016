@@ -31,7 +31,7 @@ public abstract class CommandBase extends Command {
 		navigation = new Navigation();
 		//Keep Navigation at the top!
 		
-		drivetrain = new Drivetrain(1.0, 2.0, 0.5);
+		drivetrain = new Drivetrain();
 		collector = new Collector();
 		obstaclearm = new ObstacleArm();
 		shooter = new Shooter();
