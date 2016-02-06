@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3255.robot2016.subsystems;
 
 import org.usfirst.frc.team3255.robot2016.RobotMap;
+import org.usfirst.frc.team3255.robot2016.commands.CommandBase;
 import org.usfirst.frc.team3255.robot2016.OI;
 import org.usfirst.frc.team3255.robot2016.RobotPreferences;
 import org.usfirst.frc.team3255.robot2016.commands.DriveArcade;
@@ -103,6 +104,20 @@ public class Drivetrain extends PIDSubsystem {
 		double arcadeSensitivity = RobotPreferences.driveSensitivity();
 		
 		robotDrive.arcadeDrive(moveSpeed * arcadeSensitivity, rotateSpeed * arcadeSensitivity);
+	}
+	
+	public void visionDrive(){
+		double moveSpeed = -CommandBase.visionDistancePID.getOuptut();
+		double moveRotate = -CommandBase.visionRotatePID.getOuptut();
+		
+		robotDrive.arcadeDrive(moveSpeed, moveRotate);
+	}
+	
+	public void straightDrive(){
+		double moveSpeed = -OI.driverStick.getRawAxis(RobotMap.AXIS_ARCADE_MOVE);
+		double moveRotate = CommandBase.navigation.getYaw() * RobotPreferences.yawScale();
+		
+		robotDrive.arcadeDrive(moveSpeed, moveRotate);
 	}
 	
 	// Solenoids
