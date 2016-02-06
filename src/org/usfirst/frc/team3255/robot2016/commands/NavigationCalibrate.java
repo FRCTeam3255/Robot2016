@@ -1,14 +1,11 @@
 package org.usfirst.frc.team3255.robot2016.commands;
 
-import org.usfirst.frc.team3255.robot2016.RobotPreferences;
-
 /**
  *
  */
-public class AutoInitialFlat extends CommandBase {
+public class NavigationCalibrate extends CommandBase {
 
-    public AutoInitialFlat() {
-    	requires(drivetrain);
+    public NavigationCalibrate() {
     	requires(navigation);
     }
 
@@ -22,12 +19,12 @@ public class AutoInitialFlat extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (navigation.getPitch() < RobotPreferences.autoOnRampConstant()) {
-    		return false;
-    	}
-    	else {
-    		return true;
-    	}
+        if (navigation.isNavXCalibrated()) {
+        	return true;
+        }
+        else {
+        	return false;
+        }
     }
 
     // Called once after isFinished returns true

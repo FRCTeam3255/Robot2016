@@ -49,7 +49,7 @@ public class Navigation extends Subsystem {
 		ahrs.reset();
 	}
 	
-	public boolean isNavXBooted() {
+	public boolean isNavXCalibrated() {
 		return ahrs.isCalibrating();
 	}
 

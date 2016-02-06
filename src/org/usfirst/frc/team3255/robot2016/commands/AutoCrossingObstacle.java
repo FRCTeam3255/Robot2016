@@ -5,9 +5,9 @@ import org.usfirst.frc.team3255.robot2016.RobotPreferences;
 /**
  *
  */
-public class AutoInitialFlat extends CommandBase {
+public class AutoCrossingObstacle extends CommandBase {
 
-    public AutoInitialFlat() {
+    public AutoCrossingObstacle() {
     	requires(drivetrain);
     	requires(navigation);
     }
@@ -23,10 +23,10 @@ public class AutoInitialFlat extends CommandBase {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	if (navigation.getPitch() < RobotPreferences.autoOnRampConstant()) {
-    		return false;
+    		return true;
     	}
     	else {
-    		return true;
+    		return false;
     	}
     }
 
