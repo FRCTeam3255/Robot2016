@@ -5,29 +5,29 @@ import org.usfirst.frc.team3255.robot2016.RobotPreferences;
 /**
  *
  */
-public class AutoInitialFlat extends CommandBase {
+public class AutoApproachObstacle extends CommandBase {
 
-    public AutoInitialFlat() {
+    public AutoApproachObstacle() {
     	requires(drivetrain);
     	requires(navigation);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	drivetrain.straightDrive();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (navigation.getPitch() < RobotPreferences.autoOnRampConstant()) {
-    		return false;
+    	if (Math.abs(navigation.getPitch()) > RobotPreferences.autoFlatThreshold()) {
+    		return true;
     	}
     	else {
-    		return true;
+    		return false;
     	}
     }
 

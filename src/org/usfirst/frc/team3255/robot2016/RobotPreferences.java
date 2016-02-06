@@ -6,7 +6,7 @@ public class RobotPreferences {
 
 	// Ordered by Subsystems
 	
-	// Drivetrain
+	// ================== Drivetrain ==================
 	public static double driveSensitivity() {
 		return Preferences.getInstance().getDouble("DriveSensitivity", 1.0);
 	}
@@ -19,7 +19,7 @@ public class RobotPreferences {
 		return Preferences.getInstance().getDouble("yawScale", (maxYawCorrectSpeed() / 180.0));
 	}
 	
-	// Shooter
+	// ================== Shooter ==================
 	public static double shooterVoltageRamp() {
 		return Preferences.getInstance().getDouble("shooterVoltageRamp", 0.0);
 	}
@@ -32,7 +32,7 @@ public class RobotPreferences {
 		return Preferences.getInstance().getDouble("shooterVBusSpeed", 0.0);
 	}
 	
-	// Encoder Ratios
+	// ================== Encoder Ratios ==================
 	public static double getDriveTrainPulsePer5Feet(){
 		return Preferences.getInstance().getDouble("DriveTrainPulsePer5Feet", 0.0);
 	}
@@ -64,7 +64,7 @@ public class RobotPreferences {
 		return Preferences.getInstance().getDouble("CollectorHome", 0.0);
 	}
 
-	// Vision
+	// ================== Vision ==================
 	public static String cameraName() {
 		return Preferences.getInstance().getString("CameraName", "cam0");
 	}
@@ -149,9 +149,17 @@ public class RobotPreferences {
 		return Preferences.getInstance().getDouble("MoveMax", 0.6);
 	}
 
-	// Auto
-	public static double autoOnRampConstant() {
-		return Preferences.getInstance().getDouble("AutoOnRampConstant", 0.0);
+	// ================== Auto ==================
+	public static double autoFlatThreshold() {
+		return Preferences.getInstance().getDouble("AutoFlatThreshold", 0.0);
+	}
+
+	public static double autoObstacleDriveSpeed() {
+		return Preferences.getInstance().getDouble("AutoFlatThreshold", 0.0);
+	}
+
+	public static double autoFlatDistance() {
+		return Preferences.getInstance().getDouble("AutoFlatThreshold", 0.0);
 	}
 	
 }

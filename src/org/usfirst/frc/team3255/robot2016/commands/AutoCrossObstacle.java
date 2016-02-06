@@ -25,6 +25,7 @@ public class AutoCrossObstacle extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	addSequential(new NavigationCalibrate());
-    	addSequential(new AutoInitialFlat());
+    	addSequential(new AutoApproachObstacle());
+    	addSequential(new AutoDriveUntilFlat());
     }
 }

@@ -106,15 +106,8 @@ public class Drivetrain extends PIDSubsystem {
 		robotDrive.arcadeDrive(moveSpeed * arcadeSensitivity, rotateSpeed * arcadeSensitivity);
 	}
 	
-	public void visionDrive(){
-		double moveSpeed = -CommandBase.visionDistancePID.getOuptut();
-		double moveRotate = -CommandBase.visionRotatePID.getOuptut();
-		
-		robotDrive.arcadeDrive(moveSpeed, moveRotate);
-	}
-	
 	public void straightDrive(){
-		double moveSpeed = -OI.driverStick.getRawAxis(RobotMap.AXIS_ARCADE_MOVE);
+		double moveSpeed = RobotPreferences.autoObstacleDriveSpeed();
 		double moveRotate = CommandBase.navigation.getYaw() * RobotPreferences.yawScale();
 		
 		robotDrive.arcadeDrive(moveSpeed, moveRotate);

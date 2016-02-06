@@ -18,8 +18,6 @@ public abstract class CommandBase extends Command {
 	public static ObstacleArm obstaclearm;
 	public static Shooter shooter;
 	public static Lighting lighting;
-	public static VisionDistancePID visionDistancePID;
-	public static VisionRotatePID visionRotatePID;
 	public static Vision vision;
 	public static Telemetry telemetry;
 	public static OI oi;
@@ -38,8 +36,6 @@ public abstract class CommandBase extends Command {
 		obstaclearm = new ObstacleArm();
 		shooter = new Shooter();
 		lighting = new Lighting();
-		visionDistancePID = new VisionDistancePID();
-		visionRotatePID = new VisionRotatePID();
 		vision = new Vision();
 		telemetry = new Telemetry();
 		oi = new OI();
