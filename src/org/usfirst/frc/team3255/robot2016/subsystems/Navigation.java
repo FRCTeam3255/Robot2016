@@ -44,12 +44,12 @@ public class Navigation extends Subsystem {
 	public double getPitch() {
 		return ahrs.getPitch();
 	}
-	
+
 	public void resetYaw() {
 		ahrs.reset();
 	}
 	
-	public boolean isNavXCalibrated() {
+	public boolean isCalibrating() {
 		return ahrs.isCalibrating();
 	}
 

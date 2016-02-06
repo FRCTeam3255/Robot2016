@@ -17,7 +17,7 @@ public class ShooterSpinUp extends CommandBase {
     protected void initialize() {
     	shooter.setControlMode(TalonControlMode.Voltage);
     	shooter.setTalonVoltageRamp(RobotPreferences.shooterVoltageRamp());
-    	shooter.set(RobotPreferences.talonVoltageSpeed());
+    	shooter.set(RobotPreferences.shooterVoltage());
     }
 
     // Called repeatedly when this Command is scheduled to run

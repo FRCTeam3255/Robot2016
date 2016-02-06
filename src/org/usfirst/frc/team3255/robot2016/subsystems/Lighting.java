@@ -1,7 +1,6 @@
 package org.usfirst.frc.team3255.robot2016.subsystems;
 
 import org.usfirst.frc.team3255.robot2016.RobotMap;
-import org.usfirst.frc.team3255.robot2016.commands.CommandBase;
 
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Relay.Direction;
@@ -35,7 +34,7 @@ public class Lighting extends Subsystem {
 	}
 	
 	public void blueOn(boolean on) {
-		if(on && CommandBase.vision.isTote()) {
+		if(on) {
 			blueRelay.set(Relay.Value.kOn);
 		}
 		else {
@@ -44,7 +43,7 @@ public class Lighting extends Subsystem {
 	}
 	
 	public void redOn(boolean on) {
-		if(on && CommandBase.vision.isTote()) {
+		if(on) {
 			redRelay.set(Relay.Value.kOn);
 		}
 		else {

@@ -21,15 +21,15 @@ public class RobotPreferences {
 	
 	// ================== Shooter ==================
 	public static double shooterVoltageRamp() {
-		return Preferences.getInstance().getDouble("shooterVoltageRamp", 0.0);
+		return Preferences.getInstance().getDouble("ShooterVoltageRamp", 0.0);
 	}
 
-	public static double talonVoltageSpeed() {
-		return Preferences.getInstance().getDouble("shooterVoltageSpeed", 0.0);
+	public static double shooterVoltage() {
+		return Preferences.getInstance().getDouble("ShooterVoltage", 0.0);
 	}
 
-	public static double talonVBusSpeed() {
-		return Preferences.getInstance().getDouble("shooterVBusSpeed", 0.0);
+	public static double shooterSpeed() {
+		return Preferences.getInstance().getDouble("ShooterSpeed", 0.0);
 	}
 	
 	// ================== Encoder Ratios ==================
@@ -54,14 +54,6 @@ public class RobotPreferences {
 	
 	public static double obstaclearmHomePosition() {
 		return Preferences.getInstance().getDouble("HomePosition", 0.0);
-	}
-
-	public static double collectorDeployPosition() {
-		return Preferences.getInstance().getDouble("CollectorDeploy", 0.0);
-	}
-
-	public static double CollectorHomePosition() {
-		return Preferences.getInstance().getDouble("CollectorHome", 0.0);
 	}
 
 	// ================== Vision ==================
@@ -162,4 +154,32 @@ public class RobotPreferences {
 		return Preferences.getInstance().getDouble("AutoFlatThreshold", 0.0);
 	}
 	
+	// ================== Collector ==================
+	public static double collectorP() {
+		return Preferences.getInstance().getDouble("CollectorP", 0.0);
+	}
+	
+	public static double collectorI() {
+		return Preferences.getInstance().getDouble("CollectorI", 0.0);
+	}
+	
+	public static double collectorD() {
+		return Preferences.getInstance().getDouble("CollectorD", 0.0);
+	}
+
+	public static double collectorPickupPosition() {
+		return Preferences.getInstance().getDouble("CollectorPickup", 0.0);
+	}
+
+	public static double collectorLowPosition() {
+		return Preferences.getInstance().getDouble("CollectorLow", 0.0);
+	}
+	
+	public static double collectorTolerance() {
+		return Preferences.getInstance().getDouble("CollectorTolerance", 0.0);
+	}
+
+	public static double collectorTimeout() {
+		return Preferences.getInstance().getDouble("CollectorTimeout", 0.0);
+	}
 }

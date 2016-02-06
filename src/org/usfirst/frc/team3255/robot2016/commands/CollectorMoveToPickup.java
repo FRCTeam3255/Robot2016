@@ -13,7 +13,8 @@ public class CollectorMoveToPickup extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	collector.setArmSpeed(0.3);
+    	collector.setSetpoint(RobotPreferences.collectorPickupPosition());
+    	collector.enable();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -22,17 +23,12 @@ public class CollectorMoveToPickup extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if (collector.getEncoderPosition() > RobotPreferences.collectorDeployPosition()) {
-        	return true;
-        }
-        else {
-        	return false;
-        }
+    	return collector.getPIDController().onTarget();
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	collector.setArmSpeed(0.0);
+    	collector.disable();
     }
 
     // Called when another command which requires one or more of the same
