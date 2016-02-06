@@ -20,6 +20,10 @@ public class OI {
 	Button M1 = new JoystickButton(manipulatorStick, 1);
 	Button M2 = new JoystickButton(manipulatorStick, 2);
 	Button M3 = new JoystickButton(manipulatorStick, 3);
+	Button M9 = new JoystickButton(manipulatorStick, 9);
+	Button M10 = new JoystickButton(manipulatorStick, 10);
+	Button M11 = new JoystickButton(manipulatorStick, 11);
+	Button M12 = new JoystickButton(manipulatorStick, 12);
 	
 	// driveStick
 	Button D5 = new JoystickButton(driverStick, 5);
@@ -30,6 +34,10 @@ public class OI {
 		M1.whenPressed(new ShooterShoot());
 		M2.whenPressed(new ShooterSpinUp());
 		M3.whenPressed(new CollectorPrepShooter());
+		M9.whenPressed(new ObstacleArmDeploy());
+		M10.whenPressed(new ObstacleArmRetract());
+		M11.whenPressed(new ShooterPitchUp());
+		M12.whenPressed(new ShooterPitchDown());
 		
 		// driveStick
 		D5.whenPressed(new DriveShiftDown());

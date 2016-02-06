@@ -126,13 +126,7 @@ public class Drivetrain extends PIDSubsystem {
 	public double getEncoderDistance() {
 		return leftFrontTalon.getEncPosition();
 	}
-	
-	// TODO Is this neccesacry?
-	public double getEncoderRaw() {
-		// return DriveTrainEncoder.getRaw();
-		return 0.0;
-	}
-	
+
 	public void initDefaultCommand() {
 		setDefaultCommand(new DriveArcade());
     }

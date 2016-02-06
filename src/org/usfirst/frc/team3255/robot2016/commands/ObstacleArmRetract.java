@@ -5,9 +5,9 @@ import org.usfirst.frc.team3255.robot2016.RobotPreferences;
 /**
  *
  */
-public class ObstacleArmMoveToSallyPort extends CommandBase {
+public class ObstacleArmRetract extends CommandBase {
 
-    public ObstacleArmMoveToSallyPort() {
+    public ObstacleArmRetract() {
     	requires(obstaclearm);
     }
 
@@ -22,7 +22,7 @@ public class ObstacleArmMoveToSallyPort extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return (obstaclearm.getArmEncoderDistance() > RobotPreferences.sallyPortPosition());
+        return (obstaclearm.getArmEncoderDistance() > RobotPreferences.obstaclearmHomePosition());
     }
 
     // Called once after isFinished returns true

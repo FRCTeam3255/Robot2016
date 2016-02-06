@@ -2,10 +2,10 @@ package org.usfirst.frc.team3255.robot2016.subsystems;
 
 import org.usfirst.frc.team3255.robot2016.RobotMap;
 
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class ObstacleArm extends Subsystem {
     
 
-	Talon armTalon = null;
+	CANTalon armTalon = null;
     
     DoubleSolenoid armSolenoid = null;
     
@@ -34,7 +34,7 @@ public class ObstacleArm extends Subsystem {
 	}
     
     public void init() {
-    	armTalon = new Talon(RobotMap.OBSTACLEARM_TALON);
+    	armTalon = new CANTalon(RobotMap.OBSTACLEARM_TALON);
     	
     	armTalon.setSafetyEnabled(false);
     	
@@ -57,6 +57,14 @@ public class ObstacleArm extends Subsystem {
     
     public void close() {
     	armSolenoid.set(Value.kReverse);
+    }
+    
+    public void resetEncoders() {
+    	armTalon.setEncPosition(0);
+    }
+    
+    public double getArmEncoderDistance() {
+		return armTalon.getEncPosition();
     }
     
     public void initDefaultCommand() {
