@@ -97,4 +97,8 @@ public class RobotPreferences {
 		return Preferences.getInstance().getInt("ValMax", 60);
 	}
 	
+	public static double autoOnRampConstant() {
+		return Preferences.getInstance().getDouble("AutoOnRampConstant", 0.0);
+	}
+	
 }
