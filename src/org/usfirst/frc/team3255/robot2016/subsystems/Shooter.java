@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3255.robot2016.subsystems;
 
 import org.usfirst.frc.team3255.robot2016.RobotMap;
+import org.usfirst.frc.team3255.robot2016.RobotPreferences;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
@@ -41,11 +42,22 @@ public class Shooter extends Subsystem {
 		leftTalon.setSafetyEnabled(false);
 		rightTalon.setSafetyEnabled(false);
 
+		setVoltageMode();
+
 		// Limit Switches
 		ballHoldSwitch = new DigitalInput(RobotMap.SHOOTER_BALL_HOLD_SWITCH);
 		
 		// Solenoid
 		pitchSolenoid = new DoubleSolenoid(RobotMap.SHOOTER_PITCH_SOLENOID_CHA, RobotMap.SHOOTER_PITCH_SOLENOID_CHB);
+	}
+	
+	private void setVoltageMode() {
+		leftTalon.changeControlMode(TalonControlMode.Voltage);
+		rightTalon.changeControlMode(TalonControlMode.Voltage);
+		
+		double rampRate = RobotPreferences.shooterVoltageRamp();
+		leftTalon.setVoltageCompensationRampRate(rampRate);
+		rightTalon.setVoltageCompensationRampRate(rampRate);
 	}
 	
 	// Talons
@@ -65,17 +77,6 @@ public class Shooter extends Subsystem {
 	
 	public void pitchDown() {
 		pitchSolenoid.set(Value.kReverse);
-	}
-	
-	public void setControlMode(TalonControlMode mode) {
-		leftTalon.changeControlMode(mode);
-		rightTalon.changeControlMode(mode);
-	}
-	
-	public void setTalonVoltageRamp(double v) {
-		// 0V to 12V in 500ms with value of 24.0
-		leftTalon.setVoltageCompensationRampRate(v);
-		rightTalon.setVoltageCompensationRampRate(v);
 	}
 	
     public void initDefaultCommand() {

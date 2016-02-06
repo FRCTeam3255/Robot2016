@@ -16,7 +16,7 @@ public class CollectorForwardToSwitch extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	collector.setIntakeSpeed(1.0);
+    	collector.setIntakeSpeed(RobotPreferences.collectorIntakeSpeed());
     	sawSwitch = false;
     }
 
@@ -38,7 +38,7 @@ public class CollectorForwardToSwitch extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	collector.setIntakeSpeed(0);
+    	collector.setIntakeSpeed(0.0);
     }
 
     // Called when another command which requires one or more of the same

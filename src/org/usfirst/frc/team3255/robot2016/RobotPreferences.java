@@ -36,6 +36,10 @@ public class RobotPreferences {
 		return Preferences.getInstance().getDouble("ShooterSpeed", 0.0);
 	}
 	
+	public static double shooterSpinUpDelay() {
+		return Preferences.getInstance().getDouble("ShooterSpinUpDelay", 0.0);
+	}
+	
 	// ================== Encoder Ratios ==================
 	public static double getDriveTrainPulsePer5Feet(){
 		return Preferences.getInstance().getDouble("DriveTrainPulsePer5Feet", 0.0);
@@ -224,5 +228,9 @@ public class RobotPreferences {
 
 	public static double collectorTimeout() {
 		return Preferences.getInstance().getDouble("CollectorTimeout", 0.0);
+	}
+	
+	public static double collectorIntakeSpeed() {
+		return Preferences.getInstance().getDouble("CollectorIntakeSpeed", 0.0);
 	}
 }

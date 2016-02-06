@@ -1,15 +1,36 @@
 package org.usfirst.frc.team3255.robot2016.commands;
 
-import edu.wpi.first.wpilibj.command.CommandGroup;
+import org.usfirst.frc.team3255.robot2016.RobotPreferences;
 
 /**
  *
  */
-public class ShooterShoot extends CommandGroup {
+public class ShooterShoot extends CommandBase {
     
     public  ShooterShoot() {
-    	/*
-    	 * TODO: Implement ShooterShoot
-    	 */
+    	requires(collector);
+    	requires(shooter);
     }
+
+	protected void initialize() {
+		collector.setIntakeSpeed(RobotPreferences.collectorIntakeSpeed());
+	}
+
+	protected void execute() {
+		
+	}
+
+	protected boolean isFinished() {
+		// command never finishes, but gets interrupted when button released
+		return false;
+	}
+
+	protected void end() {
+		collector.setIntakeSpeed(0.0);
+		shooter.set(0.0);
+	}
+
+	protected void interrupted() {
+		end();
+	}
 }
