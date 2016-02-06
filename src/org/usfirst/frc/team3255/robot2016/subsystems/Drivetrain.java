@@ -37,6 +37,10 @@ public class Drivetrain extends Subsystem {
 	// PID Navigation Control
 	NavigationRotatePID navigationRotatePID = null;
 	
+	// PID Vison Control
+	VisionMovePID visionMovePID = null;
+	VisionRotatePID visionRotatePID = null;
+	
     public Drivetrain() {
 		super();
     	
@@ -78,6 +82,10 @@ public class Drivetrain extends Subsystem {
 		
 		// PID Navigation Control
 		navigationRotatePID = new NavigationRotatePID();
+		
+		// PID Vision Control
+		visionMovePID = new VisionMovePID();
+		visionRotatePID = new VisionRotatePID();
 	}
 	
 	// Talons
@@ -95,11 +103,18 @@ public class Drivetrain extends Subsystem {
 		robotDrive.arcadeDrive(moveSpeed * arcadeSensitivity, rotateSpeed * arcadeSensitivity);
 	}
 	
-	public void straightDrive(){
+	public void straightDrive() {
 		double moveSpeed = RobotPreferences.autoObstacleDriveSpeed();
 		double moveRotate = -navigationRotatePID.getOutput();
 		
 		robotDrive.arcadeDrive(moveSpeed, moveRotate);
+	}
+	
+	public void visionDrive() {
+		double moveSpeed = -visionMovePID.getOutput();
+		double rotateSpeed = -visionRotatePID.getOutput();
+		
+		robotDrive.arcadeDrive(moveSpeed, rotateSpeed);
 	}
 	
 	// Solenoids

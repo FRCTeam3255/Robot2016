@@ -11,6 +11,10 @@ public class RobotPreferences {
 		return Preferences.getInstance().getDouble("DriveSensitivity", 1.0);
 	}
 	
+	public static double maxMoveSpeed() {
+		return Preferences.getInstance().getDouble("maxYawCorrectSpeed", 0.6);
+	}
+	
 	public static double maxYawCorrectSpeed() {
 		return Preferences.getInstance().getDouble("maxYawCorrectSpeed", 0.6);
 	}
@@ -173,6 +177,32 @@ public class RobotPreferences {
 
 	public static double navRotateD() {
 		return Preferences.getInstance().getDouble("NavRotateD", 0.0);
+	}
+
+	// ================== Vision Rotate PID ==================
+	public static double visionRotateP() {
+		return Preferences.getInstance().getDouble("VisionRotateP", 0.0);
+	}
+
+	public static double visionRotateI() {
+		return Preferences.getInstance().getDouble("VisionRotateI", 0.0);
+	}
+	
+	public static double visionRotateD() {
+		return Preferences.getInstance().getDouble("VisionRotateD", 0.0);
+	}
+
+	// ================== Vision Move PID ==================
+	public static double visionMoveP() {
+		return Preferences.getInstance().getDouble("VisionMoveP", 0.0);
+	}
+	
+	public static double visionMoveI() {
+		return Preferences.getInstance().getDouble("VisionMoveI", 0.0);
+	}
+	
+	public static double visionMoveD() {
+		return Preferences.getInstance().getDouble("VisionMoveD", 0.0);
 	}
 	
 }
