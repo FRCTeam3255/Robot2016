@@ -17,8 +17,7 @@ public class Shooter extends Subsystem {
 	CANTalon leftTalon = null;
 	CANTalon rightTalon = null;
 	
-	DigitalInput inputSwitch = null;
-	DigitalInput outputSwitch = null;
+	DigitalInput ballHoldSwitch = null;
 	
 	DoubleSolenoid pitchSolenoid = null;
 	
@@ -43,8 +42,7 @@ public class Shooter extends Subsystem {
 		rightTalon.setSafetyEnabled(false);
 
 		// Limit Switches
-		inputSwitch = new DigitalInput(RobotMap.SHOOTER_INPUT_SWITCH);
-		outputSwitch = new DigitalInput(RobotMap.SHOOTER_OUTPUT_SWITCH);
+		ballHoldSwitch = new DigitalInput(RobotMap.SHOOTER_BALL_HOLD_SWITCH);
 		
 		// Solenoid
 		pitchSolenoid = new DoubleSolenoid(RobotMap.SHOOTER_PITCH_SOLENOID_CHA, RobotMap.SHOOTER_PITCH_SOLENOID_CHB);
@@ -57,30 +55,8 @@ public class Shooter extends Subsystem {
 	}
 	
 	// Limit Switches
-	public boolean isInputSwitchClosed() {
-		return (inputSwitch.get() == false);
-	}
-	
-	public boolean isOutputSwitchClosed() {
-		return (outputSwitch.get() == false);
-	}
-	
-	// Encoders
-	public void updateEncoderRatio() {
-		// pitchEncoder.setDistancePerPulse(1.0 / RobotPreferences.getShooterPulsePerRotation());
-	}
-	
-	public void resetEncoders() {
-		// pitchEncoder.reset();
-	}
-	
-	// TODO Do we need this?
-	public double getShooterEncoderCount(){
-		return 0.0;
-	}
-	
-	public double getShooterEncoderDistance(){
-		return leftTalon.getEncPosition();
+	public boolean isBallHoldSwitchClosed() {
+		return (ballHoldSwitch.get() == false);
 	}
 	
 	public void pitchUp() {

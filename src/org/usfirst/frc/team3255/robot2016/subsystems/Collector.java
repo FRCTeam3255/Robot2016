@@ -1,15 +1,13 @@
 package org.usfirst.frc.team3255.robot2016.subsystems;
 
 import org.usfirst.frc.team3255.robot2016.RobotMap;
+import org.usfirst.frc.team3255.robot2016.RobotPreferences;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
-/**
- *
- */
-public class Collector extends Subsystem {
+public class Collector extends PIDSubsystem {
 	
 	CANTalon intakeTalon = null;
 	CANTalon armTalon = null;
@@ -17,13 +15,13 @@ public class Collector extends Subsystem {
 	DigitalInput homePosition = null;
     
     public Collector() {
-		super();
+		super(0, 0, 0);
 		
 		init();
 	}
 
 	public Collector(String name) {
-		super(name);
+		super(name, 0, 0, 0);
 		
 		init();
 	}
@@ -34,6 +32,16 @@ public class Collector extends Subsystem {
 		
 		intakeTalon.setSafetyEnabled(false);
 		armTalon.setSafetyEnabled(false);
+		
+		armTalon.enableBrakeMode(true);
+	}
+	
+	public void enable() {
+		getPIDController().setPID(RobotPreferences.collectorP(),
+				RobotPreferences.collectorI(),
+				RobotPreferences.collectorD());
+		this.setAbsoluteTolerance(RobotPreferences.collectorTolerance());
+		super.enable();
 	}
 	
 	// Talons
@@ -49,7 +57,7 @@ public class Collector extends Subsystem {
 		return armTalon.getEncPosition();
 	}
 	
-	public void setArmSpeed (double s) {
+	public void setArmSpeed(double s) {
 		armTalon.set(s);
 	}
 	
@@ -66,5 +74,15 @@ public class Collector extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
+
+	@Override
+	protected double returnPIDInput() {
+		return getEncoderPosition();
+	}
+
+	@Override
+	protected void usePIDOutput(double output) {
+		setArmSpeed(output);
+	}
 }
 

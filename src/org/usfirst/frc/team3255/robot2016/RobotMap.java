@@ -33,8 +33,7 @@ public class RobotMap {
 	public static final int COLLECTOR_ARM_TALON = 10;
 	
 	// Digital Inputs
-	public static final int SHOOTER_INPUT_SWITCH = 0;
-	public static final int SHOOTER_OUTPUT_SWITCH = 1;
+	public static final int SHOOTER_BALL_HOLD_SWITCH = 0;
 	
 	public static final int OBSTACLEARM_DEPLOYED_SWITCH = 2;
 	public static final int OBSTACLEARM_RETRACTED_SWITCH = 3;

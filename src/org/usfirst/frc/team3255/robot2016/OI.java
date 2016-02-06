@@ -33,7 +33,7 @@ public class OI {
 		// manipulatorStick
 		M1.whenPressed(new ShooterShoot());
 		M2.whenPressed(new ShooterSpinUp());
-		M3.whenPressed(new CollectorPrepShooter());
+		M3.whenPressed(new CollectBall());
 		M9.whenPressed(new ObstacleArmDeploy());
 		M10.whenPressed(new ObstacleArmRetract());
 		M11.whenPressed(new ShooterPitchUp());

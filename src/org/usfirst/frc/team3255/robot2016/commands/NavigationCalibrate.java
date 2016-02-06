@@ -17,14 +17,9 @@ public class NavigationCalibrate extends CommandBase {
     protected void execute() {
     }
 
-    // Make this return true when this Command no longer needs to run execute()
+    // isFinished will return true when the navigation system is not calibrating
     protected boolean isFinished() {
-        if (navigation.isNavXCalibrated()) {
-        	return true;
-        }
-        else {
-        	return false;
-        }
+    	return !navigation.isCalibrating();
     }
 
     // Called once after isFinished returns true
