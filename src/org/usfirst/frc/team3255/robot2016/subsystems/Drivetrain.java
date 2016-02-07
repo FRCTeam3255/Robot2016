@@ -1,7 +1,6 @@
 package org.usfirst.frc.team3255.robot2016.subsystems;
 
 import org.usfirst.frc.team3255.robot2016.RobotMap;
-import org.usfirst.frc.team3255.robot2016.OI;
 import org.usfirst.frc.team3255.robot2016.RobotPreferences;
 import org.usfirst.frc.team3255.robot2016.commands.DriveArcade;
 
@@ -31,11 +30,11 @@ public class Drivetrain extends Subsystem {
 	// Robot Drive
 	RobotDrive robotDrive = null;
 
-	// Double Solenoids
+	// Solenoids
 	DoubleSolenoid shifterSolenoid = null;
 	
 	// PID Navigation Control
-	NavigationRotatePID navigationRotatePID = null;
+	NavigationYawPID navigationRotatePID = null;
 	
 	// PID Vison Control
 	VisionMovePID visionMovePID = null;
@@ -77,11 +76,11 @@ public class Drivetrain extends Subsystem {
 		robotDrive = new RobotDrive(leftThreeMotorDrive, rightThreeMotorDrive);
 		robotDrive.setSafetyEnabled(false);
 		
-		// Double Solenoids
+		// Solenoids
 		shifterSolenoid = new DoubleSolenoid(RobotMap.DRIVETRAIN_SHIFT_UP, RobotMap.DRIVETRAIN_SHIFT_DOWN);
 		
 		// PID Navigation Control
-		navigationRotatePID = new NavigationRotatePID();
+		navigationRotatePID = new NavigationYawPID();
 		
 		// PID Vision Control
 		visionMovePID = new VisionMovePID();
@@ -94,35 +93,16 @@ public class Drivetrain extends Subsystem {
 		rightThreeMotorDrive.set(-s);
 	}
 	
-	public void arcadeDrive() {
-		// negate the drive axis so that pushing stick forward is +1
-		double moveSpeed = -OI.driverStick.getRawAxis(RobotMap.DRIVER_AXIS_MOVE);
-		double rotateSpeed = -OI.driverStick.getRawAxis(RobotMap.DRIVER_AXIS_ROTATE);
-		double arcadeSensitivity = RobotPreferences.driveSensitivity();
-		
-		robotDrive.arcadeDrive(moveSpeed * arcadeSensitivity, rotateSpeed * arcadeSensitivity);
-	}
-	
-	public void straightDrive() {
-		double moveSpeed = RobotPreferences.autoObstacleDriveSpeed();
-		double moveRotate = -navigationRotatePID.getOutput();
-		
-		robotDrive.arcadeDrive(moveSpeed, moveRotate);
-	}
-	
-	public void visionDrive() {
-		double moveSpeed = -visionMovePID.getOutput();
-		double rotateSpeed = -visionRotatePID.getOutput();
-		
+	public void arcadeDrive(double moveSpeed, double rotateSpeed) {
 		robotDrive.arcadeDrive(moveSpeed, rotateSpeed);
 	}
 	
 	// Solenoids
-	public void shiftUp() {
+	public void shiftHi() {
 		shifterSolenoid.set(Value.kForward);
 	}
 
-	public void shiftDown() {
+	public void shiftLow() {
 		shifterSolenoid.set(Value.kReverse);
 	}
 	
@@ -131,14 +111,14 @@ public class Drivetrain extends Subsystem {
 		leftFrontTalon.setEncPosition(0);
 	}
 	
-	public void updateEncoderRatio() {
-		// DriveTrainEncoder.setDistancePerPulse(5.0 / RobotPreferences.getDriveTrainPulsePer5Feet());
-	}
-	
-	public double getEncoderDistance() {
+	public double getEncoderPosition() {
 		return leftFrontTalon.getEncPosition();
 	}
 
+	public double getEncoderDistance() {
+		return (getEncoderPosition() / RobotPreferences.getDrivetrainPulsesPer5Feet()) * 5;
+	}
+	
 	public void initDefaultCommand() {
 		setDefaultCommand(new DriveArcade());
     }

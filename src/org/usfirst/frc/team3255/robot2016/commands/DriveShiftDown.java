@@ -12,7 +12,7 @@ public class DriveShiftDown extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	drivetrain.shiftDown();
+    	drivetrain.shiftLow();
     }
 
     // Called repeatedly when this Command is scheduled to run

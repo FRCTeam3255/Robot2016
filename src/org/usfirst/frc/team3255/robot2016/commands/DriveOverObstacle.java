@@ -1,13 +1,15 @@
 package org.usfirst.frc.team3255.robot2016.commands;
 
+import org.usfirst.frc.team3255.robot2016.RobotPreferences;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class AutoCrossObstacle extends CommandGroup {
+public class DriveOverObstacle extends CommandGroup {
     
-    public  AutoCrossObstacle() {
+    public  DriveOverObstacle() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -25,7 +27,9 @@ public class AutoCrossObstacle extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	addSequential(new NavigationCalibrate());
-    	addSequential(new AutoApproachObstacle());
-    	addSequential(new AutoDriveUntilFlat());
+    	addSequential(new DriveUntilPitched());
+    	addSequential(new DriveUntilFlat());
+    	addSequential(new DriveToYaw(0.0));
+    	addSequential(new DriveStraightDistance(RobotPreferences.autoFlatDistance()));
     }
 }

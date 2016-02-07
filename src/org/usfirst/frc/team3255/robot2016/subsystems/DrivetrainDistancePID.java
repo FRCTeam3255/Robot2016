@@ -8,41 +8,40 @@ import edu.wpi.first.wpilibj.command.PIDSubsystem;
 /**
  *
  */
-public class NavigationRotatePID extends PIDSubsystem {
+public class DrivetrainDistancePID extends PIDSubsystem {
 	
 	double output = 0.0;
 	boolean outputValid = false;
 
     // Initialize your subsystem here
-    public NavigationRotatePID() {
+    public DrivetrainDistancePID() {
         super(0, 0, 0);
-        updatePIDValues();
         this.setSetpoint(0.0);
     }
     
-    public void updatePIDValues() {
+    public void enable() {
     	this.getPIDController().setPID(
-    			RobotPreferences.navRotateP(),
-    			RobotPreferences.navRotateI(),
-    			RobotPreferences.navRotateD());
+    			RobotPreferences.driveDistanceP(),
+    			RobotPreferences.driveDistanceI(),
+    			RobotPreferences.driveDistanceD());
     	
-    	double maxSpeed = RobotPreferences.maxYawCorrectSpeed();
+    	setAbsoluteTolerance(RobotPreferences.driveDistanceTolerance());
+    	
+    	double maxSpeed = RobotPreferences.maxMoveSpeed();
     	this.setOutputRange(-maxSpeed, maxSpeed);
+    	
+    	outputValid = false;
+    	
+    	super.enable();
     }
     
     public double returnPIDInput() {
-    	// TODO remove tote check
-    	if(CommandBase.vision.isTote() == false) {
-    		outputValid = false;
-    		return this.getSetpoint();
-    	}
-    	outputValid = true;
-    	return RobotPreferences.yawScale();
+    	return CommandBase.drivetrain.getEncoderDistance();
     }
-    
-    
+
     protected void usePIDOutput(double output) {
     	this.output = output;
+    	outputValid = true;
     }
     
     public double getOutput() {

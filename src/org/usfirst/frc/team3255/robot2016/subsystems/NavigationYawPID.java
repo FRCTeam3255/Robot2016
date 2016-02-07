@@ -8,42 +8,40 @@ import edu.wpi.first.wpilibj.command.PIDSubsystem;
 /**
  *
  */
-public class VisionRotatePID extends PIDSubsystem {
+public class NavigationYawPID extends PIDSubsystem {
 	
 	double output = 0.0;
 	boolean outputValid = false;
 
     // Initialize your subsystem here
-    public VisionRotatePID() {
+    public NavigationYawPID() {
         super(0, 0, 0);
-        updatePIDValues();
         this.setSetpoint(0.0);
     }
     
-    public void updatePIDValues() {
+    public void enable() {
     	this.getPIDController().setPID(
-    			RobotPreferences.visionRotateP(),
-    			RobotPreferences.visionRotateI(),
-    			RobotPreferences.visionRotateD());
+    			RobotPreferences.navYawP(),
+    			RobotPreferences.navYawI(),
+    			RobotPreferences.navYawD());
+    	
+    	setAbsoluteTolerance(RobotPreferences.navYawTolerance());
     	
     	double maxSpeed = RobotPreferences.maxYawSpeed();
     	this.setOutputRange(-maxSpeed, maxSpeed);
+    	
+    	outputValid = false;
+    	
+    	super.enable();
     }
     
     public double returnPIDInput() {
-    	// TODO Change isTote to isTarget
-    	if(CommandBase.vision.isTote() == false) {
-    		outputValid = false;
-    		return this.getSetpoint();
-    	}
-    	outputValid = true;
-    	// TODO Change getToteCenterX to getTargetCenterX
-    	return CommandBase.vision.getToteCenterX();
+    	return CommandBase.navigation.getYaw();
     }
-    
-    
+
     protected void usePIDOutput(double output) {
     	this.output = output;
+    	outputValid = true;
     }
     
     public double getOutput() {

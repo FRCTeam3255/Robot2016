@@ -32,7 +32,7 @@ public class Telemetry extends Subsystem {
 	}
 	
 	public void update() {
-		SmartDashboard.putNumber("getEncPosition", CommandBase.drivetrain.getEncoderDistance());
+		SmartDashboard.putNumber("getEncPosition", CommandBase.drivetrain.getEncoderPosition());
 	}
 	
     public void initDefaultCommand() {
