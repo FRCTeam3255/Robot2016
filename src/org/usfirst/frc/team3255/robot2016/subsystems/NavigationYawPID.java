@@ -25,7 +25,7 @@ public class NavigationYawPID extends PIDSubsystem {
     			RobotPreferences.navYawI(),
     			RobotPreferences.navYawD());
     	
-    	setAbsoluteTolerance(RobotPreferences.navYawTolerance());
+    	setAbsoluteTolerance(RobotPreferences.yawTolerance());
     	
     	double maxSpeed = RobotPreferences.maxYawSpeed();
     	this.setOutputRange(-maxSpeed, maxSpeed);

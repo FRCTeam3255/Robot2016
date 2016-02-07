@@ -21,6 +21,8 @@ public abstract class CommandBase extends Command {
 	public static Vision vision;
 	public static DrivetrainDistancePID driveDistancePID;
 	public static NavigationYawPID navYawPID;
+	public static VisionDistancePID visionDistancePID;
+	public static VisionYawPID visionYawPID;
 	public static Telemetry telemetry;
 	public static OI oi;
 	
@@ -41,6 +43,8 @@ public abstract class CommandBase extends Command {
 		vision = new Vision();
 		driveDistancePID = new DrivetrainDistancePID();
 		navYawPID = new NavigationYawPID();
+		visionDistancePID = new VisionDistancePID();
+		visionYawPID = new VisionYawPID();
 		telemetry = new Telemetry();
 		oi = new OI();
 	}

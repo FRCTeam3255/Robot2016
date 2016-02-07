@@ -1,7 +1,5 @@
 package org.usfirst.frc.team3255.robot2016.commands;
 
-import org.usfirst.frc.team3255.robot2016.RobotPreferences;
-
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -30,6 +28,5 @@ public class DriveOverObstacle extends CommandGroup {
     	addSequential(new DriveUntilPitched());
     	addSequential(new DriveUntilFlat());
     	addSequential(new DriveToYaw(0.0));
-    	addSequential(new DriveStraightDistance(RobotPreferences.autoFlatDistance()));
     }
 }

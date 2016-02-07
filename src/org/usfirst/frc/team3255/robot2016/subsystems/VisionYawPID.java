@@ -8,26 +8,30 @@ import edu.wpi.first.wpilibj.command.PIDSubsystem;
 /**
  *
  */
-public class VisionRotatePID extends PIDSubsystem {
+public class VisionYawPID extends PIDSubsystem {
 	
 	double output = 0.0;
 	boolean outputValid = false;
 
     // Initialize your subsystem here
-    public VisionRotatePID() {
+    public VisionYawPID() {
         super(0, 0, 0);
-        updatePIDValues();
-        this.setSetpoint(0.0);
     }
     
-    public void updatePIDValues() {
+    public void enable() {
     	this.getPIDController().setPID(
-    			RobotPreferences.visionRotateP(),
-    			RobotPreferences.visionRotateI(),
-    			RobotPreferences.visionRotateD());
+    			RobotPreferences.visionYawP(),
+    			RobotPreferences.visionYawI(),
+    			RobotPreferences.visionYawD());
+    	
+    	this.setAbsoluteTolerance(RobotPreferences.yawTolerance());
+    	
+        this.setSetpoint(0.0);
     	
     	double maxSpeed = RobotPreferences.maxYawSpeed();
     	this.setOutputRange(-maxSpeed, maxSpeed);
+    	
+    	super.enable();
     }
     
     public double returnPIDInput() {

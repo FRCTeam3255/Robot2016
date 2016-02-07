@@ -11,12 +11,15 @@ public class RobotMap {
 	// Joysticks
 	public static final int JOYSTICK_DRIVER = 0;
 	public static final int JOYSTICK_MANIPULATOR = 1;
+	public static final int JOYSTICK_AUTO = 2;
 	
 	// Axes
 	public static final int DRIVER_AXIS_MOVE = 1;
 	public static final int DRIVER_AXIS_ROTATE = 2;
 	
 	public static final int MANIPULATOR_AXIS_Y = 1;
+	
+	public static final int AUTO_AXIS_SELECTOR = 0;
 	
 	// CANTalons
 	public static final int DRIVETRAIN_LEFT_FRONT_TALON = 0;

@@ -1,21 +1,23 @@
 package org.usfirst.frc.team3255.robot2016.commands;
 
+import org.usfirst.frc.team3255.robot2016.RobotPreferences;
+
 /**
  *
  */
-public class DriveStraightDistance extends CommandBase {
+public class DriveLaneDistance extends CommandBase {
 
-    public DriveStraightDistance(double d) {
+    public DriveLaneDistance() {
     	requires(drivetrain);
     	requires(driveDistancePID);
     	requires(navYawPID);
-    	
-    	driveDistancePID.setSetpoint(d);
-    	navYawPID.setSetpoint(0.0);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	driveDistancePID.setSetpoint(getLaneDistance());
+    	navYawPID.setSetpoint(0.0);
+    	
     	driveDistancePID.enable();
     	navYawPID.enable();
     }
@@ -42,5 +44,23 @@ public class DriveStraightDistance extends CommandBase {
     // subsystems is scheduled to run
     protected void interrupted() {
     	end();
+    }
+    
+    private double getLaneDistance() {
+    	int lane = CommandBase.oi.getLane();
+		
+		switch(lane) {
+			case 1:
+				return RobotPreferences.distanceLane1();
+			case 2:
+				return RobotPreferences.distanceLane2();
+			case 3:
+				return RobotPreferences.distanceLane3();
+			case 4:
+				return RobotPreferences.distanceLane4();
+			case 5:
+				return RobotPreferences.distanceLane5();
+		}
+		return 0.0;
     }
 }

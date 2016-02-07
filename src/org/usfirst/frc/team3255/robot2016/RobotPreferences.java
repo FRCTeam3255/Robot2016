@@ -166,6 +166,40 @@ public class RobotPreferences {
 		return Preferences.getInstance().getDouble("AutoFlatDistance", 0.0);
 	}
 	
+	public static double autoRotateSpeed() {
+		return Preferences.getInstance().getDouble("AutoRotateSpeed", 0.);
+	}
+	
+	// ================== Lane Distances ==================
+	public static double distanceLane1() {
+		return Preferences.getInstance().getDouble("DistanceLane1", 0.0);
+	}
+	
+	public static double distanceLane2() {
+		return Preferences.getInstance().getDouble("DistanceLane2", 0.0);
+	}
+	
+	public static double distanceLane3() {
+		return Preferences.getInstance().getDouble("DistanceLane3", 0.0);
+	}
+	
+	public static double distanceLane4() {
+		return Preferences.getInstance().getDouble("DistanceLane4", 0.0);
+	}
+	
+	public static double distanceLane5() {
+		return Preferences.getInstance().getDouble("DistanceLane5", 0.0);
+	}
+	
+	// ================== PID Tolerances ==================
+	public static double distanceTolerance() {
+		return Preferences.getInstance().getDouble("DistanceTolerance", 0.0);
+	}
+	
+	public static double yawTolerance() {
+		return Preferences.getInstance().getDouble("YawTolerance", 0.0);
+	}
+	
 	// ================== Drivetrain Distance PID ==================
 	public static double driveDistanceP() {
 		return Preferences.getInstance().getDouble("DriveDistanceP", 0.0);
@@ -179,10 +213,6 @@ public class RobotPreferences {
 		return Preferences.getInstance().getDouble("DriveDistanceD", 0.0);
 	}
 	
-	public static double driveDistanceTolerance() {
-		return Preferences.getInstance().getDouble("DriveDistanceTolerance", 0.0);
-	}
-
 	// ================== Navigation Yaw PID ==================
 	public static double navYawP() {
 		return Preferences.getInstance().getDouble("NavYawP", 0.0);
@@ -195,35 +225,35 @@ public class RobotPreferences {
 	public static double navYawD() {
 		return Preferences.getInstance().getDouble("NavYawD", 0.0);
 	}
-	
-	public static double navYawTolerance() {
-		return Preferences.getInstance().getDouble("NavYawTolerance", 0.0);
+
+	// ================== Vision Yaw PID ==================
+	public static double visionYawP() {
+		return Preferences.getInstance().getDouble("VisionYawP", 0.0);
 	}
 
-	// ================== Vision Rotate PID ==================
-	public static double visionRotateP() {
-		return Preferences.getInstance().getDouble("VisionRotateP", 0.0);
+	public static double visionYawI() {
+		return Preferences.getInstance().getDouble("VisionYawI", 0.0);
+	}
+	
+	public static double visionYawD() {
+		return Preferences.getInstance().getDouble("VisionYawD", 0.0);
 	}
 
-	public static double visionRotateI() {
-		return Preferences.getInstance().getDouble("VisionRotateI", 0.0);
+	// ================== Vision Distance PID ==================
+	public static double visionDistanceP() {
+		return Preferences.getInstance().getDouble("VisionDistanceP", 0.0);
 	}
 	
-	public static double visionRotateD() {
-		return Preferences.getInstance().getDouble("VisionRotateD", 0.0);
-	}
-
-	// ================== Vision Move PID ==================
-	public static double visionMoveP() {
-		return Preferences.getInstance().getDouble("VisionMoveP", 0.0);
+	public static double visionDistanceI() {
+		return Preferences.getInstance().getDouble("VisionDistanceI", 0.0);
 	}
 	
-	public static double visionMoveI() {
-		return Preferences.getInstance().getDouble("VisionMoveI", 0.0);
+	public static double visionDistanceD() {
+		return Preferences.getInstance().getDouble("VisionDistanceD", 0.0);
 	}
 	
-	public static double visionMoveD() {
-		return Preferences.getInstance().getDouble("VisionMoveD", 0.0);
+	public static double targetDistance() {
+		return Preferences.getInstance().getDouble("targetDistance", 6.0);
 	}
 	
 	// ================== Collector ==================

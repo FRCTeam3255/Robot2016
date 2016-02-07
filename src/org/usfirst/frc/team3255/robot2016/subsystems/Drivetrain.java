@@ -37,8 +37,8 @@ public class Drivetrain extends Subsystem {
 	NavigationYawPID navigationRotatePID = null;
 	
 	// PID Vison Control
-	VisionMovePID visionMovePID = null;
-	VisionRotatePID visionRotatePID = null;
+	VisionDistancePID visionMovePID = null;
+	VisionYawPID visionRotatePID = null;
 	
     public Drivetrain() {
 		super();
@@ -83,8 +83,8 @@ public class Drivetrain extends Subsystem {
 		navigationRotatePID = new NavigationYawPID();
 		
 		// PID Vision Control
-		visionMovePID = new VisionMovePID();
-		visionRotatePID = new VisionRotatePID();
+		visionMovePID = new VisionDistancePID();
+		visionRotatePID = new VisionYawPID();
 	}
 	
 	// Talons

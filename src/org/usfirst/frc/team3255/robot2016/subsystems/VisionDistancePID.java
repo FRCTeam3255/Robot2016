@@ -8,27 +8,30 @@ import edu.wpi.first.wpilibj.command.PIDSubsystem;
 /**
  *
  */
-public class VisionMovePID extends PIDSubsystem {
+public class VisionDistancePID extends PIDSubsystem {
 	
 	double output = 0.0;
 	boolean outputValid = false;
 
     // Initialize your subsystem here
-    public VisionMovePID() {
+    public VisionDistancePID() {
         super(0, 0, 0);
-        updatePIDValues();
     }
     
-    public void updatePIDValues() {
+    public void enable() {
     	this.getPIDController().setPID(
-    			RobotPreferences.visionMoveP(),
-    			RobotPreferences.visionMoveI(),
-    			RobotPreferences.visionMoveD());
+    			RobotPreferences.visionDistanceP(),
+    			RobotPreferences.visionDistanceI(),
+    			RobotPreferences.visionDistanceD());
+    	
+    	this.setAbsoluteTolerance(RobotPreferences.distanceTolerance());
+    	
+        this.setSetpoint(RobotPreferences.targetDistance());
     	
     	double maxSpeed = RobotPreferences.maxMoveSpeed();
     	this.setOutputRange(-maxSpeed, maxSpeed);
-    	
-        this.setSetpoint(RobotPreferences.maxMoveSpeed());
+    	   
+        super.enable();
     }
     
     public double returnPIDInput() {

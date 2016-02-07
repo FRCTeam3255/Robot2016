@@ -1,7 +1,6 @@
 package org.usfirst.frc.team3255.robot2016;
 
 import org.usfirst.frc.team3255.robot2016.commands.*;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -15,6 +14,7 @@ public class OI {
 	//Joysticks
 	public static Joystick manipulatorStick = new Joystick(RobotMap.JOYSTICK_MANIPULATOR);
 	public static Joystick driverStick = new Joystick(RobotMap.JOYSTICK_DRIVER);
+	public static Joystick autoStick = new Joystick(RobotMap.JOYSTICK_AUTO);
 	
 	// manipulatorStick
 	Button M1 = new JoystickButton(manipulatorStick, 1);
@@ -46,6 +46,29 @@ public class OI {
 		// driveStick
 		D5.whenPressed(new DriveShiftDown());
 		D6.whenPressed(new DriveShiftUp());
+	}
+	
+	public int getLane() {
+		int lane = 1;
+		
+		double stickValue = autoStick.getRawAxis(RobotMap.AUTO_AXIS_SELECTOR);
+		
+		if(stickValue > 0.75) {
+			lane = 1;
+		}		
+		else if (stickValue > 0.25) {
+			lane = 2;
+		}
+		else if (stickValue > -0.25) {
+			lane = 3;
+		}		
+		else if (stickValue > -0.75) {
+			lane = 4;
+		}		
+		else {
+			lane = 5;
+		}
+		return lane;
 	}
 }
 
