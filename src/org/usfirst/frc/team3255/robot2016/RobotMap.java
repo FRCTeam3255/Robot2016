@@ -22,20 +22,20 @@ public class RobotMap {
 	public static final int AUTO_AXIS_SELECTOR = 0;
 	
 	// CANTalons
-	public static final int DRIVETRAIN_LEFT_FRONT_TALON = 0;
-	public static final int DRIVETRAIN_LEFT_MIDDLE_TALON = 1;
-	public static final int DRIVETRAIN_LEFT_BACK_TALON = 2;
-	public static final int DRIVETRAIN_RIGHT_FRONT_TALON = 3;
-	public static final int DRIVETRAIN_RIGHT_MIDDLE_TALON = 4;
-	public static final int DRIVETRAIN_RIGHT_BACK_TALON = 5;
+	public static final int DRIVETRAIN_LEFT_FRONT_TALON = 1;
+	public static final int DRIVETRAIN_LEFT_MIDDLE_TALON = 2;
+	public static final int DRIVETRAIN_LEFT_BACK_TALON = 3;
+	public static final int DRIVETRAIN_RIGHT_FRONT_TALON = 4;
+	public static final int DRIVETRAIN_RIGHT_MIDDLE_TALON = 5;
+	public static final int DRIVETRAIN_RIGHT_BACK_TALON = 6;
 	
-	public static final int SHOOTER_LEFT_TALON = 6;
-	public static final int SHOOTER_RIGHT_TALON = 7;
+	public static final int SHOOTER_LEFT_TALON = 7;
+	public static final int SHOOTER_RIGHT_TALON = 8;
 	
-	public static final int SALLYARM_TALON = 8;
+	public static final int SALLYARM_TALON = 9;
 	
-	public static final int COLLECTOR_INTAKE_TALON = 9;
-	public static final int COLLECTOR_ARM_TALON = 10;
+	public static final int COLLECTOR_INTAKE_TALON = 10;
+	public static final int COLLECTOR_ARM_TALON = 11;
 	
 	// Digital Inputs
 	public static final int SHOOTER_BALL_HOLD_SWITCH = 0;
