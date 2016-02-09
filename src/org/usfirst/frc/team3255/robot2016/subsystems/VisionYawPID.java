@@ -37,7 +37,7 @@ public class VisionYawPID extends PIDSubsystem {
     
     public double returnPIDInput() {
     	// TODO Change isTote to isTarget
-    	if(CommandBase.vision.isTote() == false) {
+    	if(CommandBase.vision.isTarget() == false) {
     		outputValid = false;
     		return this.getSetpoint();
     	}

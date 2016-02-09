@@ -37,13 +37,13 @@ public class VisionDistancePID extends PIDSubsystem {
     
     public double returnPIDInput() {
     	// TODO Change isTote to isTarget
-    	if(CommandBase.vision.isTote() == false) {
+    	if(CommandBase.vision.isTarget() == false) {
     		outputValid = false;
     		return this.getSetpoint();
     	}
     	outputValid = true;
     	// TODO Change getToteDistance to getTargetDistance
-    	return CommandBase.vision.getToteDistance();
+    	return CommandBase.vision.getTargetDistance();
     }
     
     

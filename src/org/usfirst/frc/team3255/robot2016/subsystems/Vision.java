@@ -58,7 +58,7 @@ public class Vision extends Subsystem {
 	int numRawParticles = 0;
 	int numParticles = 0;
 	
-	boolean isTote = false;
+	boolean isTarget = false;
 	double distance = 0.0;
 	boolean started = false;
 	
@@ -68,9 +68,9 @@ public class Vision extends Subsystem {
 	NIVision.Rect rect = new NIVision.Rect(10, 10, 100, 100);
 	
 	//Constants
-	public static NIVision.Range TOTE_HUE_RANGE = new NIVision.Range(RobotPreferences.visionHueMin(), RobotPreferences.visionHueMax());	//Default hue range for yellow tote
-	public static NIVision.Range TOTE_SAT_RANGE = new NIVision.Range(RobotPreferences.visionSatMin(), RobotPreferences.visionSatMax());	//Default saturation range for yellow tote
-	public static NIVision.Range TOTE_VAL_RANGE = new NIVision.Range(RobotPreferences.visionValMin(), RobotPreferences.visionValMax());	//Default value range for yellow tote
+	public static NIVision.Range TARGET_HUE_RANGE = new NIVision.Range(RobotPreferences.visionHueMin(), RobotPreferences.visionHueMax());	//Default hue range for yellow tote
+	public static NIVision.Range TARGET_SAT_RANGE = new NIVision.Range(RobotPreferences.visionSatMin(), RobotPreferences.visionSatMax());	//Default saturation range for yellow tote
+	public static NIVision.Range TARGET_VAL_RANGE = new NIVision.Range(RobotPreferences.visionValMin(), RobotPreferences.visionValMax());	//Default value range for yellow tote
 	public static double AREA_MINIMUM = 0.5; //Default Area minimum for particle as a percentage of total image area
 	double LONG_RATIO = 2.22; //Tote long side = 26.9 / Tote height = 12.1 = 2.22
 	double SHORT_RATIO = 1.4; //Tote short side = 16.9 / Tote height = 12.1 = 1.4
@@ -120,18 +120,18 @@ public class Vision extends Subsystem {
         NIVision.IMAQdxGrab(currSession, frame, 1);
         
 		//Update threshold values from SmartDashboard. For performance reasons it is recommended to remove this after calibration is finished.
-		TOTE_HUE_RANGE.minValue = RobotPreferences.visionHueMin();
-		TOTE_HUE_RANGE.maxValue = RobotPreferences.visionHueMax();
-		TOTE_SAT_RANGE.minValue = RobotPreferences.visionSatMin();
-		TOTE_SAT_RANGE.maxValue = RobotPreferences.visionSatMax();
-		TOTE_VAL_RANGE.minValue = RobotPreferences.visionValMin();
-		TOTE_VAL_RANGE.maxValue = RobotPreferences.visionValMax();
+		TARGET_HUE_RANGE.minValue = RobotPreferences.visionHueMin();
+		TARGET_HUE_RANGE.maxValue = RobotPreferences.visionHueMax();
+		TARGET_SAT_RANGE.minValue = RobotPreferences.visionSatMin();
+		TARGET_SAT_RANGE.maxValue = RobotPreferences.visionSatMax();
+		TARGET_VAL_RANGE.minValue = RobotPreferences.visionValMin();
+		TARGET_VAL_RANGE.maxValue = RobotPreferences.visionValMax();
 		
 		// scale the image down by a factor of two in both directions
 		NIVision.imaqScale(frame, frame, 4, 4, ScalingMode.SCALE_SMALLER, NIVision.NO_RECT);
 
 		//Threshold the image looking for yellow (tote color)
-		NIVision.imaqColorThreshold(HSVFrame, frame, 255, NIVision.ColorMode.HSV, TOTE_HUE_RANGE, TOTE_SAT_RANGE, TOTE_VAL_RANGE);
+		NIVision.imaqColorThreshold(HSVFrame, frame, 255, NIVision.ColorMode.HSV, TARGET_HUE_RANGE, TARGET_SAT_RANGE, TARGET_VAL_RANGE);
 
 		//Send particle count to dashboard
 		numRawParticles = NIVision.imaqCountParticles(HSVFrame, 1);
@@ -180,10 +180,10 @@ public class Vision extends Subsystem {
 			scores.AreaToConvexHullArea = ConvexHullAreaScore(particles.elementAt(0));
 			boolean isLong = scores.LongAspect > scores.ShortAspect;
 			distance = computeDistance(binaryFrame, particles.elementAt(0), isLong);
-			isTote = scores.Trapezoid > SCORE_MIN && (scores.LongAspect > SCORE_MIN || scores.ShortAspect > SCORE_MIN) && scores.AreaToConvexHullArea > SCORE_MIN;
+			isTarget = scores.Trapezoid > SCORE_MIN && (scores.LongAspect > SCORE_MIN || scores.ShortAspect > SCORE_MIN) && scores.AreaToConvexHullArea > SCORE_MIN;
 		} 
 		else {
-			isTote = false;
+			isTarget = false;
 		}
 
 		if(CommandBase.telemetry.isProcessed()) {
@@ -222,15 +222,15 @@ public class Vision extends Subsystem {
 		return frontCamera;
 	}
 	
-	public boolean isTote() {
-		return isTote;
+	public boolean isTarget() {
+		return isTarget;
 	}
 	
 	public double getToteCenterX() {
 		return ((rect.left + (rect.width/2))-80)/80.0;
 	}
 	
-	public double getToteDistance() {
+	public double getTargetDistance() {
 		return distance;
 	}
 	
