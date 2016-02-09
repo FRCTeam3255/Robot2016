@@ -57,7 +57,7 @@ public class Collector extends PIDSubsystem {
 	
 	// ================== Talons ==================
 	public void setIntakeSpeed(double s){
-		intakeTalon.set(s);
+		intakeTalon.set(-s);
 	}
 	
 	public void resetEncoders(){
