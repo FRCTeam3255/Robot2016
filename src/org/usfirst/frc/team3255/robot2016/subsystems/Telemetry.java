@@ -22,17 +22,30 @@ public class Telemetry extends Subsystem {
 		
 		init();
 	}
-    
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
 	
 	public void init() {
-		// DriveTrain Commands
+		// DriveTrain
 		SmartDashboard.putData("Reset Encoders", new DriveResetEncoders());
+		
+		// Vision
+		SmartDashboard.putNumber("Area min %", Vision.AREA_MINIMUM);
+
+		SmartDashboard.putBoolean("Processed Image", false);
+
 	}
 	
 	public void update() {
+		// Drivetrain
 		SmartDashboard.putNumber("getEncPosition", CommandBase.drivetrain.getEncoderPosition());
+	}
+
+	// ================== Vision ==================
+	public double getAreaMin() {
+		return SmartDashboard.getNumber("Area min %");
+	}
+
+	public boolean isProcessed() {
+		return SmartDashboard.getBoolean("Processed Image");
 	}
 	
     public void initDefaultCommand() {
@@ -40,15 +53,5 @@ public class Telemetry extends Subsystem {
         //setDefaultCommand(new MySpecialCommand());
     	setDefaultCommand(new TelemetryUpdate());
     }
-
-	public float getAreaMin() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public boolean isProcessed() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 }
 

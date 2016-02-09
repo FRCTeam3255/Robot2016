@@ -10,6 +10,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Lighting extends Subsystem {
+	
+	// Relays
 	Relay blueRelay = null;
 	Relay redRelay = null;
 	
@@ -26,12 +28,15 @@ public class Lighting extends Subsystem {
 	}
 	
 	public void init() {	
+		//relays
 		blueRelay = new Relay(RobotMap.LIGHTING_BLUE_RELAY);
 		blueRelay.setDirection(Direction.kForward);
 
 		redRelay = new Relay(RobotMap.LIGHTING_RED_RELAY);
 		redRelay.setDirection(Direction.kForward);
 	}
+	
+	// ================== Relays ==================
 	
 	public void blueOn(boolean on) {
 		if(on) {

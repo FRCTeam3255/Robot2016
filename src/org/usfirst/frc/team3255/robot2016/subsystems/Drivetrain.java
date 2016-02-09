@@ -33,13 +33,6 @@ public class Drivetrain extends Subsystem {
 	// Solenoids
 	DoubleSolenoid shifterSolenoid = null;
 	
-	// PID Navigation Control
-	NavigationYawPID navigationRotatePID = null;
-	
-	// PID Vison Control
-	VisionDistancePID visionMovePID = null;
-	VisionYawPID visionRotatePID = null;
-	
     public Drivetrain() {
 		super();
     	
@@ -78,16 +71,9 @@ public class Drivetrain extends Subsystem {
 		
 		// Solenoids
 		shifterSolenoid = new DoubleSolenoid(RobotMap.DRIVETRAIN_SHIFT_UP, RobotMap.DRIVETRAIN_SHIFT_DOWN);
-		
-		// PID Navigation Control
-		navigationRotatePID = new NavigationYawPID();
-		
-		// PID Vision Control
-		visionMovePID = new VisionDistancePID();
-		visionRotatePID = new VisionYawPID();
 	}
 	
-	// Talons
+	// ================== Talons ==================
 	public void setSpeed(double s) {
 		leftThreeMotorDrive.set(s);
 		rightThreeMotorDrive.set(-s);
@@ -97,7 +83,7 @@ public class Drivetrain extends Subsystem {
 		robotDrive.arcadeDrive(-moveSpeed, -rotateSpeed);
 	}
 	
-	// Solenoids
+	// ================== Solenoids ==================
 	public void shiftHi() {
 		shifterSolenoid.set(Value.kForward);
 	}
@@ -106,7 +92,7 @@ public class Drivetrain extends Subsystem {
 		shifterSolenoid.set(Value.kReverse);
 	}
 	
-	// Encoders
+	// ================== Encoders ==================
 	public void resetEncoders() {
 		leftFrontTalon.setEncPosition(0);
 	}
@@ -116,7 +102,7 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public double getEncoderDistance() {
-		return (getEncoderPosition() / RobotPreferences.getDrivetrainPulsesPer5Feet()) * 5;
+		return (getEncoderPosition() / RobotPreferences.drivetrainPulsesPer5Feet()) * 5;
 	}
 	
 	public void initDefaultCommand() {

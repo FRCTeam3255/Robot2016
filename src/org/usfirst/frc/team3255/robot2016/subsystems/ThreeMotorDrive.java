@@ -6,9 +6,7 @@ import edu.wpi.first.wpilibj.SpeedController;
  *
  */
 public class ThreeMotorDrive implements SpeedController {
-    
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
+
 	private SpeedController sc1;
 	private SpeedController sc2;
 	private SpeedController sc3;

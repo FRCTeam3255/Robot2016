@@ -40,7 +40,6 @@ public class RobotMap {
 	// Digital Inputs
 	public static final int SHOOTER_BALL_HOLD_SWITCH = 0;
 	
-	public static final int SALLYARM_DEPLOYED_SWITCH = 2;
 	public static final int SALLYARM_RETRACTED_SWITCH = 3;
 	
 	// Solenoids

@@ -44,7 +44,18 @@ public class Collector extends PIDSubsystem {
 		super.enable();
 	}
 	
-	// Talons
+	// ================== PID ==================
+	@Override
+	protected double returnPIDInput() {
+		return getEncoderPosition();
+	}
+
+	@Override
+	protected void usePIDOutput(double output) {
+		setArmSpeed(output);
+	}
+	
+	// ================== Talons ==================
 	public void setIntakeSpeed(double s){
 		intakeTalon.set(s);
 	}
@@ -61,6 +72,7 @@ public class Collector extends PIDSubsystem {
 		armTalon.set(s);
 	}
 	
+	// ================== Limit Switches ==================
 	public boolean isCollectorHome() {
 		if (homePosition.get()) {
 			return true;
@@ -74,15 +86,5 @@ public class Collector extends PIDSubsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
-
-	@Override
-	protected double returnPIDInput() {
-		return getEncoderPosition();
-	}
-
-	@Override
-	protected void usePIDOutput(double output) {
-		setArmSpeed(output);
-	}
 }
 

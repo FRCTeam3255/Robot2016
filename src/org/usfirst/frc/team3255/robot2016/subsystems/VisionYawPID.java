@@ -16,6 +16,7 @@ public class VisionYawPID extends PIDSubsystem {
     // Initialize your subsystem here
     public VisionYawPID() {
         super(0, 0, 0);
+        // TODO Do we need to call enable() here?
     }
     
     public void enable() {

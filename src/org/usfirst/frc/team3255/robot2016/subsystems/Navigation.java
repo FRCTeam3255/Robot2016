@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *
  */
 public class Navigation extends Subsystem {
+	
 	public static AHRS ahrs = null;
 	
 	public static void AHRSinit() {

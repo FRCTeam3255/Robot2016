@@ -13,12 +13,13 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class SallyArm extends Subsystem {
     
-
+	// Talons
 	CANTalon armTalon = null;
     
+	// Solenoids
     DoubleSolenoid armSolenoid = null;
     
-    DigitalInput deploySwitch = null;
+    // Limit Switches
     DigitalInput retractSwitch = null;
     
     public SallyArm() {
@@ -34,23 +35,25 @@ public class SallyArm extends Subsystem {
 	}
     
     public void init() {
+    	// Talons
     	armTalon = new CANTalon(RobotMap.SALLYARM_TALON);
     	
     	armTalon.setSafetyEnabled(false);
     	
+    	// Solenoids
     	armSolenoid = new DoubleSolenoid(RobotMap.SALLYARM_SOLENOID_DEPLOY, 
     			RobotMap.SALLYARM_SOLENOID_RETRACT);
     	
-    	deploySwitch = new DigitalInput(RobotMap.SALLYARM_DEPLOYED_SWITCH);
+    	// Limit Switches
     	retractSwitch = new DigitalInput(RobotMap.SALLYARM_RETRACTED_SWITCH);
     }
     
-    // Talons
+    // ================== Talons ==================
     public void setSpeed(double s) {
     	armTalon.set(s);
 	}
     
-    // Solenoids
+    // ================== Solenoids ==================
     public void deploy() {
     	armSolenoid.set(Value.kForward);
     }
@@ -59,10 +62,7 @@ public class SallyArm extends Subsystem {
     	armSolenoid.set(Value.kReverse);
     }
     
-    public boolean isDeployed() {
-    	return !deploySwitch.get();
-    }
-    
+    // ================== Limit Switches ==================
     public boolean isRetracted() {
     	return !retractSwitch.get();
     }

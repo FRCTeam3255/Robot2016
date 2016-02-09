@@ -15,11 +15,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Shooter extends Subsystem {
  
+	// Talons
 	CANTalon leftTalon = null;
 	CANTalon rightTalon = null;
 	
+	// Limit Switches
 	DigitalInput ballHoldSwitch = null;
 	
+	// Solenoids
 	DoubleSolenoid pitchSolenoid = null;
 	
     public Shooter() {
@@ -50,7 +53,8 @@ public class Shooter extends Subsystem {
 		// Solenoid
 		pitchSolenoid = new DoubleSolenoid(RobotMap.SHOOTER_PITCH_SOLENOID_DEPLOY, RobotMap.SHOOTER_PITCH_SOLENOID_RETRACT);
 	}
-	
+
+	// ================== Talons ==================
 	private void setVoltageMode() {
 		leftTalon.changeControlMode(TalonControlMode.Voltage);
 		rightTalon.changeControlMode(TalonControlMode.Voltage);
@@ -60,7 +64,6 @@ public class Shooter extends Subsystem {
 		rightTalon.setVoltageCompensationRampRate(rampRate);
 	}
 	
-	// Talons
 	public void set(double s){
 		leftTalon.set(s);
 		rightTalon.set(-s);
@@ -71,6 +74,7 @@ public class Shooter extends Subsystem {
 		return (ballHoldSwitch.get() == false);
 	}
 	
+	// ================== Solenoids ==================
 	public void pitchUp() {
 		pitchSolenoid.set(Value.kForward);
 	}

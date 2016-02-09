@@ -17,6 +17,7 @@ public class NavigationYawPID extends PIDSubsystem {
     public NavigationYawPID() {
         super(0, 0, 0);
         this.setSetpoint(0.0);
+        // TODO Do we need to call enable() here?
     }
     
     public void enable() {
