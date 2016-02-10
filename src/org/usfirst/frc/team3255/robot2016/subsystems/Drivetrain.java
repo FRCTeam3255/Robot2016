@@ -79,8 +79,12 @@ public class Drivetrain extends Subsystem {
 		rightThreeMotorDrive.set(-s);
 	}
 	
-	public void arcadeDrive(double moveSpeed, double rotateSpeed) {
-		robotDrive.arcadeDrive(-moveSpeed, -rotateSpeed);
+	public void arcadeDrive(double moveSpeed, double rotateSpeed, boolean squaredInputs){
+		robotDrive.arcadeDrive(-moveSpeed, -rotateSpeed, squaredInputs);
+	}
+	
+	public void arcadeDrive(double moveSpeed, double rotateSpeed){
+		arcadeDrive(moveSpeed, rotateSpeed, false);
 	}
 	
 	// ================== Solenoids ==================

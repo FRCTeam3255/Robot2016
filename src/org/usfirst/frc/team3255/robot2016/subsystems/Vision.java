@@ -41,7 +41,6 @@ public class Vision extends Subsystem {
 	
 	//Structure to represent the scores for the various tests used for target identification
 	public class Scores {
-		double Trapezoid;
 		double LongAspect;
 		double ShortAspect;
 		double AreaToConvexHullArea;
@@ -72,8 +71,8 @@ public class Vision extends Subsystem {
 	public static NIVision.Range TARGET_SAT_RANGE = new NIVision.Range(RobotPreferences.visionSatMin(), RobotPreferences.visionSatMax());	//Default saturation range for yellow tote
 	public static NIVision.Range TARGET_VAL_RANGE = new NIVision.Range(RobotPreferences.visionValMin(), RobotPreferences.visionValMax());	//Default value range for yellow tote
 	public static double AREA_MINIMUM = 0.5; //Default Area minimum for particle as a percentage of total image area
-	double LONG_RATIO = 2.22; //Tote long side = 26.9 / Tote height = 12.1 = 2.22
-	double SHORT_RATIO = 1.4; //Tote short side = 16.9 / Tote height = 12.1 = 1.4
+	double HORIZONTAL_RECTANGLE = 2.22; //Tote long side = 26.9 / Tote height = 12.1 = 2.22
+	double VERTICAL_RECTANGLE = 1.4; //Tote short side = 16.9 / Tote height = 12.1 = 1.4
 	double SCORE_MIN = 75.0;  //Minimum score to be considered a tote
 	double VIEW_ANGLE = 49.4; //View angle fo camera, set to Axis m1011 by default, 64 for m1013, 51.7 for 206, 52 for HD3000 square, 60 for HD3000 640x480
 	NIVision.ParticleFilterCriteria2 criteria[] = new NIVision.ParticleFilterCriteria2[1];
@@ -174,13 +173,12 @@ public class Vision extends Subsystem {
 			//This example only scores the largest particle. Extending to score all particles and choosing the desired one is left as an exercise
 			//for the reader. Note that the long and short side scores expect a single tote and will not work for a stack of 2 or more totes.
 			//Modification of the code to accommodate 2 or more stacked totes is left as an exercise for the reader.
-			scores.Trapezoid = TrapezoidScore(particles.elementAt(0));
-			scores.LongAspect = LongSideScore(particles.elementAt(0));
-			scores.ShortAspect = ShortSideScore(particles.elementAt(0));
+			scores.LongAspect = horizontalRectangleScore(particles.elementAt(0));
+			scores.ShortAspect = verticalRectanlgeScore(particles.elementAt(0));
 			scores.AreaToConvexHullArea = ConvexHullAreaScore(particles.elementAt(0));
 			boolean isLong = scores.LongAspect > scores.ShortAspect;
 			distance = computeDistance(binaryFrame, particles.elementAt(0), isLong);
-			isTarget = scores.Trapezoid > SCORE_MIN && (scores.LongAspect > SCORE_MIN || scores.ShortAspect > SCORE_MIN) && scores.AreaToConvexHullArea > SCORE_MIN;
+			isTarget = (scores.LongAspect > SCORE_MIN || scores.ShortAspect > SCORE_MIN) && scores.AreaToConvexHullArea > SCORE_MIN;
 		} 
 		else {
 			isTarget = false;
@@ -242,10 +240,6 @@ public class Vision extends Subsystem {
 		return numParticles;
 	}
 	
-	public double getTrapezoidScore() {
-		return scores.Trapezoid;
-	}
-	
 	public double getLongAspectScore() {
 		return scores.LongAspect;
 	}
@@ -266,12 +260,12 @@ public class Vision extends Subsystem {
 		return ratioToScore(report.ConvexHullArea/((report.BoundingRectRight-report.BoundingRectLeft)*(report.BoundingRectBottom-report.BoundingRectTop)*.954));
 	}
 	
-	double LongSideScore(ParticleReport report) {
-		return ratioToScore(((report.BoundingRectRight-report.BoundingRectLeft)/(report.BoundingRectBottom-report.BoundingRectTop))/LONG_RATIO);
+	double horizontalRectangleScore(ParticleReport report) {
+		return ratioToScore(((report.BoundingRectRight-report.BoundingRectLeft)/(report.BoundingRectBottom-report.BoundingRectTop))/HORIZONTAL_RECTANGLE);
 	}
 
-	double ShortSideScore(ParticleReport report){
-		return ratioToScore(((report.BoundingRectRight-report.BoundingRectLeft)/(report.BoundingRectBottom-report.BoundingRectTop))/SHORT_RATIO);
+	double verticalRectanlgeScore(ParticleReport report){
+		return ratioToScore(((report.BoundingRectRight-report.BoundingRectLeft)/(report.BoundingRectBottom-report.BoundingRectTop))/VERTICAL_RECTANGLE);
 	}
 	
 	double ConvexHullAreaScore(ParticleReport report) {
