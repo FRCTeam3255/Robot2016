@@ -23,6 +23,10 @@ public class RobotPreferences {
 		return Preferences.getInstance().getDouble("MaxYawSpeed", 0.6);
 	}
 	
+	public static double driveUserSpeed() {
+		return Preferences.getInstance().getDouble("DriveUserSpeed", 1.0);
+	}
+	
 	// ================== Shooter ==================
 	public static double shooterVoltageRamp() {
 		return Preferences.getInstance().getDouble("ShooterVoltageRamp", 0.0);

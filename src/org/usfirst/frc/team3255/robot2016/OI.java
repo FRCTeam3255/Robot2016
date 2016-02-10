@@ -28,6 +28,7 @@ public class OI {
 	Button M12 = new JoystickButton(manipulatorStick, 12);
 	
 	// driveStick
+	Button D2 = new JoystickButton(driverStick, 2);
 	Button D5 = new JoystickButton(driverStick, 5);
 	Button D6 = new JoystickButton(driverStick, 6);
 	
@@ -44,8 +45,10 @@ public class OI {
 		M12.whenPressed(new ShooterPitchDown());
 		
 		// driveStick
+		D2.whileHeld(new DriveSpeed());
 		D5.whenPressed(new DriveShiftDown());
 		D6.whenPressed(new DriveShiftUp());
+		
 	}
 	
 	public int getLane() {

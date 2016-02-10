@@ -1,27 +1,23 @@
 package org.usfirst.frc.team3255.robot2016.commands;
 
-import org.usfirst.frc.team3255.robot2016.OI;
-import org.usfirst.frc.team3255.robot2016.RobotMap;
+import org.usfirst.frc.team3255.robot2016.RobotPreferences;
 
 /**
  *
  */
-public class DriveArcade extends CommandBase {
+public class DriveSpeed extends CommandBase {
 
-    public DriveArcade() {
+    public DriveSpeed() {
     	requires(drivetrain);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	drivetrain.setSpeed(RobotPreferences.driveUserSpeed());
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double moveSpeed = -OI.driverStick.getRawAxis(RobotMap.DRIVER_AXIS_MOVE);
-		double rotateSpeed = -OI.driverStick.getRawAxis(RobotMap.DRIVER_AXIS_ROTATE);
-		
-		drivetrain.arcadeDrive(moveSpeed, rotateSpeed, true);
     }
 
     // Make this return true when this Command no longer needs to run execute()
