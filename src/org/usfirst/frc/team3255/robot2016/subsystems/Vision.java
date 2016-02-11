@@ -15,6 +15,7 @@ import com.ni.vision.NIVision.ScalingMode;
 import com.ni.vision.NIVision.ShapeMode;
 
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -62,6 +63,15 @@ public class Vision extends Subsystem {
 	boolean started = false;
 	
 	boolean frontCamera = true;
+
+	boolean useCamera = true;
+	
+	// variables for navigating image files
+	private String imagePrefix = "/home/lvuser/SampleImages/";
+	private String imageSuffix = ".jpg";
+	private int minImageNumber = 0;
+	private int maxImageNumber = 542;
+	private int imageNumber = minImageNumber;
 	
 	int newSession;
 	NIVision.Rect rect = new NIVision.Rect(10, 10, 100, 100);
@@ -87,14 +97,27 @@ public class Vision extends Subsystem {
 		criteria[0] = new NIVision.ParticleFilterCriteria2(NIVision.MeasurementType.MT_AREA_BY_IMAGE_AREA, AREA_MINIMUM, 100.0, 0, 0);
 
         // the camera name (ex "cam0") can be found through the roborio web interface
-        frontSession = NIVision.IMAQdxOpenCamera(RobotPreferences.frontCamera(),
-                NIVision.IMAQdxCameraControlMode.CameraControlModeController);
+        try {
+			frontSession = NIVision.IMAQdxOpenCamera(RobotPreferences.frontCamera(),
+			        NIVision.IMAQdxCameraControlMode.CameraControlModeController);
+		} catch (Exception e) {
+			DriverStation.reportError("Camera " + RobotPreferences.frontCamera() + " not found", false);
+			frontSession = -1;
+		}
 
-        rearSession = NIVision.IMAQdxOpenCamera(RobotPreferences.rearCamera(),
-                NIVision.IMAQdxCameraControlMode.CameraControlModeController);
+        try {
+	        rearSession = NIVision.IMAQdxOpenCamera(RobotPreferences.rearCamera(),
+	                NIVision.IMAQdxCameraControlMode.CameraControlModeController);
+		} catch (Exception e) {
+			DriverStation.reportError("Camera " + RobotPreferences.rearCamera() + " not found", false);
+			rearSession = -1;
+		}
         
         currSession = frontSession;
-        NIVision.IMAQdxConfigureGrab(currSession);	
+        if(currSession >= 0) {
+        	NIVision.IMAQdxConfigureGrab(currSession);
+			NIVision.IMAQdxStartAcquisition(currSession);
+        }
     }
 	
 	public void update() {
@@ -106,17 +129,49 @@ public class Vision extends Subsystem {
 		}
 		
 		if(newSession != currSession) {
-			NIVision.IMAQdxStopAcquisition(currSession);
+			if(currSession >= 0) {
+				NIVision.IMAQdxStopAcquisition(currSession);
+			}
 
 			currSession = newSession;
-	        NIVision.IMAQdxConfigureGrab(currSession);
-			NIVision.IMAQdxStartAcquisition(currSession);					
+			if(currSession >= 0) {
+		        NIVision.IMAQdxConfigureGrab(currSession);
+				NIVision.IMAQdxStartAcquisition(currSession);
+			}
 		}
+		
+		// set up the default return values, so that if this routine returns early, it has
+		// set reasonable values
+		distance = 0;
+		isTarget = false;
 
-		//read file in from disk. For this example to run you need to copy image20.jpg from the SampleImages folder to the
-		//directory shown below using FTP or SFTP: http://wpilib.screenstepslive.com/s/4485/m/24166/l/282299-roborio-ftp
-		// NIVision.imaqReadFile(frame, "/home/lvuser/SampleImages/image20.jpg");
-        NIVision.IMAQdxGrab(currSession, frame, 1);
+		if(useCamera) {
+			if(currSession < 0) {
+				return;
+			}
+	        NIVision.IMAQdxGrab(currSession, frame, 1);			
+		}
+		else {
+			//read file in from disk. For this example to run you need to copy image20.jpg from the SampleImages folder to the
+			//directory shown below using FTP or SFTP: http://wpilib.screenstepslive.com/s/4485/m/24166/l/282299-roborio-ftp
+			boolean imageFound = false;
+			int maxImages = maxImageNumber - minImageNumber + 1;
+			for(int i = 0; i < maxImages; i++) {
+				try {
+					NIVision.imaqReadFile(frame, imagePrefix + imageNumber + imageSuffix);
+					imageFound = true;
+					break;
+				}
+				catch(Exception e) {
+					nextImage();
+				}
+			}
+			
+			if(!imageFound) {
+				DriverStation.reportError("No images found", false);
+				return;
+			}
+		}
         
 		//Update threshold values from SmartDashboard. For performance reasons it is recommended to remove this after calibration is finished.
 		TARGET_HUE_RANGE.minValue = RobotPreferences.visionHueMin();
@@ -189,6 +244,28 @@ public class Vision extends Subsystem {
 		}
 		else {
 			CameraServer.getInstance().setImage(frame);
+		}
+	}
+	
+	public void useCamera(boolean cameraOn) {
+		useCamera = cameraOn;
+	}
+	
+	public boolean isUsingCamera() {
+		return useCamera;
+	}
+	
+	public void nextImage() {
+		imageNumber++;
+		if(imageNumber > maxImageNumber) {
+			imageNumber = minImageNumber;
+		}
+	}
+	
+	public void prevImage() {
+		imageNumber--;
+		if(imageNumber < minImageNumber) {
+			imageNumber = maxImageNumber;
 		}
 	}
 	
