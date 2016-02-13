@@ -25,18 +25,34 @@ public class Telemetry extends Subsystem {
 	
 	public void init() {
 		// DriveTrain
-		SmartDashboard.putData("Reset Encoders", new DriveResetEncoders());
+		SmartDashboard.putData("Drive Reset Encoders", new DriveResetEncoders());
+		
+		// Collector
+		SmartDashboard.putData("Collector Reset Encoders", new CollectorResetEncoders());
+		SmartDashboard.putData("Collector Low", new CollectorMoveToLow());
+		SmartDashboard.putData("Collector Pickup", new CollectorMoveToPickup());
 		
 		// Vision
 		SmartDashboard.putNumber("Area min %", Vision.AREA_MINIMUM);
 
 		SmartDashboard.putBoolean("Processed Image", false);
-
 	}
 	
 	public void update() {
 		// Drivetrain
-		SmartDashboard.putNumber("getEncPosition", CommandBase.drivetrain.getEncoderPosition());
+		SmartDashboard.putNumber("getDrivetrainPosition", CommandBase.drivetrain.getEncoderPosition());
+		
+		// Collector
+		SmartDashboard.putNumber("getCollectorPosition", CommandBase.collector.getEncoderPosition());
+		
+		// Shooter
+		SmartDashboard.putBoolean("isBallSwitchedClosed", CommandBase.shooter.isBallHoldSwitchClosed());
+		
+		// Navigation
+		SmartDashboard.putNumber("getYaw", CommandBase.navigation.getYaw());
+		SmartDashboard.putNumber("getPitch", CommandBase.navigation.getPitch());
+		
+		SmartDashboard.putBoolean("isCalibrating", CommandBase.navigation.isCalibrating());
 	}
 
 	// ================== Vision ==================

@@ -44,10 +44,6 @@ public class RobotPreferences {
 		return Preferences.getInstance().getDouble("ShooterSpinUpDelay", 0.0);
 	}
 	
-	public static double shooterPulsePerRotation(){
-		return Preferences.getInstance().getDouble("ShooterPulsePerRotation", 0.0);
-	}
-	
 	// ================== Collector ==================
 	public static double collectorP() {
 		return Preferences.getInstance().getDouble("CollectorP", 0.0);
@@ -61,6 +57,10 @@ public class RobotPreferences {
 		return Preferences.getInstance().getDouble("CollectorD", 0.0);
 	}
 
+	public static double maxCollectorSpeed() {
+		return Preferences.getInstance().getDouble("CollectorMax", 0.6);
+	}
+
 	public static double collectorPickupPosition() {
 		return Preferences.getInstance().getDouble("CollectorPickup", 0.0);
 	}
@@ -70,7 +70,7 @@ public class RobotPreferences {
 	}
 	
 	public static double collectorTolerance() {
-		return Preferences.getInstance().getDouble("CollectorTolerance", 0.0);
+		return Preferences.getInstance().getDouble("CollectorTolerance", 100.0);
 	}
 
 	public static double collectorTimeout() {
@@ -81,25 +81,9 @@ public class RobotPreferences {
 		return Preferences.getInstance().getDouble("CollectorIntakeSpeed", 1.0);
 	}
 	
-	public static double collectorPulsePerRotation() {
-		return Preferences.getInstance().getDouble("CollectorPulsePerRotation", 0.0);
-	}
-	
 	// ================== Sally Arm ==================
 	public static double sallyArmSensitivity() {
 		return Preferences.getInstance().getDouble("SallySensitivity", 0.5);
-	}
-	
-	public static double sallyArmPulsePerRotation(){
-		return Preferences.getInstance().getDouble("SallyArmPulsePerRotation", 0.0);
-	}
-	
-	public static double sallyPortPosition() {
-		return Preferences.getInstance().getDouble("SallyPortPosition", 0.0);
-	}
-	
-	public static double sallyArmHomePosition() {
-		return Preferences.getInstance().getDouble("SallyArmHomePosition", 0.0);
 	}
 	
 	// ================== Auto ==================
@@ -206,7 +190,7 @@ public class RobotPreferences {
 	}
 	
 	public static double targetDistance() {
-		return Preferences.getInstance().getDouble("targetDistance", 6.0);
+		return Preferences.getInstance().getDouble("TargetDistance", 6.0);
 	}
 
 	// ================== Vision ==================

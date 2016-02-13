@@ -41,6 +41,8 @@ public class Collector extends PIDSubsystem {
 				RobotPreferences.collectorI(),
 				RobotPreferences.collectorD());
 		this.setAbsoluteTolerance(RobotPreferences.collectorTolerance());
+		double maxSpeed = RobotPreferences.maxCollectorSpeed();
+		this.setOutputRange(-maxSpeed, maxSpeed);
 		super.enable();
 	}
 	
@@ -52,12 +54,12 @@ public class Collector extends PIDSubsystem {
 
 	@Override
 	protected void usePIDOutput(double output) {
-		setArmSpeed(output);
+		setArmSpeed(-output);
 	}
 	
 	// ================== Talons ==================
 	public void setIntakeSpeed(double s){
-		intakeTalon.set(s);
+		intakeTalon.set(-s);
 	}
 	
 	public void resetEncoders(){

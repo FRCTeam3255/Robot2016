@@ -1,0 +1,53 @@
+<xml version="1.0">
+<dashboard>
+	<widget field="isBallSwitchedClosed" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="888" y="32"/>
+		<width>129</width>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.RobotPreferences">
+		<location x="1207" y="0"/>
+		<width>376</width>
+		<height>593</height>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
+		<location x="26" y="118"/>
+	</static-widget>
+	<widget field="isCalibrating" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="715" y="114"/>
+		<width>101</width>
+		<height>14</height>
+	</widget>
+	<widget field="Collector Reset Encoders" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="245" y="23"/>
+	</widget>
+	<widget field="Zero Yaw" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="716" y="21"/>
+	</widget>
+	<widget field="Drive Reset Encoders" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="464" y="23"/>
+	</widget>
+	<widget field="getDrivetrainPosition" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="454" y="60"/>
+	</widget>
+	<widget field="Area min %" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="80" y="60"/>
+	</widget>
+	<widget field="getCollectorPosition" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="256" y="60"/>
+	</widget>
+	<widget field="getYaw" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="709" y="89"/>
+	</widget>
+	<widget field="Processed Image" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="56" y="28"/>
+	</widget>
+	<widget field="getPitch" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="707" y="62"/>
+	</widget>
+</dashboard>
+<live-window>
+</live-window>
+	<hidden field="ToggleCameraFile"/>
+	<hidden field="Reset Encoders"/>
+	<hidden field="getEncPosition"/>
+</xml>

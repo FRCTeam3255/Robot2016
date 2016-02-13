@@ -69,9 +69,9 @@ public class Shooter extends Subsystem {
 		rightTalon.set(s);
 	}
 	
-	// Limit Switches
+	// ================== Limit Switches ==================
 	public boolean isBallHoldSwitchClosed() {
-		return (ballHoldSwitch.get() == false);
+		return (ballHoldSwitch.get());
 	}
 	
 	// ================== Solenoids ==================

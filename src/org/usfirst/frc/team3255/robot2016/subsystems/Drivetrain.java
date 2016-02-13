@@ -98,11 +98,11 @@ public class Drivetrain extends Subsystem {
 	
 	// ================== Encoders ==================
 	public void resetEncoders() {
-		leftFrontTalon.setEncPosition(0);
+		leftBackTalon.setEncPosition(0);
 	}
 	
 	public double getEncoderPosition() {
-		return leftFrontTalon.getEncPosition();
+		return leftBackTalon.getEncPosition();
 	}
 
 	public double getEncoderDistance() {
