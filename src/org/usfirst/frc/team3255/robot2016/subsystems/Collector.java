@@ -67,11 +67,15 @@ public class Collector extends PIDSubsystem {
 	}
 	
 	public double getEncoderPosition() {
-		return armTalon.getEncPosition();
+		return armTalon.getEncPosition() * RobotPreferences.collectorEncoderCompression();
 	}
 	
 	public void setArmSpeed(double s) {
 		armTalon.set(s);
+	}
+	
+	public double getArmSpeed() {
+		return armTalon.get();
 	}
 	
 	// ================== Limit Switches ==================

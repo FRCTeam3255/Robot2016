@@ -25,6 +25,8 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
     	CommandBase.init();
+    	CommandBase.collector.resetEncoders();
+    	CommandBase.drivetrain.resetEncoders();
     }
 	
 	/**

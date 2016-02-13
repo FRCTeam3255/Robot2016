@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.Preferences;
 public class RobotPreferences {
 
 	// Ordered by Subsystems
-	
+
 	// ================== Drivetrain ==================
 	public static double driveSensitivity() {
 		return Preferences.getInstance().getDouble("DriveSensitivity", 1.0);
@@ -29,7 +29,7 @@ public class RobotPreferences {
 	
 	// ================== Shooter ==================
 	public static double shooterVoltageRamp() {
-		return Preferences.getInstance().getDouble("ShooterVoltageRamp", 0.0);
+		return Preferences.getInstance().getDouble("ShooterVoltageRamp", 48.0);
 	}
 
 	public static double shooterVoltage() {
@@ -46,7 +46,7 @@ public class RobotPreferences {
 	
 	// ================== Collector ==================
 	public static double collectorP() {
-		return Preferences.getInstance().getDouble("CollectorP", 0.0);
+		return Preferences.getInstance().getDouble("CollectorP", 0.02);
 	}
 	
 	public static double collectorI() {
@@ -58,15 +58,19 @@ public class RobotPreferences {
 	}
 
 	public static double maxCollectorSpeed() {
-		return Preferences.getInstance().getDouble("CollectorMax", 0.6);
+		return Preferences.getInstance().getDouble("CollectorMax", 1.0);
 	}
 
 	public static double collectorPickupPosition() {
-		return Preferences.getInstance().getDouble("CollectorPickup", 0.0);
+		return Preferences.getInstance().getDouble("CollectorPickup", -20.0);
 	}
 
 	public static double collectorLowPosition() {
-		return Preferences.getInstance().getDouble("CollectorLow", 0.0);
+		return Preferences.getInstance().getDouble("CollectorLow", -26.0);
+	}
+
+	public static double collectorStowPosition() {
+		return Preferences.getInstance().getDouble("CollectorStow", 0.0);
 	}
 	
 	public static double collectorTolerance() {
@@ -79,6 +83,10 @@ public class RobotPreferences {
 	
 	public static double collectorIntakeSpeed() {
 		return Preferences.getInstance().getDouble("CollectorIntakeSpeed", 1.0);
+	}
+	
+	public static double collectorEncoderCompression() {
+		return Preferences.getInstance().getDouble("CollectorEncoderCompression", 0.01);
 	}
 	
 	// ================== Sally Arm ==================
@@ -277,4 +285,5 @@ public class RobotPreferences {
 	public static double MoveSpeedMax() {
 		return Preferences.getInstance().getDouble("MoveMax", 0.6);
 	}
+
 }

@@ -87,6 +87,10 @@ public class Drivetrain extends Subsystem {
 		arcadeDrive(moveSpeed, rotateSpeed, false);
 	}
 	
+	public double getDriveSpeed() {
+		return leftFrontTalon.get();
+	}
+	
 	// ================== Solenoids ==================
 	public void shiftHi() {
 		shifterSolenoid.set(Value.kForward);

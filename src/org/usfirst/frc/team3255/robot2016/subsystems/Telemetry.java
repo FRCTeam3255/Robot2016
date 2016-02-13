@@ -22,15 +22,18 @@ public class Telemetry extends Subsystem {
 		
 		init();
 	}
-	
+		
 	public void init() {
 		// DriveTrain
 		SmartDashboard.putData("Drive Reset Encoders", new DriveResetEncoders());
+		SmartDashboard.putData("Drive 5 Feet", new DriveDistance(5.0));
+		SmartDashboard.putData("Drive Straight 5 Feet", new DriveStraightDistance(5.0));
 		
 		// Collector
 		SmartDashboard.putData("Collector Reset Encoders", new CollectorResetEncoders());
 		SmartDashboard.putData("Collector Low", new CollectorMoveToLow());
 		SmartDashboard.putData("Collector Pickup", new CollectorMoveToPickup());
+		SmartDashboard.putData("Collector Stow", new CollectorMoveToStow());
 		
 		// Vision
 		SmartDashboard.putNumber("Area min %", Vision.AREA_MINIMUM);
@@ -40,19 +43,21 @@ public class Telemetry extends Subsystem {
 	
 	public void update() {
 		// Drivetrain
-		SmartDashboard.putNumber("getDrivetrainPosition", CommandBase.drivetrain.getEncoderPosition());
+		SmartDashboard.putNumber("Drivetrain Position", CommandBase.drivetrain.getEncoderPosition());
+		SmartDashboard.putNumber("Drive Speed", CommandBase.drivetrain.getDriveSpeed());
 		
 		// Collector
-		SmartDashboard.putNumber("getCollectorPosition", CommandBase.collector.getEncoderPosition());
+		SmartDashboard.putNumber("Collector Position", CommandBase.collector.getEncoderPosition());
+		SmartDashboard.putNumber("Collector Arm Output", CommandBase.collector.getArmSpeed());
 		
 		// Shooter
-		SmartDashboard.putBoolean("isBallSwitchedClosed", CommandBase.shooter.isBallHoldSwitchClosed());
+		SmartDashboard.putBoolean("Ball Switched Closed", CommandBase.shooter.isBallHoldSwitchClosed());
 		
 		// Navigation
-		SmartDashboard.putNumber("getYaw", CommandBase.navigation.getYaw());
-		SmartDashboard.putNumber("getPitch", CommandBase.navigation.getPitch());
+		SmartDashboard.putNumber("Yaw", CommandBase.navigation.getYaw());
+		SmartDashboard.putNumber("Pitch", CommandBase.navigation.getPitch());
 		
-		SmartDashboard.putBoolean("isCalibrating", CommandBase.navigation.isCalibrating());
+		SmartDashboard.putBoolean("Calibrating", CommandBase.navigation.isCalibrating());
 	}
 
 	// ================== Vision ==================
