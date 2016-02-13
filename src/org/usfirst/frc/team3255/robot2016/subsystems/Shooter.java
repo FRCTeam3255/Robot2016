@@ -66,7 +66,7 @@ public class Shooter extends Subsystem {
 	
 	public void set(double s){
 		leftTalon.set(s);
-		rightTalon.set(-s);
+		rightTalon.set(s);
 	}
 	
 	// Limit Switches

@@ -23,13 +23,17 @@ public class RobotPreferences {
 		return Preferences.getInstance().getDouble("MaxYawSpeed", 0.6);
 	}
 	
+	public static double driveUserSpeed() {
+		return Preferences.getInstance().getDouble("DriveUserSpeed", 1.0);
+	}
+	
 	// ================== Shooter ==================
 	public static double shooterVoltageRamp() {
 		return Preferences.getInstance().getDouble("ShooterVoltageRamp", 0.0);
 	}
 
 	public static double shooterVoltage() {
-		return Preferences.getInstance().getDouble("ShooterVoltage", 0.0);
+		return Preferences.getInstance().getDouble("ShooterVoltage", 7.0);
 	}
 
 	public static double shooterSpeed() {
@@ -74,7 +78,7 @@ public class RobotPreferences {
 	}
 	
 	public static double collectorIntakeSpeed() {
-		return Preferences.getInstance().getDouble("CollectorIntakeSpeed", 0.0);
+		return Preferences.getInstance().getDouble("CollectorIntakeSpeed", 1.0);
 	}
 	
 	public static double collectorPulsePerRotation() {

@@ -20,6 +20,7 @@ public class OI {
 	Button M1 = new JoystickButton(manipulatorStick, 1);
 	Button M2 = new JoystickButton(manipulatorStick, 2);
 	Button M3 = new JoystickButton(manipulatorStick, 3);
+	Button M4 = new JoystickButton(manipulatorStick, 4);
 	Button M7 = new JoystickButton(manipulatorStick, 7);
 	Button M8 = new JoystickButton(manipulatorStick, 8);
 	Button M9 = new JoystickButton(manipulatorStick, 9);
@@ -29,6 +30,7 @@ public class OI {
 	
 	// driveStick
 	Button D1 = new JoystickButton(driverStick, 1);
+	Button D2 = new JoystickButton(driverStick, 2);
 	Button D3 = new JoystickButton(driverStick, 3);
 	Button D4 = new JoystickButton(driverStick, 4);
 	Button D5 = new JoystickButton(driverStick, 5);
@@ -39,6 +41,7 @@ public class OI {
 		M1.whileHeld(new ShooterShoot());
 		M2.whenPressed(new ShooterPrep());
 		M3.whenPressed(new CollectBall());
+		M4.whileHeld(new CollectorJoystickArm());
 		M7.whileHeld(new CollectorJoystickIntake());
 		M8.whileHeld(new SallyArmJoystick());
 		M9.whenPressed(new SallyArmDeploy());
@@ -48,10 +51,12 @@ public class OI {
 		
 		// driveStick
 		D1.whenPressed(new VisionPrevImage());
+		D2.whileHeld(new DriveSpeed());
 		D3.whenPressed(new VisionNextImage());
 		D4.whenPressed(new VisionToggleCameraFile());
 		D5.whenPressed(new DriveShiftDown());
 		D6.whenPressed(new DriveShiftUp());
+		
 	}
 	
 	public int getLane() {
