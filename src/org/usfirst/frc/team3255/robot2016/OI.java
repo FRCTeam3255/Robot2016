@@ -20,6 +20,7 @@ public class OI {
 	Button M1 = new JoystickButton(manipulatorStick, 1);
 	Button M2 = new JoystickButton(manipulatorStick, 2);
 	Button M3 = new JoystickButton(manipulatorStick, 3);
+	Button M4 = new JoystickButton(manipulatorStick, 4);
 	Button M7 = new JoystickButton(manipulatorStick, 7);
 	Button M8 = new JoystickButton(manipulatorStick, 8);
 	Button M9 = new JoystickButton(manipulatorStick, 9);
@@ -37,6 +38,7 @@ public class OI {
 		M1.whileHeld(new ShooterShoot());
 		M2.whenPressed(new ShooterPrep());
 		M3.whenPressed(new CollectBall());
+		M4.whileHeld(new CollectorJoystickArm());
 		M7.whileHeld(new CollectorJoystickIntake());
 		M8.whileHeld(new SallyArmJoystick());
 		M9.whenPressed(new SallyArmDeploy());
