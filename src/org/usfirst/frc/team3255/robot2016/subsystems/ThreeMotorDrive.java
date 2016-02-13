@@ -61,11 +61,5 @@ public class ThreeMotorDrive implements SpeedController {
 		sc2.disable();
 		sc3.disable();
 	}
-
-	@Override
-	public void stopMotor() {
-		// TODO Auto-generated method stub
-		
-	}
 }
 
