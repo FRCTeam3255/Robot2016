@@ -227,27 +227,27 @@ public class RobotPreferences {
 	}
 
 	public static int visionHueMin() {
-		return Preferences.getInstance().getInt("HueMin", 30);
-	}
-
-	public static int visionSatMin() {
-		return Preferences.getInstance().getInt("SatMin", 30);
-	}
-
-	public static int visionValMin() {
-		return Preferences.getInstance().getInt("ValMin", 30);
+		return Preferences.getInstance().getInt("HueMin", 119);
 	}
 
 	public static int visionHueMax() {
-		return Preferences.getInstance().getInt("HueMax", 60);
+		return Preferences.getInstance().getInt("HueMax", 203);
+	}
+
+	public static int visionSatMin() {
+		return Preferences.getInstance().getInt("SatMin", 41);
 	}
 
 	public static int visionSatMax() {
-		return Preferences.getInstance().getInt("SatMax", 60);
+		return Preferences.getInstance().getInt("SatMax", 255);
+	}
+
+	public static int visionValMin() {
+		return Preferences.getInstance().getInt("ValMin", 114);
 	}
 
 	public static int visionValMax() {
-		return Preferences.getInstance().getInt("ValMax", 60);
+		return Preferences.getInstance().getInt("ValMax", 246);
 	}
 	
 	// P value for Vision Rotate PID
