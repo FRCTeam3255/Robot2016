@@ -27,6 +27,10 @@ public class RobotPreferences {
 		return Preferences.getInstance().getDouble("DriveUserSpeed", 1.0);
 	}
 	
+	public static double lowSpeedMax() {
+		return Preferences.getInstance().getDouble("LowSpeedMax", 0.6);
+	}
+	
 	// ================== Shooter ==================
 	public static double shooterVoltageRamp() {
 		return Preferences.getInstance().getDouble("ShooterVoltageRamp", 48.0);
@@ -106,8 +110,8 @@ public class RobotPreferences {
 		return Preferences.getInstance().getDouble("SallyD", 0.0);
 	}
 	
-	public static double sallyDeployPosition() {
-		return Preferences.getInstance().getDouble("SallyDeploy", 0.0);
+	public static double sallyGrabPosition() {
+		return Preferences.getInstance().getDouble("SallyGrab", 0.0);
 	}
 	
 	public static double sallyStowPosition() {
@@ -250,6 +254,10 @@ public class RobotPreferences {
 		return Preferences.getInstance().getBoolean("VisionEnabled", true);
 	}
 
+	public static boolean visionProcessedImage() {
+		return Preferences.getInstance().getBoolean("ProcessedImage", true);
+	}
+
 	public static int visionHueMin() {
 		return Preferences.getInstance().getInt("HueMin", 119);
 	}
@@ -274,48 +282,11 @@ public class RobotPreferences {
 		return Preferences.getInstance().getInt("ValMax", 246);
 	}
 	
-	// P value for Vision Rotate PID
-	public static double VisionRotatePIDP() {
-		return Preferences.getInstance().getDouble("RotateP", 0.8);
-	}
-
-	// I value for Vision Rotate PID
-	public static double VisionRotatePIDI() {
-		return Preferences.getInstance().getDouble("RotateI", 0.0);
-	}
-
-	// D value for Vision Rotate PID
-	public static double VisionRotatePIDD() {
-		return Preferences.getInstance().getDouble("RotateD", 0.6);
-	}
-	
-	// defines the absolute value of the maximum output for the rotate PID
-	public static double RotateSpeedMax() {
-		return Preferences.getInstance().getDouble("RotateMax", 0.6);
-	}
-	
-	// P value for Vision Distance PID
-	public static double VisionDistancePIDP() {
-		return Preferences.getInstance().getDouble("VisionDistanceP", 0.4);
-	}
-
-	// I value for Vision Distance PID
-	public static double VisionDistancePIDI() {
-		return Preferences.getInstance().getDouble("VisionDistanceI", 0.0);
-	}
-
-	// D value for Vision Distance PID
-	public static double VisionDistancePIDD() {
-		return Preferences.getInstance().getDouble("VisionDistanceD", 0.6);
-	}
-	
-	public static double VisionDistance() {
+	public static double visionDistance() {
 		return Preferences.getInstance().getDouble("VisionDistance", 5.0);
 	}
 	
-	// defines the absolute value of the maximum output for the rotate PID
-	public static double MoveSpeedMax() {
-		return Preferences.getInstance().getDouble("MoveMax", 0.6);
+	public static double visionAreaMin() {
+		return Preferences.getInstance().getDouble("VisionAreaMin", 0.0);
 	}
-
 }

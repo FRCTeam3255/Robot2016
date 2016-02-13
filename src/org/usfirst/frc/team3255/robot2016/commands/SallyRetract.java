@@ -3,9 +3,9 @@ package org.usfirst.frc.team3255.robot2016.commands;
 /**
  *
  */
-public class SallyArmRetract extends CommandBase {
+public class SallyRetract extends CommandBase {
 
-    public SallyArmRetract() {
+    public SallyRetract() {
     	requires(sallyArm);
     }
 

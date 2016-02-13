@@ -1,6 +1,5 @@
 package org.usfirst.frc.team3255.robot2016.subsystems;
 
-import org.usfirst.frc.team3255.robot2016.commands.CommandBase;
 import org.usfirst.frc.team3255.robot2016.commands.*;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -36,20 +35,15 @@ public class Telemetry extends Subsystem {
 		SmartDashboard.putData("Collector Stow", new CollectorMoveToStow());
 		
 		// Sally Arm
-		SmartDashboard.putData("Sally Reset Encoders", new CollectorResetEncoders());
-		SmartDashboard.putData("Sally Deploy", new SallyMoveToDeploy());
+		SmartDashboard.putData("Sally Reset Encoders", new SallyResetEncoders());
+		SmartDashboard.putData("Sally Grab", new SallyMoveToGrab());
 		SmartDashboard.putData("Sally Stow", new SallyMoveToStow());
-		
-		
-		// Vision
-		SmartDashboard.putNumber("Area min %", Vision.AREA_MINIMUM);
-
-		SmartDashboard.putBoolean("Processed Image", false);
 	}
 	
 	public void update() {
 		// Drivetrain
 		SmartDashboard.putNumber("Drivetrain Position", CommandBase.drivetrain.getEncoderPosition());
+		SmartDashboard.putNumber("Drivetrain Distance", CommandBase.drivetrain.getEncoderDistance());
 		SmartDashboard.putNumber("Drive Speed", CommandBase.drivetrain.getDriveSpeed());
 		
 		// Collector
@@ -59,6 +53,7 @@ public class Telemetry extends Subsystem {
 		// Sally Arm
 		SmartDashboard.putNumber("Sally Position", CommandBase.sallyArm.getEncoderPosition());
 		SmartDashboard.putNumber("Sally Output", CommandBase.sallyArm.getSallySpeed());
+		SmartDashboard.putBoolean("Sally Deployed", CommandBase.sallyArm.isDeployed());
 		
 		// Shooter
 		SmartDashboard.putBoolean("Ball Switched Closed", CommandBase.shooter.isBallHoldSwitchClosed());
@@ -66,19 +61,10 @@ public class Telemetry extends Subsystem {
 		// Navigation
 		SmartDashboard.putNumber("Yaw", CommandBase.navigation.getYaw());
 		SmartDashboard.putNumber("Pitch", CommandBase.navigation.getPitch());
-		
-		SmartDashboard.putBoolean("Calibrating", CommandBase.navigation.isCalibrating());
+		SmartDashboard.putBoolean("Calibrated", !CommandBase.navigation.isCalibrating());
 	}
 
 	// ================== Vision ==================
-	public double getAreaMin() {
-		return SmartDashboard.getNumber("Area min %");
-	}
-
-	public boolean isProcessed() {
-		return SmartDashboard.getBoolean("Processed Image");
-	}
-	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());

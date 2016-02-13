@@ -3,7 +3,6 @@ package org.usfirst.frc.team3255.robot2016.subsystems;
 import java.util.Comparator;
 import java.util.Vector;
 
-import org.usfirst.frc.team3255.robot2016.commands.CommandBase;
 import org.usfirst.frc.team3255.robot2016.commands.VisionUpdate;
 import org.usfirst.frc.team3255.robot2016.RobotPreferences;
 
@@ -191,7 +190,7 @@ public class Vision extends Subsystem {
 		numRawParticles = NIVision.imaqCountParticles(HSVFrame, 1);
 
 		//filter out small particles
-		float areaMin = (float)CommandBase.telemetry.getAreaMin();
+		float areaMin = (float) RobotPreferences.visionAreaMin();
 		criteria[0].lower = areaMin;
 		imaqError = NIVision.imaqParticleFilter4(binaryFrame, HSVFrame, criteria, filterOptions, null);
 
@@ -239,7 +238,7 @@ public class Vision extends Subsystem {
 			isTarget = false;
 		}
 
-		if(CommandBase.telemetry.isProcessed()) {
+		if(RobotPreferences.visionProcessedImage()) {
 			CameraServer.getInstance().setImage(HSVFrame);
 		}
 		else {

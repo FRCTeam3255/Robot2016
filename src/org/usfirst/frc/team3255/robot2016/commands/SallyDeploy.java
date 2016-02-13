@@ -1,20 +1,17 @@
 package org.usfirst.frc.team3255.robot2016.commands;
 
-import org.usfirst.frc.team3255.robot2016.RobotPreferences;
-
 /**
  *
  */
-public class SallyMoveToDeploy extends CommandBase {
+public class SallyDeploy extends CommandBase {
 
-    public SallyMoveToDeploy() {
+    public SallyDeploy() {
     	requires(sallyArm);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	sallyArm.setSetpoint(RobotPreferences.sallyDeployPosition());
-    	sallyArm.enable();
+    	sallyArm.deploy();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -23,12 +20,11 @@ public class SallyMoveToDeploy extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return sallyArm.getPIDController().onTarget();
+    	return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	sallyArm.disable();
     }
 
     // Called when another command which requires one or more of the same
