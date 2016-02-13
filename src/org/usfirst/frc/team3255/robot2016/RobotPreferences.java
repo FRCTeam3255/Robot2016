@@ -94,6 +94,38 @@ public class RobotPreferences {
 		return Preferences.getInstance().getDouble("SallySensitivity", 0.5);
 	}
 	
+	public static double sallyP() {
+		return Preferences.getInstance().getDouble("SallyP", 0.02);
+	}
+	
+	public static double sallyI() {
+		return Preferences.getInstance().getDouble("SallyI", 0.0);
+	}
+	
+	public static double sallyD() {
+		return Preferences.getInstance().getDouble("SallyD", 0.0);
+	}
+	
+	public static double sallyDeployPosition() {
+		return Preferences.getInstance().getDouble("SallyDeploy", 0.0);
+	}
+	
+	public static double sallyStowPosition() {
+		return Preferences.getInstance().getDouble("SallyStow", 0.0);
+	}
+
+	public static double maxSallySpeed() {
+		return Preferences.getInstance().getDouble("SallyMax", 1.0);
+	}
+		
+	public static double sallyTolerance() {
+		return Preferences.getInstance().getDouble("SallyTolerance", 100.0);
+	}
+	
+	public static double sallyEncoderCompression() {
+		return Preferences.getInstance().getDouble("SallyEncoderCompression", 0.01);
+	}
+	
 	// ================== Auto ==================
 	public static double autoPitchThreshold() {
 		return Preferences.getInstance().getDouble("AutoPitchThreshold", 5.0);

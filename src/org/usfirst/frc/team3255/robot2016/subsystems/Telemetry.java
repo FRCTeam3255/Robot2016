@@ -35,6 +35,12 @@ public class Telemetry extends Subsystem {
 		SmartDashboard.putData("Collector Pickup", new CollectorMoveToPickup());
 		SmartDashboard.putData("Collector Stow", new CollectorMoveToStow());
 		
+		// Sally Arm
+		SmartDashboard.putData("Sally Reset Encoders", new CollectorResetEncoders());
+		SmartDashboard.putData("Sally Deploy", new SallyMoveToDeploy());
+		SmartDashboard.putData("Sally Stow", new SallyMoveToStow());
+		
+		
 		// Vision
 		SmartDashboard.putNumber("Area min %", Vision.AREA_MINIMUM);
 
@@ -49,6 +55,10 @@ public class Telemetry extends Subsystem {
 		// Collector
 		SmartDashboard.putNumber("Collector Position", CommandBase.collector.getEncoderPosition());
 		SmartDashboard.putNumber("Collector Arm Output", CommandBase.collector.getArmSpeed());
+		
+		// Sally Arm
+		SmartDashboard.putNumber("Sally Position", CommandBase.sallyArm.getEncoderPosition());
+		SmartDashboard.putNumber("Sally Output", CommandBase.sallyArm.getSallySpeed());
 		
 		// Shooter
 		SmartDashboard.putBoolean("Ball Switched Closed", CommandBase.shooter.isBallHoldSwitchClosed());
