@@ -15,6 +15,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Drivetrain extends Subsystem {
 	
+	boolean lowGear = true;
+	
 	// CAN Talons
 	CANTalon leftFrontTalon = null;
 	CANTalon leftMiddleTalon = null;
@@ -89,11 +91,17 @@ public class Drivetrain extends Subsystem {
 	
 	// ================== Solenoids ==================
 	public void shiftHi() {
-		shifterSolenoid.set(Value.kForward);
+		shifterSolenoid.set(Value.kReverse);
+		lowGear = false;
 	}
 
 	public void shiftLow() {
-		shifterSolenoid.set(Value.kReverse);
+		shifterSolenoid.set(Value.kForward);
+		lowGear = true;
+	}
+	
+	public boolean isLowGear() {
+		return lowGear;
 	}
 	
 	// ================== Encoders ==================
@@ -102,7 +110,7 @@ public class Drivetrain extends Subsystem {
 	}
 	
 	public double getEncoderPosition() {
-		return leftBackTalon.getEncPosition();
+		return leftBackTalon.getEncPosition() * 0.001;
 	}
 
 	public double getEncoderDistance() {

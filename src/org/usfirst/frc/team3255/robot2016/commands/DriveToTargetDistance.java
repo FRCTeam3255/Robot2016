@@ -15,6 +15,7 @@ public class DriveToTargetDistance extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	drivetrain.shiftLow();
     	visionDistancePID.setSetpoint(RobotPreferences.targetDistance());
     	visionYawPID.setSetpoint(0.0);
     	

@@ -41,7 +41,7 @@ public class NavigationYawPID extends PIDSubsystem {
     }
 
     protected void usePIDOutput(double output) {
-    	this.output = output;
+    	this.output = -output;
     	outputValid = true;
     }
     

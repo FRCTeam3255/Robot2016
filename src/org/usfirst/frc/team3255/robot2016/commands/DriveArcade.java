@@ -23,8 +23,21 @@ public class DriveArcade extends CommandBase {
     	double moveSpeed = -OI.driverStick.getRawAxis(RobotMap.DRIVER_AXIS_MOVE);
 		double rotateSpeed = -OI.driverStick.getRawAxis(RobotMap.DRIVER_AXIS_ROTATE);
 		
-		moveSpeed *= moveSpeed;
-		rotateSpeed *= rotateSpeed;
+		if(moveSpeed < 0) {
+			moveSpeed *= moveSpeed;
+			moveSpeed = -moveSpeed;
+		}
+		else {
+			moveSpeed *= moveSpeed;
+		}
+		
+		if (rotateSpeed < 0) {
+			rotateSpeed *= rotateSpeed;
+			rotateSpeed = -rotateSpeed;
+		}
+		else {
+			rotateSpeed *= rotateSpeed;
+		}
 		
 		if (oi.isLowSpeed()) {
 			moveSpeed *= RobotPreferences.lowSpeedMax();

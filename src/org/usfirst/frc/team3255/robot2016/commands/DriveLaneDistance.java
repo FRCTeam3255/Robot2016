@@ -15,6 +15,7 @@ public class DriveLaneDistance extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	drivetrain.shiftLow();
     	driveDistancePID.setSetpoint(getLaneDistance());
     	navYawPID.setSetpoint(0.0);
     	

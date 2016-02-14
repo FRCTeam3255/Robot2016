@@ -1,21 +1,24 @@
 package org.usfirst.frc.team3255.robot2016.commands;
 
+import org.usfirst.frc.team3255.robot2016.RobotPreferences;
+
 /**
  *
  */
 public class DriveStraightDistance extends CommandBase {
 
-    public DriveStraightDistance(double d) {
+    public DriveStraightDistance() {
     	requires(drivetrain);
     	requires(driveDistancePID);
     	requires(navYawPID);
-    	
-    	driveDistancePID.setSetpoint(d);
-    	navYawPID.setSetpoint(0.0);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	drivetrain.shiftLow();
+    	driveDistancePID.setSetpoint(RobotPreferences.driveDistance());
+    	navYawPID.setSetpoint(0.0);
+
     	driveDistancePID.enable();
     	navYawPID.enable();
     }

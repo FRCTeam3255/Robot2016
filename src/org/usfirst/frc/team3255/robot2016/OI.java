@@ -54,8 +54,8 @@ public class OI {
 		D2.whileHeld(new DriveSpeed());
 		D3.whenPressed(new VisionNextImage());
 		D4.whenPressed(new VisionToggleCameraFile());
-		D7.whenPressed(new DriveShiftUp());
-		D8.whenPressed(new DriveShiftDown());
+		D7.whenPressed(new DriveShiftDown());
+		D8.whenPressed(new DriveShiftUp());
 		
 	}
 	

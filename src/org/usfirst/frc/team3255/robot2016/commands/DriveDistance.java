@@ -1,19 +1,22 @@
 package org.usfirst.frc.team3255.robot2016.commands;
 
+import org.usfirst.frc.team3255.robot2016.RobotPreferences;
+
 /**
  *
  */
 public class DriveDistance extends CommandBase {
 
-    public DriveDistance(double d) {
+	
+    public DriveDistance() {
     	requires(drivetrain);
     	requires(driveDistancePID);
-    	
-    	driveDistancePID.setSetpoint(d);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	drivetrain.shiftLow();
+    	driveDistancePID.setSetpoint(RobotPreferences.driveDistance());
     	driveDistancePID.enable();
     }
 

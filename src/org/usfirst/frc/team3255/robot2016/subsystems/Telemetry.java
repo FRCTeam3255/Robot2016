@@ -25,8 +25,9 @@ public class Telemetry extends Subsystem {
 	public void init() {
 		// DriveTrain
 		SmartDashboard.putData("Drive Reset Encoders", new DriveResetEncoders());
-		SmartDashboard.putData("Drive 5 Feet", new DriveDistance(5.0));
-		SmartDashboard.putData("Drive Straight 5 Feet", new DriveStraightDistance(5.0));
+		SmartDashboard.putData("Drive Distance", new DriveDistance());
+		SmartDashboard.putData("Drive Straight Distance", new DriveStraightDistance());
+		SmartDashboard.putData("Drive Hold 0 Yaw", new DriveHoldZeroYaw());
 		
 		// Collector
 		SmartDashboard.putData("Collector Reset Encoders", new CollectorResetEncoders());
@@ -38,6 +39,9 @@ public class Telemetry extends Subsystem {
 		SmartDashboard.putData("Sally Reset Encoders", new SallyResetEncoders());
 		SmartDashboard.putData("Sally Grab", new SallyMoveToGrab());
 		SmartDashboard.putData("Sally Stow", new SallyMoveToStow());
+		
+		// Navigation
+		SmartDashboard.putData("Reset Yaw", new NavigationZeroYaw());
 	}
 	
 	public void update() {
@@ -45,6 +49,7 @@ public class Telemetry extends Subsystem {
 		SmartDashboard.putNumber("Drivetrain Position", CommandBase.drivetrain.getEncoderPosition());
 		SmartDashboard.putNumber("Drivetrain Distance", CommandBase.drivetrain.getEncoderDistance());
 		SmartDashboard.putNumber("Drive Speed", CommandBase.drivetrain.getDriveSpeed());
+		SmartDashboard.putBoolean("Low Gear", CommandBase.drivetrain.isLowGear());
 		
 		// Collector
 		SmartDashboard.putNumber("Collector Position", CommandBase.collector.getEncoderPosition());
