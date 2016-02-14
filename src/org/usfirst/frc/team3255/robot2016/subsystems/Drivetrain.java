@@ -80,7 +80,7 @@ public class Drivetrain extends Subsystem {
 	}
 	
 	public void arcadeDrive(double moveSpeed, double rotateSpeed){
-		arcadeDrive(moveSpeed, rotateSpeed);
+		robotDrive.arcadeDrive(-moveSpeed, -rotateSpeed);
 	}
 	
 	public double getDriveSpeed() {
