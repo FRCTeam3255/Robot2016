@@ -16,6 +16,8 @@ public class DriveStraightDistance extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
     	drivetrain.shiftLow();
+    	drivetrain.resetEncoders();
+    	
     	driveDistancePID.setSetpoint(RobotPreferences.driveDistance());
     	navYawPID.setSetpoint(0.0);
 

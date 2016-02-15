@@ -118,6 +118,10 @@ public class RobotPreferences {
 		return Preferences.getInstance().getDouble("SallyEncoderCompression", 0.01);
 	}
 	
+	public static double sallyDriveSpeed() {
+		return Preferences.getInstance().getDouble("SallyDriveSpeed", 0.5);
+	}
+	
 	// ================== Auto ==================
 	public static double autoPitchThreshold() {
 		return Preferences.getInstance().getDouble("AutoPitchThreshold", 5.0);

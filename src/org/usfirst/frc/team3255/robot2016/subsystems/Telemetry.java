@@ -39,9 +39,16 @@ public class Telemetry extends Subsystem {
 		SmartDashboard.putData("Sally Reset Encoders", new SallyResetEncoders());
 		SmartDashboard.putData("Sally Grab", new SallyMoveToGrab());
 		SmartDashboard.putData("Sally Stow", new SallyMoveToStow());
+		SmartDashboard.putData("Sally Stow Switch", new SallyMoveToStowSwitch());
 		
 		// Navigation
 		SmartDashboard.putData("Reset Yaw", new NavigationZeroYaw());
+		
+		// Auto
+		SmartDashboard.putData("Drive Over Obstacle", new DriveOverObstacle());
+		SmartDashboard.putData("Drive Until Pitched", new DriveUntilPitched());
+		SmartDashboard.putData("Drive Until Flat", new DriveUntilFlat());
+		SmartDashboard.putData("Drive to Target", new DriveToTarget());
 	}
 	
 	public void update() {

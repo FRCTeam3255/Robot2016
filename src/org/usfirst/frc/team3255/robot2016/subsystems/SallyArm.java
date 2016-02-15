@@ -4,6 +4,7 @@ import org.usfirst.frc.team3255.robot2016.RobotMap;
 import org.usfirst.frc.team3255.robot2016.RobotPreferences;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
@@ -18,6 +19,9 @@ public class SallyArm extends PIDSubsystem {
     
 	// Solenoids
     DoubleSolenoid armSolenoid = null;
+    
+    // Limit Switches
+    DigitalInput sallyStowSwitch = null;
     
     boolean deployed = false;
     
@@ -44,6 +48,9 @@ public class SallyArm extends PIDSubsystem {
     	// Solenoids
     	armSolenoid = new DoubleSolenoid(RobotMap.SALLYARM_SOLENOID_DEPLOY, 
     			RobotMap.SALLYARM_SOLENOID_RETRACT);
+    	
+    	// Limit Switches
+    	sallyStowSwitch = new DigitalInput(RobotMap.SALLY_STOW_SWITCH);
     }
     
     public void enable() {
@@ -69,6 +76,9 @@ public class SallyArm extends PIDSubsystem {
     
     // ================== Talons ==================
     public void setSpeed(double s) {
+    	if (s < 0 && isSallyStowed()) {
+    		s = 0.0;
+    	}
     	armTalon.set(s);
 	}
     
@@ -97,6 +107,11 @@ public class SallyArm extends PIDSubsystem {
     
     public boolean isDeployed() {
     	return deployed;
+    }
+    
+    //================== Limit Switches ==================
+    public boolean isSallyStowed() {
+    	return sallyStowSwitch.get();
     }
     
     public void initDefaultCommand() {

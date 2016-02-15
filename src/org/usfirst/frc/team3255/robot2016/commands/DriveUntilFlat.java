@@ -18,6 +18,7 @@ public class DriveUntilFlat extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
     	drivetrain.shiftLow();
+    	drivetrain.resetEncoders();
 
     	navYawPID.setSetpoint(0.0);
     	navYawPID.enable();

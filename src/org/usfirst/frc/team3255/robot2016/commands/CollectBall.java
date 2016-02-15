@@ -10,6 +10,6 @@ public class CollectBall extends CommandGroup {
     public  CollectBall() {
     	// addSequential(new CollectorMoveToPickup());
     	addSequential(new CollectorForwardToSwitch());
-    	// addSequential(new CollectorMoveToLow());
+    	// addSequential(new CollectorMoveToStow());
     }
 }
