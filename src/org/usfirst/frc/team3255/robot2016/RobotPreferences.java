@@ -119,7 +119,7 @@ public class RobotPreferences {
 	}
 	
 	public static double sallyDriveSpeed() {
-		return Preferences.getInstance().getDouble("SallyDriveSpeed", 0.5);
+		return Preferences.getInstance().getDouble("SallyDriveSpeed", -0.5);
 	}
 	
 	// ================== Auto ==================

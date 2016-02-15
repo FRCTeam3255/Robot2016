@@ -96,12 +96,12 @@ public class SallyArm extends PIDSubsystem {
     
     // ================== Solenoids ==================
     public void deploy() {
-    	armSolenoid.set(Value.kForward);
+    	armSolenoid.set(Value.kReverse);
     	deployed = true;
     }
     
     public void retract() {
-    	armSolenoid.set(Value.kReverse);
+    	armSolenoid.set(Value.kForward);
     	deployed = false;
     }
     
