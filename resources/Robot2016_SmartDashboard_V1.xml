@@ -1,5 +1,45 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="Sally Stowed" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="661" y="101"/>
+		<width>93</width>
+	</widget>
+	<widget field="Drive Over Obstacle Shoot" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="21" y="480"/>
+	</widget>
+	<widget field="Drive to Target Acquired" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="30" y="514"/>
+	</widget>
+	<widget field="Drive Over Obstacle To Target" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="2" y="447"/>
+	</widget>
+	<widget field="Drive to Target" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="74" y="414"/>
+	</widget>
+	<widget field="Drive Until Flat" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="78" y="382"/>
+	</widget>
+	<widget field="Drive Until Pitched" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="58" y="347"/>
+	</widget>
+	<widget field="Drive Over Obstacle" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="48" y="312"/>
+	</widget>
+	<widget field="Update Replay Range" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="468" y="311"/>
+	</widget>
+	<widget field="LEDs off" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="875" y="88"/>
+	</widget>
+	<widget field="Red LED" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="875" y="51"/>
+	</widget>
+	<widget field="Blue LED" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="873" y="18"/>
+	</widget>
+	<widget field="Sally Stow Switch" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="632" y="228"/>
+	</widget>
 	<widget field="Drive Hold 0 Yaw" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
 		<location x="48" y="230"/>
 	</widget>
@@ -57,13 +97,13 @@
 		<location x="30" y="42"/>
 	</widget>
 	<widget field="Sally Stow" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="667" y="132"/>
+		<location x="665" y="159"/>
 	</widget>
 	<widget field="Sally Grab" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="667" y="166"/>
+		<location x="665" y="193"/>
 	</widget>
 	<widget field="Sally Reset Encoders" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="617" y="97"/>
+		<location x="613" y="123"/>
 	</widget>
 	<widget field="Collector Stow" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
 		<location x="437" y="127"/>
@@ -91,18 +131,4 @@
 </dashboard>
 <live-window>
 </live-window>
-	<hidden field="Sally Deploy"/>
-	<hidden field="Drive Straight 5 Feet"/>
-	<hidden field="Calibrating"/>
-	<hidden field="isBallSwitchedClosed"/>
-	<hidden field="getCollectorPosition"/>
-	<hidden field="Drive 5 Feet"/>
-	<hidden field="Processed Image"/>
-	<hidden field="getYaw"/>
-	<hidden field="getCollectorArmOutput"/>
-	<hidden field="getPitch"/>
-	<hidden field="getDrivetrainPosition"/>
-	<hidden field="isCalibrating"/>
-	<hidden field="getDriveSpeed"/>
-	<hidden field="Area min %"/>
 </xml>
