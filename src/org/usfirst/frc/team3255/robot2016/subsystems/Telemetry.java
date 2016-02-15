@@ -41,14 +41,26 @@ public class Telemetry extends Subsystem {
 		SmartDashboard.putData("Sally Stow", new SallyMoveToStow());
 		SmartDashboard.putData("Sally Stow Switch", new SallyMoveToStowSwitch());
 		
+		// Lighting
+		SmartDashboard.putData("Blue LED", new LightingBlueOn());
+		SmartDashboard.putData("Red LED", new LightingRedOn());
+		SmartDashboard.putData("LEDs off", new LightingOff());
+		
 		// Navigation
 		SmartDashboard.putData("Reset Yaw", new NavigationZeroYaw());
+		
+		// Vision
+		SmartDashboard.putData("Update Replay Range", new VisionUpdateReplayRange());
 		
 		// Auto
 		SmartDashboard.putData("Drive Over Obstacle", new DriveOverObstacle());
 		SmartDashboard.putData("Drive Until Pitched", new DriveUntilPitched());
 		SmartDashboard.putData("Drive Until Flat", new DriveUntilFlat());
 		SmartDashboard.putData("Drive to Target", new DriveToTarget());
+		SmartDashboard.putData("Drive Over Obstacle To Target", new DriveOverObstacleToTarget());
+		SmartDashboard.putData("Drive to Target Acquired", new DriveUntilTargetAcquired());
+		SmartDashboard.putData("Drive to Target", new DriveToTarget());
+		SmartDashboard.putData("Drive Over Obstacle Shoot", new DriveOverObstacleShoot());
 	}
 	
 	public void update() {
@@ -66,6 +78,7 @@ public class Telemetry extends Subsystem {
 		SmartDashboard.putNumber("Sally Position", CommandBase.sallyArm.getEncoderPosition());
 		SmartDashboard.putNumber("Sally Output", CommandBase.sallyArm.getSallySpeed());
 		SmartDashboard.putBoolean("Sally Deployed", CommandBase.sallyArm.isDeployed());
+		SmartDashboard.putBoolean("Sally Stowed", CommandBase.sallyArm.isSallyStowed());
 		
 		// Shooter
 		SmartDashboard.putBoolean("Ball Switched Closed", CommandBase.shooter.isBallHoldSwitchClosed());

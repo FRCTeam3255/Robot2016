@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class DriveToTarget extends CommandGroup {
+public class DriveUntilTargetAcquired extends CommandGroup {
 
 	/*
 	 * PseudoCode:
@@ -15,9 +15,8 @@ public class DriveToTarget extends CommandGroup {
 	 *  Drive forward keeping target centered until distance = shooting distance
 	 */
 
-	public DriveToTarget() {
-		addSequential(new RotateUntilTargetCentered());
-		addSequential(new DriveToTargetDistance());
-		addSequential(new LightingRedOn());
+	public DriveUntilTargetAcquired() {
+		addSequential(new DriveLaneDistance());
+		addSequential(new RotateUntilTargetVisible());
     }
 }

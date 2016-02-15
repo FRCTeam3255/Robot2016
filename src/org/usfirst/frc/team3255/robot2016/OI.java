@@ -35,6 +35,7 @@ public class OI {
 	Button D4 = new JoystickButton(driverStick, 4);
 	Button D7 = new JoystickButton(driverStick, 7);
 	Button D8 = new JoystickButton(driverStick, 8);
+	Button D10 = new JoystickButton(driverStick, 10);
 	
 	public OI() {
 		// manipulatorStick
@@ -58,6 +59,7 @@ public class OI {
 		D4.whenPressed(new VisionToggleCameraFile());
 		D7.whenPressed(new DriveShiftDown());
 		D8.whenPressed(new DriveShiftUp());
+		D10.whenPressed(new VisionSaveFile());
 		
 	}
 	

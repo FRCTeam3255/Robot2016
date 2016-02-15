@@ -289,4 +289,16 @@ public class RobotPreferences {
 	public static double visionAreaMin() {
 		return Preferences.getInstance().getDouble("VisionAreaMin", 0.0);
 	}
+	
+	public static int imageReplayMin() {
+		return Preferences.getInstance().getInt("ImageReplayMin", 0);
+	}
+	
+	public static int imageReplayMax() {
+		return Preferences.getInstance().getInt("ImageReplayMax", 542);
+	}
+
+	public static int imageSaveNumber() {
+		return Preferences.getInstance().getInt("ImageSaveNumber", 0);
+	}
 }
