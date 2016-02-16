@@ -187,6 +187,18 @@ public class Vision extends Subsystem {
 
 		//Threshold the image looking for yellow (tote color)
 		NIVision.imaqColorThreshold(HSVFrame, frame, 255, NIVision.ColorMode.HSV, TARGET_HUE_RANGE, TARGET_SAT_RANGE, TARGET_VAL_RANGE);
+		
+		// Send images to Dashboard
+		if(RobotPreferences.visionProcessedImage()) {
+			CameraServer.getInstance().setImage(HSVFrame);
+		}
+		else {
+			CameraServer.getInstance().setImage(frame);
+		}
+		
+		if (!RobotPreferences.visionEnabled()) {
+			return;
+		}
 
 		//Send particle count to dashboard
 		numRawParticles = NIVision.imaqCountParticles(HSVFrame, 1);
@@ -245,13 +257,6 @@ public class Vision extends Subsystem {
 		}
 		else {
 			CommandBase.lighting.blueOn(false);
-		}
-		
-		if(RobotPreferences.visionProcessedImage()) {
-			CameraServer.getInstance().setImage(HSVFrame);
-		}
-		else {
-			CameraServer.getInstance().setImage(frame);
 		}
 	}
 	

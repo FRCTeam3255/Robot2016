@@ -19,7 +19,7 @@ public class SallyJoystick extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double speed = OI.manipulatorStick.getRawAxis(RobotMap.MANIPULATOR_AXIS_Y);
+    	double speed = -OI.manipulatorStick.getRawAxis(RobotMap.MANIPULATOR_AXIS_Y);
     	
     	sallyArm.setSpeed(speed * RobotPreferences.sallyArmSensitivity());
     }

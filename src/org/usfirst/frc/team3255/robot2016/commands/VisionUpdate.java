@@ -1,7 +1,5 @@
 package org.usfirst.frc.team3255.robot2016.commands;
 
-import org.usfirst.frc.team3255.robot2016.RobotPreferences;
-
 /**
  *
  */
@@ -19,9 +17,7 @@ public class VisionUpdate extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(RobotPreferences.visionEnabled()) {
-    		vision.update();
-    	}
+		vision.update();
     }
 
     // Make this return true when this Command no longer needs to run execute()

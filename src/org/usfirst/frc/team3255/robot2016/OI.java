@@ -40,7 +40,7 @@ public class OI {
 	public OI() {
 		// manipulatorStick
 		M1.whileHeld(new ShooterShoot());
-		M1.whenReleased(new CollectorMoveToStow());
+		// M1.whenReleased(new CollectorMoveToStow());
 		M2.whenPressed(new ShooterPrep());
 		M3.whenPressed(new CollectBall());
 		M4.whileHeld(new CollectorJoystickArm());
@@ -87,7 +87,7 @@ public class OI {
 	}
 	
 	public boolean isLowSpeed() {
-		return driverStick.getRawButton(5);
+		return driverStick.getRawButton(6);
 	}
 }
 

@@ -40,7 +40,8 @@ public class Navigation extends Subsystem {
 	}
 	
 	public double getPitch() {
-		return ahrs.getPitch();
+		// Due to orientation of RoboRIO Pitch & Roll are switched
+		return ahrs.getRoll();
 	}
 
 	public void resetYaw() {

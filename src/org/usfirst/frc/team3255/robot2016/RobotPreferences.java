@@ -24,7 +24,7 @@ public class RobotPreferences {
 	}
 	
 	public static double lowSpeedMax() {
-		return Preferences.getInstance().getDouble("LowSpeedMax", 0.6);
+		return Preferences.getInstance().getDouble("LowSpeedMax", 0.7);
 	}
 	
 	// ================== Shooter ==================
@@ -42,19 +42,19 @@ public class RobotPreferences {
 	
 	// ================== Collector ==================
 	public static double collectorP() {
-		return Preferences.getInstance().getDouble("CollectorP", 0.02);
+		return Preferences.getInstance().getDouble("CollectorP", 0.04);
 	}
 	
 	public static double collectorI() {
-		return Preferences.getInstance().getDouble("CollectorI", 0.0);
+		return Preferences.getInstance().getDouble("CollectorI", 0.01);
 	}
 	
 	public static double collectorD() {
-		return Preferences.getInstance().getDouble("CollectorD", 0.0);
+		return Preferences.getInstance().getDouble("CollectorD", 0.04);
 	}
 
 	public static double maxCollectorSpeed() {
-		return Preferences.getInstance().getDouble("CollectorMax", 1.0);
+		return Preferences.getInstance().getDouble("CollectorMax", 0.2);
 	}
 
 	public static double collectorPickupPosition() {
@@ -62,7 +62,7 @@ public class RobotPreferences {
 	}
 
 	public static double collectorLowPosition() {
-		return Preferences.getInstance().getDouble("CollectorLow", -26.0);
+		return Preferences.getInstance().getDouble("CollectorLow", -25.0);
 	}
 
 	public static double collectorStowPosition() {
@@ -81,9 +81,13 @@ public class RobotPreferences {
 		return Preferences.getInstance().getDouble("CollectorEncoderCompression", 0.01);
 	}
 	
+	public static double collectorPIDTimeout() {
+		return Preferences.getInstance().getDouble("CollectorPIDTimeout", 5.0);
+	}
+	
 	// ================== Sally Arm ==================
 	public static double sallyArmSensitivity() {
-		return Preferences.getInstance().getDouble("SallySensitivity", 0.5);
+		return Preferences.getInstance().getDouble("SallySensitivity", 1.0);
 	}
 	
 	public static double sallyP() {

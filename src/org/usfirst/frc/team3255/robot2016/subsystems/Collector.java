@@ -57,6 +57,15 @@ public class Collector extends PIDSubsystem {
 		setArmSpeed(-output);
 	}
 	
+	public boolean onRawTarget() {
+		if (Math.abs(getEncoderPosition() - getPIDController().getSetpoint()) < RobotPreferences.collectorTolerance()) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
 	// ================== Talons ==================
 	public void setIntakeSpeed(double s){
 		intakeTalon.set(-s);

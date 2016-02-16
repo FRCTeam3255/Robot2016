@@ -13,6 +13,7 @@ public class CollectorMoveToStow extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	setTimeout(RobotPreferences.collectorPIDTimeout());
     	collector.setSetpoint(RobotPreferences.collectorStowPosition());
     	collector.enable();
     }
@@ -23,7 +24,7 @@ public class CollectorMoveToStow extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return collector.getPIDController().onTarget();
+    	return collector.onRawTarget() || isTimedOut();
     }
 
     // Called once after isFinished returns true

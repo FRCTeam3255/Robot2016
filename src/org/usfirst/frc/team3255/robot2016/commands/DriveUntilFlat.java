@@ -23,6 +23,12 @@ public class DriveUntilFlat extends CommandBase {
     	navYawPID.setSetpoint(0.0);
     	navYawPID.enable();
     	distanceFlat = 0.0;
+    	
+    	// It appears that resetEncoders is not a blocking command. This means
+    	// that the first time we get an encoder value, it could still be the old
+    	// value. Therefore, we are going to set a timeout to force the command
+    	// to run until at least the timeout is seen.
+    	setTimeout(0.5);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -36,7 +42,7 @@ public class DriveUntilFlat extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return (distanceFlat > RobotPreferences.autoObstacleDistance());
+    	return ((distanceFlat > RobotPreferences.autoObstacleDistance()) && isTimedOut());
     }
 
     // Called once after isFinished returns true
