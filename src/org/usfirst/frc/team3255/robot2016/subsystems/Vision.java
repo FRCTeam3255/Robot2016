@@ -69,9 +69,10 @@ public class Vision extends Subsystem {
 	// variables for navigating image files
 	private String imagePrefix = "/home/lvuser/SampleImages/";
 	private String imageSuffix = ".jpg";
-	private int minImageNumber = 0;
-	private int maxImageNumber = 542;
-	private int imageNumber = minImageNumber;
+	private int imageReplayMin = RobotPreferences.imageReplayMin();
+	private int imageReplayMax = RobotPreferences.imageReplayMax();;
+	private int imageReplayNumber = imageReplayMin;
+	private int imageSaveNumber = RobotPreferences.imageSaveNumber();
 	
 	int newSession;
 	NIVision.Rect rect = new NIVision.Rect(10, 10, 100, 100);
@@ -155,10 +156,10 @@ public class Vision extends Subsystem {
 			//read file in from disk. For this example to run you need to copy image20.jpg from the SampleImages folder to the
 			//directory shown below using FTP or SFTP: http://wpilib.screenstepslive.com/s/4485/m/24166/l/282299-roborio-ftp
 			boolean imageFound = false;
-			int maxImages = maxImageNumber - minImageNumber + 1;
+			int maxImages = imageReplayMax - imageReplayMin + 1;
 			for(int i = 0; i < maxImages; i++) {
 				try {
-					NIVision.imaqReadFile(frame, imagePrefix + imageNumber + imageSuffix);
+					NIVision.imaqReadFile(frame, imagePrefix + imageReplayNumber + imageSuffix);
 					imageFound = true;
 					break;
 				}
@@ -186,12 +187,24 @@ public class Vision extends Subsystem {
 
 		//Threshold the image looking for yellow (tote color)
 		NIVision.imaqColorThreshold(HSVFrame, frame, 255, NIVision.ColorMode.HSV, TARGET_HUE_RANGE, TARGET_SAT_RANGE, TARGET_VAL_RANGE);
+		
+		// Send images to Dashboard
+		if(RobotPreferences.visionProcessedImage()) {
+			CameraServer.getInstance().setImage(HSVFrame);
+		}
+		else {
+			CameraServer.getInstance().setImage(frame);
+		}
+		
+		if (!RobotPreferences.visionEnabled()) {
+			return;
+		}
 
 		//Send particle count to dashboard
 		numRawParticles = NIVision.imaqCountParticles(HSVFrame, 1);
 
 		//filter out small particles
-		float areaMin = (float)CommandBase.telemetry.getAreaMin();
+		float areaMin = (float) RobotPreferences.visionAreaMin();
 		criteria[0].lower = areaMin;
 		imaqError = NIVision.imaqParticleFilter4(binaryFrame, HSVFrame, criteria, filterOptions, null);
 
@@ -239,11 +252,11 @@ public class Vision extends Subsystem {
 			isTarget = false;
 		}
 
-		if(CommandBase.telemetry.isProcessed()) {
-			CameraServer.getInstance().setImage(HSVFrame);
+		if (isTarget) {
+			CommandBase.lighting.blueOn(true);
 		}
 		else {
-			CameraServer.getInstance().setImage(frame);
+			CommandBase.lighting.blueOn(false);
 		}
 	}
 	
@@ -256,16 +269,16 @@ public class Vision extends Subsystem {
 	}
 	
 	public void nextImage() {
-		imageNumber++;
-		if(imageNumber > maxImageNumber) {
-			imageNumber = minImageNumber;
+		imageReplayNumber++;
+		if(imageReplayNumber > imageReplayMax) {
+			imageReplayNumber = imageReplayMin;
 		}
 	}
 	
 	public void prevImage() {
-		imageNumber--;
-		if(imageNumber < minImageNumber) {
-			imageNumber = maxImageNumber;
+		imageReplayNumber--;
+		if(imageReplayNumber < imageReplayMin) {
+			imageReplayNumber = imageReplayMax;
 		}
 	}
 	
@@ -358,6 +371,19 @@ public class Vision extends Subsystem {
 		targetWidth = isLong ? 26.0 : 16.9;
 
 		return  targetWidth/(normalizedWidth*12*Math.tan(VIEW_ANGLE*Math.PI/(180*2)));
+	}
+	
+	public void updateReplayRange() {
+		imageReplayMin = RobotPreferences.imageReplayMin();
+		imageReplayMax = RobotPreferences.imageReplayMax();
+		imageSaveNumber = RobotPreferences.imageSaveNumber();
+		imageReplayNumber = imageReplayMin;
+	}
+	
+	public void saveFrame() {
+		// TODO May need a color table for the save frame
+		NIVision.imaqWriteFile(frame, imagePrefix + imageSaveNumber + imageSuffix, null);
+		imageSaveNumber++;
 	}
 	
 	@Override

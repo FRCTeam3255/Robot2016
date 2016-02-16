@@ -1,6 +1,5 @@
 package org.usfirst.frc.team3255.robot2016.subsystems;
 
-import org.usfirst.frc.team3255.robot2016.commands.CommandBase;
 import org.usfirst.frc.team3255.robot2016.commands.*;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -22,32 +21,75 @@ public class Telemetry extends Subsystem {
 		
 		init();
 	}
-	
+		
 	public void init() {
 		// DriveTrain
-		SmartDashboard.putData("Reset Encoders", new DriveResetEncoders());
+		SmartDashboard.putData("Drive Reset Encoders", new DriveResetEncoders());
+		SmartDashboard.putData("Drive Distance", new DriveDistance());
+		SmartDashboard.putData("Drive Straight Distance", new DriveStraightDistance());
+		SmartDashboard.putData("Drive Hold 0 Yaw", new DriveHoldZeroYaw());
+		
+		// Collector
+		SmartDashboard.putData("Collector Reset Encoders", new CollectorResetEncoders());
+		SmartDashboard.putData("Collector Low", new CollectorMoveToLow());
+		SmartDashboard.putData("Collector Pickup", new CollectorMoveToPickup());
+		SmartDashboard.putData("Collector Stow", new CollectorMoveToStow());
+		
+		// Sally Arm
+		SmartDashboard.putData("Sally Reset Encoders", new SallyResetEncoders());
+		SmartDashboard.putData("Sally Grab", new SallyMoveToGrab());
+		SmartDashboard.putData("Sally Stow", new SallyMoveToStow());
+		SmartDashboard.putData("Sally Stow Switch", new SallyMoveToStowSwitch());
+		
+		// Lighting
+		SmartDashboard.putData("Blue LED", new LightingBlueOn());
+		SmartDashboard.putData("Red LED", new LightingRedOn());
+		SmartDashboard.putData("LEDs off", new LightingOff());
+		
+		// Navigation
+		SmartDashboard.putData("Reset Yaw", new NavigationZeroYaw());
 		
 		// Vision
-		SmartDashboard.putNumber("Area min %", Vision.AREA_MINIMUM);
-
-		SmartDashboard.putBoolean("Processed Image", false);
-
+		SmartDashboard.putData("Update Replay Range", new VisionUpdateReplayRange());
+		
+		// Auto
+		SmartDashboard.putData("Drive Over Obstacle", new DriveOverObstacle());
+		SmartDashboard.putData("Drive Until Pitched", new DriveUntilPitched());
+		SmartDashboard.putData("Drive Until Flat", new DriveUntilFlat());
+		SmartDashboard.putData("Drive to Target", new DriveToTarget());
+		SmartDashboard.putData("Drive Over Obstacle To Target", new DriveOverObstacleToTarget());
+		SmartDashboard.putData("Drive to Target Acquired", new DriveUntilTargetAcquired());
+		SmartDashboard.putData("Drive to Target", new DriveToTarget());
+		SmartDashboard.putData("Drive Over Obstacle Shoot", new DriveOverObstacleShoot());
 	}
 	
 	public void update() {
 		// Drivetrain
-		SmartDashboard.putNumber("getEncPosition", CommandBase.drivetrain.getEncoderPosition());
+		SmartDashboard.putNumber("Drivetrain Position", CommandBase.drivetrain.getEncoderPosition());
+		SmartDashboard.putNumber("Drivetrain Distance", CommandBase.drivetrain.getEncoderDistance());
+		SmartDashboard.putNumber("Drive Speed", CommandBase.drivetrain.getDriveSpeed());
+		SmartDashboard.putBoolean("Low Gear", CommandBase.drivetrain.isLowGear());
+		
+		// Collector
+		SmartDashboard.putNumber("Collector Position", CommandBase.collector.getEncoderPosition());
+		SmartDashboard.putNumber("Collector Arm Output", CommandBase.collector.getArmSpeed());
+		
+		// Sally Arm
+		SmartDashboard.putNumber("Sally Position", CommandBase.sallyArm.getEncoderPosition());
+		SmartDashboard.putNumber("Sally Output", CommandBase.sallyArm.getSallySpeed());
+		SmartDashboard.putBoolean("Sally Deployed", CommandBase.sallyArm.isDeployed());
+		SmartDashboard.putBoolean("Sally Stowed", CommandBase.sallyArm.isSallyStowed());
+		
+		// Shooter
+		SmartDashboard.putBoolean("Ball Switched Closed", CommandBase.shooter.isBallHoldSwitchClosed());
+		
+		// Navigation
+		SmartDashboard.putNumber("Yaw", CommandBase.navigation.getYaw());
+		SmartDashboard.putNumber("Pitch", CommandBase.navigation.getPitch());
+		SmartDashboard.putBoolean("Calibrated", !CommandBase.navigation.isCalibrating());
 	}
 
 	// ================== Vision ==================
-	public double getAreaMin() {
-		return SmartDashboard.getNumber("Area min %");
-	}
-
-	public boolean isProcessed() {
-		return SmartDashboard.getBoolean("Processed Image");
-	}
-	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());

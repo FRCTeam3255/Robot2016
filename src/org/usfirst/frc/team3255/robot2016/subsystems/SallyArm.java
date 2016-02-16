@@ -1,17 +1,18 @@
 package org.usfirst.frc.team3255.robot2016.subsystems;
 
 import org.usfirst.frc.team3255.robot2016.RobotMap;
+import org.usfirst.frc.team3255.robot2016.RobotPreferences;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
 /**
  *
  */
-public class SallyArm extends Subsystem {
+public class SallyArm extends PIDSubsystem {
     
 	// Talons
 	CANTalon armTalon = null;
@@ -20,16 +21,18 @@ public class SallyArm extends Subsystem {
     DoubleSolenoid armSolenoid = null;
     
     // Limit Switches
-    DigitalInput retractSwitch = null;
+    DigitalInput sallyStowSwitch = null;
+    
+    boolean deployed = false;
     
     public SallyArm() {
-		super();
+		super(0, 0, 0);
 		
 		init();
 	}
 
 	public SallyArm(String name) {
-		super(name);
+		super(name, 0, 0, 0);
 		
 		init();
 	}
@@ -40,31 +43,84 @@ public class SallyArm extends Subsystem {
     	
     	armTalon.setSafetyEnabled(false);
     	
+    	armTalon.enableBrakeMode(true);
+    	
     	// Solenoids
     	armSolenoid = new DoubleSolenoid(RobotMap.SALLYARM_SOLENOID_DEPLOY, 
     			RobotMap.SALLYARM_SOLENOID_RETRACT);
     	
     	// Limit Switches
-    	retractSwitch = new DigitalInput(RobotMap.SALLYARM_RETRACTED_SWITCH);
+    	sallyStowSwitch = new DigitalInput(RobotMap.SALLY_STOW_SWITCH);
     }
+    
+    public void enable() {
+		getPIDController().setPID(RobotPreferences.sallyP(),
+				RobotPreferences.sallyI(),
+				RobotPreferences.sallyD());
+		this.setAbsoluteTolerance(RobotPreferences.sallyTolerance());
+		double maxSpeed = RobotPreferences.maxSallySpeed();
+		this.setOutputRange(-maxSpeed, maxSpeed);
+		super.enable();
+	}
+    
+ // ================== PID ==================
+    @Override
+	protected double returnPIDInput() {
+		return getEncoderPosition();
+	}
+
+	@Override
+	protected void usePIDOutput(double output) {
+		setSpeed(output);
+	}
+	
+	public boolean onRawTarget() {
+		if (Math.abs(getEncoderPosition() - getPIDController().getSetpoint()) < RobotPreferences.sallyTolerance()) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
     
     // ================== Talons ==================
     public void setSpeed(double s) {
+    	if (s < 0 && isSallyStowed()) {
+    		s = 0.0;
+    	}
     	armTalon.set(s);
 	}
     
+    public double getEncoderPosition() {
+    	return armTalon.getEncPosition() * RobotPreferences.sallyEncoderCompression();
+    }
+    
+    public void resetEncoders() {
+    	armTalon.setEncPosition(0);
+    }
+    
+    public double getSallySpeed() {
+    	return armTalon.get();
+    }
+    
     // ================== Solenoids ==================
     public void deploy() {
-    	armSolenoid.set(Value.kForward);
+    	armSolenoid.set(Value.kReverse);
+    	deployed = true;
     }
     
     public void retract() {
-    	armSolenoid.set(Value.kReverse);
+    	armSolenoid.set(Value.kForward);
+    	deployed = false;
     }
     
-    // ================== Limit Switches ==================
-    public boolean isRetracted() {
-    	return !retractSwitch.get();
+    public boolean isDeployed() {
+    	return deployed;
+    }
+    
+    //================== Limit Switches ==================
+    public boolean isSallyStowed() {
+    	return sallyStowSwitch.get();
     }
     
     public void initDefaultCommand() {

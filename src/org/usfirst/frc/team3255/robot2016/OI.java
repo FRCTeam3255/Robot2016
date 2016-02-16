@@ -33,19 +33,22 @@ public class OI {
 	Button D2 = new JoystickButton(driverStick, 2);
 	Button D3 = new JoystickButton(driverStick, 3);
 	Button D4 = new JoystickButton(driverStick, 4);
-	Button D5 = new JoystickButton(driverStick, 5);
-	Button D6 = new JoystickButton(driverStick, 6);
+	Button D7 = new JoystickButton(driverStick, 7);
+	Button D8 = new JoystickButton(driverStick, 8);
+	Button D10 = new JoystickButton(driverStick, 10);
 	
 	public OI() {
 		// manipulatorStick
 		M1.whileHeld(new ShooterShoot());
+		M1.whenReleased(new CollectorMoveToStow());
 		M2.whenPressed(new ShooterPrep());
 		M3.whenPressed(new CollectBall());
 		M4.whileHeld(new CollectorJoystickArm());
-		M7.whileHeld(new CollectorJoystickIntake());
-		M8.whileHeld(new SallyArmJoystick());
-		M9.whenPressed(new SallyArmDeploy());
-		M10.whenPressed(new SallyArmRetract());
+		M7.whileHeld(new CollectorMoveToLow());
+		M7.whenReleased(new CollectorMoveToStow());
+		M8.whileHeld(new SallyJoystick());
+		M9.whenPressed(new SallyDeploy());
+		M10.whenPressed(new SallyRetract());
 		M11.whenPressed(new ShooterPitchUp());
 		M12.whenPressed(new ShooterPitchDown());
 		
@@ -54,8 +57,9 @@ public class OI {
 		D2.whileHeld(new DriveSpeed());
 		D3.whenPressed(new VisionNextImage());
 		D4.whenPressed(new VisionToggleCameraFile());
-		D5.whenPressed(new DriveShiftDown());
-		D6.whenPressed(new DriveShiftUp());
+		D7.whenPressed(new DriveShiftDown());
+		D8.whenPressed(new DriveShiftUp());
+		D10.whenPressed(new VisionSaveFile());
 		
 	}
 	
@@ -80,6 +84,10 @@ public class OI {
 			lane = 5;
 		}
 		return lane;
+	}
+	
+	public boolean isLowSpeed() {
+		return driverStick.getRawButton(6);
 	}
 }
 

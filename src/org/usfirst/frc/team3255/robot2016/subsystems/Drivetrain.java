@@ -15,6 +15,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Drivetrain extends Subsystem {
 	
+	boolean lowGear = true;
+	
 	// CAN Talons
 	CANTalon leftFrontTalon = null;
 	CANTalon leftMiddleTalon = null;
@@ -79,30 +81,36 @@ public class Drivetrain extends Subsystem {
 		rightThreeMotorDrive.set(-s);
 	}
 	
-	public void arcadeDrive(double moveSpeed, double rotateSpeed, boolean squaredInputs){
-		robotDrive.arcadeDrive(-moveSpeed, -rotateSpeed, squaredInputs);
+	public void arcadeDrive(double moveSpeed, double rotateSpeed){
+		robotDrive.arcadeDrive(-moveSpeed, -rotateSpeed);
 	}
 	
-	public void arcadeDrive(double moveSpeed, double rotateSpeed){
-		arcadeDrive(moveSpeed, rotateSpeed, false);
+	public double getDriveSpeed() {
+		return leftFrontTalon.get();
 	}
 	
 	// ================== Solenoids ==================
 	public void shiftHi() {
-		shifterSolenoid.set(Value.kForward);
+		shifterSolenoid.set(Value.kReverse);
+		lowGear = false;
 	}
 
 	public void shiftLow() {
-		shifterSolenoid.set(Value.kReverse);
+		shifterSolenoid.set(Value.kForward);
+		lowGear = true;
+	}
+	
+	public boolean isLowGear() {
+		return lowGear;
 	}
 	
 	// ================== Encoders ==================
 	public void resetEncoders() {
-		leftFrontTalon.setEncPosition(0);
+		leftBackTalon.setEncPosition(0);
 	}
 	
 	public double getEncoderPosition() {
-		return leftFrontTalon.getEncPosition();
+		return leftBackTalon.getEncPosition() * 0.001;
 	}
 
 	public double getEncoderDistance() {

@@ -2,6 +2,7 @@ package org.usfirst.frc.team3255.robot2016.commands;
 
 import org.usfirst.frc.team3255.robot2016.OI;
 import org.usfirst.frc.team3255.robot2016.RobotMap;
+import org.usfirst.frc.team3255.robot2016.RobotPreferences;
 
 /**
  *
@@ -22,7 +23,28 @@ public class DriveArcade extends CommandBase {
     	double moveSpeed = -OI.driverStick.getRawAxis(RobotMap.DRIVER_AXIS_MOVE);
 		double rotateSpeed = -OI.driverStick.getRawAxis(RobotMap.DRIVER_AXIS_ROTATE);
 		
-		drivetrain.arcadeDrive(moveSpeed, rotateSpeed, true);
+		if(moveSpeed < 0) {
+			moveSpeed *= moveSpeed;
+			moveSpeed = -moveSpeed;
+		}
+		else {
+			moveSpeed *= moveSpeed;
+		}
+		
+		if (rotateSpeed < 0) {
+			rotateSpeed *= rotateSpeed;
+			rotateSpeed = -rotateSpeed;
+		}
+		else {
+			rotateSpeed *= rotateSpeed;
+		}
+		
+		if (oi.isLowSpeed()) {
+			moveSpeed *= RobotPreferences.lowSpeedMax();
+			rotateSpeed *= RobotPreferences.lowSpeedMax();
+		}
+		
+		drivetrain.arcadeDrive(moveSpeed, rotateSpeed);
     }
 
     // Make this return true when this Command no longer needs to run execute()

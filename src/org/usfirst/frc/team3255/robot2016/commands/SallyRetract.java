@@ -3,15 +3,15 @@ package org.usfirst.frc.team3255.robot2016.commands;
 /**
  *
  */
-public class SallyArmDeploy extends CommandBase {
+public class SallyRetract extends CommandBase {
 
-    public SallyArmDeploy() {
+    public SallyRetract() {
     	requires(sallyArm);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	sallyArm.deploy();
+    	sallyArm.retract();
     }
 
     // Called repeatedly when this Command is scheduled to run

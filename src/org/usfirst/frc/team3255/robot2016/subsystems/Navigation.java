@@ -13,16 +13,6 @@ public class Navigation extends Subsystem {
 	
 	public static AHRS ahrs = null;
 	
-	public static void AHRSinit() {
-        try {
-            /* Alternatively:  I2C.Port.kMXP, SerialPort.Port.kMXP or SerialPort.Port.kUSB     */
-            /* See http://navx-mxp.kauailabs.com/guidance/selecting-an-interface/ for details. */
-            ahrs = new AHRS(SPI.Port.kMXP); 
-        } catch (RuntimeException ex ) {
-            DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
-        }
-	}
-	
 	public Navigation() {
 		super();
 		
@@ -36,6 +26,13 @@ public class Navigation extends Subsystem {
 	}
 	
 	public void init() {
+        try {
+            /* Alternatively:  I2C.Port.kMXP, SerialPort.Port.kMXP or SerialPort.Port.kUSB     */
+            /* See http://navx-mxp.kauailabs.com/guidance/selecting-an-interface/ for details. */
+            ahrs = new AHRS(SPI.Port.kMXP); 
+        } catch (RuntimeException ex ) {
+            DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
+        }
 	}
 	
 	public double getYaw() {
@@ -43,7 +40,8 @@ public class Navigation extends Subsystem {
 	}
 	
 	public double getPitch() {
-		return ahrs.getPitch();
+		// Due to orientation of RoboRIO Pitch & Roll are switched
+		return ahrs.getRoll();
 	}
 
 	public void resetYaw() {

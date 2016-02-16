@@ -1,0 +1,134 @@
+<xml version="1.0">
+<dashboard>
+	<widget field="Sally Stowed" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="661" y="101"/>
+		<width>93</width>
+	</widget>
+	<widget field="Drive Over Obstacle Shoot" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="21" y="480"/>
+	</widget>
+	<widget field="Drive to Target Acquired" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="30" y="514"/>
+	</widget>
+	<widget field="Drive Over Obstacle To Target" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="2" y="447"/>
+	</widget>
+	<widget field="Drive to Target" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="74" y="414"/>
+	</widget>
+	<widget field="Drive Until Flat" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="78" y="382"/>
+	</widget>
+	<widget field="Drive Until Pitched" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="58" y="347"/>
+	</widget>
+	<widget field="Drive Over Obstacle" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="48" y="312"/>
+	</widget>
+	<widget field="Update Replay Range" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="468" y="311"/>
+	</widget>
+	<widget field="LEDs off" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="875" y="88"/>
+	</widget>
+	<widget field="Red LED" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="875" y="51"/>
+	</widget>
+	<widget field="Blue LED" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="873" y="18"/>
+	</widget>
+	<widget field="Sally Stow Switch" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="632" y="228"/>
+	</widget>
+	<widget field="Drive Hold 0 Yaw" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="48" y="230"/>
+	</widget>
+	<widget field="Reset Yaw" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="229" y="97"/>
+	</widget>
+	<widget field="Drive Straight Distance" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="20" y="157"/>
+	</widget>
+	<widget field="Drive Distance" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="62" y="192"/>
+	</widget>
+	<widget field="Low Gear" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="92" y="104"/>
+		<width>82</width>
+	</widget>
+	<widget field="Sally Deployed" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="662" y="77"/>
+		<width>101</width>
+	</widget>
+	<widget field="Ball Switched Closed" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="423" y="73"/>
+		<width>128</width>
+	</widget>
+	<widget field="Calibrated" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="252" y="67"/>
+		<width>87</width>
+	</widget>
+	<widget field="Drivetrain Distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="26" y="13"/>
+	</widget>
+	<widget field="Sally Output" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="641" y="48"/>
+	</widget>
+	<widget field="Sally Position" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="638" y="19"/>
+	</widget>
+	<widget field="Pitch" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="240" y="39"/>
+	</widget>
+	<widget field="Yaw" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="242" y="12"/>
+	</widget>
+	<widget field="Collector Arm Output" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="393" y="46"/>
+	</widget>
+	<widget field="Collector Position" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="412" y="18"/>
+	</widget>
+	<widget field="Drive Speed" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="59" y="73"/>
+		<height>20</height>
+	</widget>
+	<widget field="Drivetrain Position" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="30" y="42"/>
+	</widget>
+	<widget field="Sally Stow" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="665" y="159"/>
+	</widget>
+	<widget field="Sally Grab" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="665" y="193"/>
+	</widget>
+	<widget field="Sally Reset Encoders" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="613" y="123"/>
+	</widget>
+	<widget field="Collector Stow" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="437" y="127"/>
+	</widget>
+	<widget field="Collector Pickup" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="431" y="162"/>
+	</widget>
+	<widget field="Collector Low" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="441" y="196"/>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.RobotPreferences">
+		<location x="1083" y="6"/>
+		<width>499</width>
+		<height>593</height>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
+		<location x="669" y="306"/>
+	</static-widget>
+	<widget field="Collector Reset Encoders" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="387" y="93"/>
+	</widget>
+	<widget field="Drive Reset Encoders" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="28" y="122"/>
+	</widget>
+</dashboard>
+<live-window>
+</live-window>
+</xml>

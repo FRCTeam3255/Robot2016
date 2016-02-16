@@ -66,12 +66,12 @@ public class Shooter extends Subsystem {
 	
 	public void set(double s){
 		leftTalon.set(s);
-		rightTalon.set(s);
+		rightTalon.set(-s);
 	}
 	
-	// Limit Switches
+	// ================== Limit Switches ==================
 	public boolean isBallHoldSwitchClosed() {
-		return (ballHoldSwitch.get() == false);
+		return ballHoldSwitch.get();
 	}
 	
 	// ================== Solenoids ==================

@@ -16,9 +16,8 @@ public class DriveToTarget extends CommandGroup {
 	 */
 
 	public DriveToTarget() {
-		addSequential(new DriveLaneDistance());
-		addSequential(new RotateUntilTargetVisible());
 		addSequential(new RotateUntilTargetCentered());
 		addSequential(new DriveToTargetDistance());
+		addSequential(new LightingRedOn());
     }
 }

@@ -9,6 +9,7 @@ public class ShooterPrep extends CommandGroup {
     
     public  ShooterPrep() {
     	addSequential(new CollectorReverseToSwitch());
+    	addSequential(new CollectorMoveToPickup());
     	addSequential(new ShooterSpinUp());
     }
 }

@@ -10,6 +10,7 @@ public class ShooterShoot extends CommandBase {
     public  ShooterShoot() {
     	requires(collector);
     	requires(shooter);
+    	requires(lighting);
     }
 
 	protected void initialize() {
@@ -28,6 +29,7 @@ public class ShooterShoot extends CommandBase {
 	protected void end() {
 		collector.setIntakeSpeed(0.0);
 		shooter.set(0.0);
+		lighting.redOn(false);
 	}
 
 	protected void interrupted() {

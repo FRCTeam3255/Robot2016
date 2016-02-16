@@ -41,6 +41,8 @@ public class Collector extends PIDSubsystem {
 				RobotPreferences.collectorI(),
 				RobotPreferences.collectorD());
 		this.setAbsoluteTolerance(RobotPreferences.collectorTolerance());
+		double maxSpeed = RobotPreferences.maxCollectorSpeed();
+		this.setOutputRange(-maxSpeed, maxSpeed);
 		super.enable();
 	}
 	
@@ -52,12 +54,21 @@ public class Collector extends PIDSubsystem {
 
 	@Override
 	protected void usePIDOutput(double output) {
-		setArmSpeed(output);
+		setArmSpeed(-output);
+	}
+	
+	public boolean onRawTarget() {
+		if (Math.abs(getEncoderPosition() - getPIDController().getSetpoint()) < RobotPreferences.collectorTolerance()) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
 	// ================== Talons ==================
 	public void setIntakeSpeed(double s){
-		intakeTalon.set(s);
+		intakeTalon.set(-s);
 	}
 	
 	public void resetEncoders(){
@@ -65,11 +76,15 @@ public class Collector extends PIDSubsystem {
 	}
 	
 	public double getEncoderPosition() {
-		return armTalon.getEncPosition();
+		return armTalon.getEncPosition() * RobotPreferences.collectorEncoderCompression();
 	}
 	
 	public void setArmSpeed(double s) {
 		armTalon.set(s);
+	}
+	
+	public double getArmSpeed() {
+		return armTalon.get();
 	}
 	
 	// ================== Limit Switches ==================

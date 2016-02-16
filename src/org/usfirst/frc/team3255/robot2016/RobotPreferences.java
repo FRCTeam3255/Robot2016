@@ -5,72 +5,68 @@ import edu.wpi.first.wpilibj.Preferences;
 public class RobotPreferences {
 
 	// Ordered by Subsystems
-	
+
 	// ================== Drivetrain ==================
-	public static double driveSensitivity() {
-		return Preferences.getInstance().getDouble("DriveSensitivity", 1.0);
-	}
-	
 	public static double maxMoveSpeed() {
 		return Preferences.getInstance().getDouble("MaxMoveSpeed", 0.6);
 	}
 	
 	public static double drivetrainPulsesPer5Feet() {
-		return Preferences.getInstance().getDouble("DrivePulsesPer5Ft", 0.6);
+		return Preferences.getInstance().getDouble("DrivePulsesPer5Ft", -19.796);
 	}
 	
 	public static double maxYawSpeed() {
 		return Preferences.getInstance().getDouble("MaxYawSpeed", 0.6);
 	}
 	
-	public static double driveUserSpeed() {
-		return Preferences.getInstance().getDouble("DriveUserSpeed", 1.0);
+	public static double driveSpeed() {
+		return Preferences.getInstance().getDouble("DriveSpeed", 0.7);
+	}
+	
+	public static double lowSpeedMax() {
+		return Preferences.getInstance().getDouble("LowSpeedMax", 0.7);
 	}
 	
 	// ================== Shooter ==================
 	public static double shooterVoltageRamp() {
-		return Preferences.getInstance().getDouble("ShooterVoltageRamp", 0.0);
+		return Preferences.getInstance().getDouble("ShooterVoltageRamp", 48.0);
 	}
 
 	public static double shooterVoltage() {
 		return Preferences.getInstance().getDouble("ShooterVoltage", 7.0);
 	}
 
-	public static double shooterSpeed() {
-		return Preferences.getInstance().getDouble("ShooterSpeed", 0.0);
-	}
-	
 	public static double shooterSpinUpDelay() {
 		return Preferences.getInstance().getDouble("ShooterSpinUpDelay", 0.0);
 	}
 	
-	public static double shooterPulsePerRotation(){
-		return Preferences.getInstance().getDouble("ShooterPulsePerRotation", 0.0);
-	}
-	
 	// ================== Collector ==================
 	public static double collectorP() {
-		return Preferences.getInstance().getDouble("CollectorP", 0.0);
+		return Preferences.getInstance().getDouble("CollectorP", 0.04);
 	}
 	
 	public static double collectorI() {
-		return Preferences.getInstance().getDouble("CollectorI", 0.0);
+		return Preferences.getInstance().getDouble("CollectorI", 0.01);
 	}
 	
 	public static double collectorD() {
-		return Preferences.getInstance().getDouble("CollectorD", 0.0);
+		return Preferences.getInstance().getDouble("CollectorD", 0.04);
+	}
+
+	public static double maxCollectorSpeed() {
+		return Preferences.getInstance().getDouble("CollectorMax", 0.2);
 	}
 
 	public static double collectorPickupPosition() {
-		return Preferences.getInstance().getDouble("CollectorPickup", 0.0);
+		return Preferences.getInstance().getDouble("CollectorPickup", -20.0);
 	}
 
 	public static double collectorLowPosition() {
-		return Preferences.getInstance().getDouble("CollectorLow", 0.0);
+		return Preferences.getInstance().getDouble("CollectorLow", -25.0);
 	}
-	
-	public static double collectorTolerance() {
-		return Preferences.getInstance().getDouble("CollectorTolerance", 0.0);
+
+	public static double collectorStowPosition() {
+		return Preferences.getInstance().getDouble("CollectorStow", 0.0);
 	}
 
 	public static double collectorTimeout() {
@@ -81,25 +77,53 @@ public class RobotPreferences {
 		return Preferences.getInstance().getDouble("CollectorIntakeSpeed", 1.0);
 	}
 	
-	public static double collectorPulsePerRotation() {
-		return Preferences.getInstance().getDouble("CollectorPulsePerRotation", 0.0);
+	public static double collectorEncoderCompression() {
+		return Preferences.getInstance().getDouble("CollectorEncoderCompression", 0.01);
+	}
+	
+	public static double collectorPIDTimeout() {
+		return Preferences.getInstance().getDouble("CollectorPIDTimeout", 5.0);
 	}
 	
 	// ================== Sally Arm ==================
 	public static double sallyArmSensitivity() {
-		return Preferences.getInstance().getDouble("SallySensitivity", 0.5);
+		return Preferences.getInstance().getDouble("SallySensitivity", 1.0);
 	}
 	
-	public static double sallyArmPulsePerRotation(){
-		return Preferences.getInstance().getDouble("SallyArmPulsePerRotation", 0.0);
+	public static double sallyP() {
+		return Preferences.getInstance().getDouble("SallyP", 0.03);
 	}
 	
-	public static double sallyPortPosition() {
-		return Preferences.getInstance().getDouble("SallyPortPosition", 0.0);
+	public static double sallyI() {
+		return Preferences.getInstance().getDouble("SallyI", 0.0015);
 	}
 	
-	public static double sallyArmHomePosition() {
-		return Preferences.getInstance().getDouble("SallyArmHomePosition", 0.0);
+	public static double sallyD() {
+		return Preferences.getInstance().getDouble("SallyD", 0.008);
+	}
+	
+	public static double sallyGrabPosition() {
+		return Preferences.getInstance().getDouble("SallyGrab", 38.0);
+	}
+	
+	public static double sallyStowPosition() {
+		return Preferences.getInstance().getDouble("SallyStow", 0.0);
+	}
+
+	public static double maxSallySpeed() {
+		return Preferences.getInstance().getDouble("SallyMax", 1.0);
+	}
+		
+	public static double sallyTolerance() {
+		return Preferences.getInstance().getDouble("SallyTolerance", 1.0);
+	}
+	
+	public static double sallyEncoderCompression() {
+		return Preferences.getInstance().getDouble("SallyEncoderCompression", 0.1);
+	}
+	
+	public static double sallyDriveSpeed() {
+		return Preferences.getInstance().getDouble("SallyDriveSpeed", -0.5);
 	}
 	
 	// ================== Auto ==================
@@ -120,7 +144,7 @@ public class RobotPreferences {
 	}
 	
 	public static double autoRotateSpeed() {
-		return Preferences.getInstance().getDouble("AutoRotateSpeed", 0.);
+		return Preferences.getInstance().getDouble("AutoRotateSpeed", 0.0);
 	}
 	
 	// ================== Lane Distances ==================
@@ -146,16 +170,20 @@ public class RobotPreferences {
 	
 	// ================== PID Tolerances ==================
 	public static double distanceTolerance() {
-		return Preferences.getInstance().getDouble("DistanceTolerance", 0.0);
+		return Preferences.getInstance().getDouble("DistanceTolerance", 0.2);
 	}
 	
 	public static double yawTolerance() {
-		return Preferences.getInstance().getDouble("YawTolerance", 0.0);
+		return Preferences.getInstance().getDouble("YawTolerance", 1.0);
+	}
+	
+	public static double collectorTolerance() {
+		return Preferences.getInstance().getDouble("CollectorTolerance", 3.0);
 	}
 	
 	// ================== Drivetrain Distance PID ==================
 	public static double driveDistanceP() {
-		return Preferences.getInstance().getDouble("DriveDistanceP", 0.0);
+		return Preferences.getInstance().getDouble("DriveDistanceP", 0.3);
 	}
 	
 	public static double driveDistanceI() {
@@ -163,16 +191,20 @@ public class RobotPreferences {
 	}
 	
 	public static double driveDistanceD() {
-		return Preferences.getInstance().getDouble("DriveDistanceD", 0.0);
+		return Preferences.getInstance().getDouble("DriveDistanceD", 0.2);
+	}
+
+	public static double driveDistance() {
+		return Preferences.getInstance().getDouble("DriveDistance", 5.0);
 	}
 	
 	// ================== Navigation Yaw PID ==================
 	public static double navYawP() {
-		return Preferences.getInstance().getDouble("NavYawP", 0.0);
+		return Preferences.getInstance().getDouble("NavYawP", 0.03);
 	}
 
 	public static double navYawI() {
-		return Preferences.getInstance().getDouble("NavYawI", 0.0);
+		return Preferences.getInstance().getDouble("NavYawI", 0.002);
 	}
 
 	public static double navYawD() {
@@ -206,7 +238,7 @@ public class RobotPreferences {
 	}
 	
 	public static double targetDistance() {
-		return Preferences.getInstance().getDouble("targetDistance", 6.0);
+		return Preferences.getInstance().getDouble("TargetDistance", 6.0);
 	}
 
 	// ================== Vision ==================
@@ -224,6 +256,10 @@ public class RobotPreferences {
 	
 	public static boolean visionEnabled() {
 		return Preferences.getInstance().getBoolean("VisionEnabled", true);
+	}
+
+	public static boolean visionProcessedImage() {
+		return Preferences.getInstance().getBoolean("ProcessedImage", false);
 	}
 
 	public static int visionHueMin() {
@@ -250,47 +286,23 @@ public class RobotPreferences {
 		return Preferences.getInstance().getInt("ValMax", 246);
 	}
 	
-	// P value for Vision Rotate PID
-	public static double VisionRotatePIDP() {
-		return Preferences.getInstance().getDouble("RotateP", 0.8);
-	}
-
-	// I value for Vision Rotate PID
-	public static double VisionRotatePIDI() {
-		return Preferences.getInstance().getDouble("RotateI", 0.0);
-	}
-
-	// D value for Vision Rotate PID
-	public static double VisionRotatePIDD() {
-		return Preferences.getInstance().getDouble("RotateD", 0.6);
-	}
-	
-	// defines the absolute value of the maximum output for the rotate PID
-	public static double RotateSpeedMax() {
-		return Preferences.getInstance().getDouble("RotateMax", 0.6);
-	}
-	
-	// P value for Vision Distance PID
-	public static double VisionDistancePIDP() {
-		return Preferences.getInstance().getDouble("VisionDistanceP", 0.4);
-	}
-
-	// I value for Vision Distance PID
-	public static double VisionDistancePIDI() {
-		return Preferences.getInstance().getDouble("VisionDistanceI", 0.0);
-	}
-
-	// D value for Vision Distance PID
-	public static double VisionDistancePIDD() {
-		return Preferences.getInstance().getDouble("VisionDistanceD", 0.6);
-	}
-	
-	public static double VisionDistance() {
+	public static double visionDistance() {
 		return Preferences.getInstance().getDouble("VisionDistance", 5.0);
 	}
 	
-	// defines the absolute value of the maximum output for the rotate PID
-	public static double MoveSpeedMax() {
-		return Preferences.getInstance().getDouble("MoveMax", 0.6);
+	public static double visionAreaMin() {
+		return Preferences.getInstance().getDouble("VisionAreaMin", 0.0);
+	}
+	
+	public static int imageReplayMin() {
+		return Preferences.getInstance().getInt("ImageReplayMin", 0);
+	}
+	
+	public static int imageReplayMax() {
+		return Preferences.getInstance().getInt("ImageReplayMax", 542);
+	}
+
+	public static int imageSaveNumber() {
+		return Preferences.getInstance().getInt("ImageSaveNumber", 0);
 	}
 }

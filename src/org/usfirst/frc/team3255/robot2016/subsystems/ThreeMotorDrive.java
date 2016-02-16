@@ -15,6 +15,8 @@ public class ThreeMotorDrive implements SpeedController {
 		sc1 = m1;
 		sc2 = m2;
 		sc3 = m3;
+		
+		sc2.setInverted(true);
 	}
 
 	@Override
@@ -46,7 +48,7 @@ public class ThreeMotorDrive implements SpeedController {
 	@Override
 	public void setInverted(boolean isInverted) {
 		sc1.setInverted(isInverted);
-		sc2.setInverted(isInverted);
+		sc2.setInverted(!isInverted);
 		sc3.setInverted(isInverted);
 	}
 
@@ -60,6 +62,11 @@ public class ThreeMotorDrive implements SpeedController {
 		sc1.disable();
 		sc2.disable();
 		sc3.disable();
+	}
+
+	@Override
+	public void stopMotor() {
+		// TODO Auto-generated method stub
 	}
 }
 
