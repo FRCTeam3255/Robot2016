@@ -31,7 +31,7 @@ public class DriveToTargetDistance extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return (visionDistancePID.onTarget() && visionYawPID.onTarget());
+    	return (visionDistancePID.onRawTarget() && visionYawPID.onRawTarget());
     }
 
     // Called once after isFinished returns true

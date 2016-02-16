@@ -52,6 +52,15 @@ public class NavigationYawPID extends PIDSubsystem {
     	return output;
     }
     
+	public boolean onRawTarget() {
+		if (Math.abs(CommandBase.navigation.getYaw() - getPIDController().getSetpoint()) < RobotPreferences.yawTolerance()) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+    
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());

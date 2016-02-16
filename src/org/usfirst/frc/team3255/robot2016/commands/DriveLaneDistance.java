@@ -32,7 +32,7 @@ public class DriveLaneDistance extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return (driveDistancePID.onTarget() && navYawPID.onTarget());
+    	return (driveDistancePID.onRawTarget() && navYawPID.onRawTarget());
     }
 
     // Called once after isFinished returns true

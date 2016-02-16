@@ -91,19 +91,19 @@ public class RobotPreferences {
 	}
 	
 	public static double sallyP() {
-		return Preferences.getInstance().getDouble("SallyP", 0.02);
+		return Preferences.getInstance().getDouble("SallyP", 0.03);
 	}
 	
 	public static double sallyI() {
-		return Preferences.getInstance().getDouble("SallyI", 0.0);
+		return Preferences.getInstance().getDouble("SallyI", 0.0015);
 	}
 	
 	public static double sallyD() {
-		return Preferences.getInstance().getDouble("SallyD", 0.0);
+		return Preferences.getInstance().getDouble("SallyD", 0.008);
 	}
 	
 	public static double sallyGrabPosition() {
-		return Preferences.getInstance().getDouble("SallyGrab", 0.0);
+		return Preferences.getInstance().getDouble("SallyGrab", 38.0);
 	}
 	
 	public static double sallyStowPosition() {
@@ -115,11 +115,11 @@ public class RobotPreferences {
 	}
 		
 	public static double sallyTolerance() {
-		return Preferences.getInstance().getDouble("SallyTolerance", 100.0);
+		return Preferences.getInstance().getDouble("SallyTolerance", 1.0);
 	}
 	
 	public static double sallyEncoderCompression() {
-		return Preferences.getInstance().getDouble("SallyEncoderCompression", 0.01);
+		return Preferences.getInstance().getDouble("SallyEncoderCompression", 0.1);
 	}
 	
 	public static double sallyDriveSpeed() {
@@ -170,11 +170,11 @@ public class RobotPreferences {
 	
 	// ================== PID Tolerances ==================
 	public static double distanceTolerance() {
-		return Preferences.getInstance().getDouble("DistanceTolerance", 0.0);
+		return Preferences.getInstance().getDouble("DistanceTolerance", 0.2);
 	}
 	
 	public static double yawTolerance() {
-		return Preferences.getInstance().getDouble("YawTolerance", 0.0);
+		return Preferences.getInstance().getDouble("YawTolerance", 1.0);
 	}
 	
 	public static double collectorTolerance() {

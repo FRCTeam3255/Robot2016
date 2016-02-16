@@ -23,7 +23,7 @@ public class SallyMoveToGrab extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return sallyArm.getPIDController().onTarget();
+    	return sallyArm.onRawTarget();
     }
 
     // Called once after isFinished returns true

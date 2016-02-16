@@ -27,7 +27,7 @@ public class DriveToYaw extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return (navYawPID.onTarget());
+    	return (navYawPID.onRawTarget());
     }
 
     // Called once after isFinished returns true

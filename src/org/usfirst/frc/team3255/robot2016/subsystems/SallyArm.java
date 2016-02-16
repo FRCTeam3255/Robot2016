@@ -71,7 +71,16 @@ public class SallyArm extends PIDSubsystem {
 
 	@Override
 	protected void usePIDOutput(double output) {
-		setSpeed(-output);
+		setSpeed(output);
+	}
+	
+	public boolean onRawTarget() {
+		if (Math.abs(getEncoderPosition() - getPIDController().getSetpoint()) < RobotPreferences.sallyTolerance()) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
     
     // ================== Talons ==================
@@ -83,7 +92,7 @@ public class SallyArm extends PIDSubsystem {
 	}
     
     public double getEncoderPosition() {
-    	return armTalon.getEncPosition();
+    	return armTalon.getEncPosition() * RobotPreferences.sallyEncoderCompression();
     }
     
     public void resetEncoders() {
