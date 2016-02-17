@@ -63,8 +63,6 @@ public class Vision extends Subsystem {
 	boolean started = false;
 	
 	boolean frontCamera = true;
-
-	boolean useCamera = true;
 	
 	// variables for navigating image files
 	private String imagePrefix = "/home/lvuser/SampleImages/";
@@ -151,11 +149,14 @@ public class Vision extends Subsystem {
 		distance = 0;
 		isTarget = false;
 
-		if(useCamera) {
+		if(RobotPreferences.useCamera()) {
 			if(currSession < 0) {
 				return;
 			}
-	        NIVision.IMAQdxGrab(currSession, frame, 1);			
+	        NIVision.IMAQdxGrab(currSession, frame, 1);
+
+	        // scale the image down by a factor of two in both directions
+			NIVision.imaqScale(frame, frame, 4, 4, ScalingMode.SCALE_SMALLER, NIVision.NO_RECT);
 		}
 		else {
 			//read file in from disk. For this example to run you need to copy image20.jpg from the SampleImages folder to the
@@ -186,12 +187,11 @@ public class Vision extends Subsystem {
 		TARGET_SAT_RANGE.maxValue = RobotPreferences.visionSatMax();
 		TARGET_VAL_RANGE.minValue = RobotPreferences.visionValMin();
 		TARGET_VAL_RANGE.maxValue = RobotPreferences.visionValMax();
-		
-		// scale the image down by a factor of two in both directions
-		NIVision.imaqScale(frame, frame, 4, 4, ScalingMode.SCALE_SMALLER, NIVision.NO_RECT);
 
 		//Threshold the image looking for yellow (tote color)
 		NIVision.imaqColorThreshold(HSVFrame, frame, 255, NIVision.ColorMode.HSV, TARGET_HUE_RANGE, TARGET_SAT_RANGE, TARGET_VAL_RANGE);
+		
+		NIVision.imaqConvexHull(HSVFrame, HSVFrame, 0);
 		
 		// Send images to Dashboard
 		if(RobotPreferences.visionProcessedImage()) {
@@ -263,14 +263,6 @@ public class Vision extends Subsystem {
 		else {
 			CommandBase.lighting.blueOn(false);
 		}
-	}
-	
-	public void useCamera(boolean cameraOn) {
-		useCamera = cameraOn;
-	}
-	
-	public boolean isUsingCamera() {
-		return useCamera;
 	}
 	
 	public void nextImage() {

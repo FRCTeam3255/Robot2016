@@ -305,4 +305,8 @@ public class RobotPreferences {
 	public static int imageSaveNumber() {
 		return Preferences.getInstance().getInt("ImageSaveNumber", 0);
 	}
+
+	public static boolean useCamera() {
+		return Preferences.getInstance().getBoolean("UseCamera", true);
+	}
 }
