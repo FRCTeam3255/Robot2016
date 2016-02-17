@@ -78,6 +78,11 @@ public class Vision extends Subsystem {
 	NIVision.Rect rect = new NIVision.Rect(10, 10, 100, 100);
 	
 	//Constants
+	double fov = 68.5;
+	double imageWidthPixels = 160;
+	double targetWidthInches = 20;
+	double targetwidthPixels = 150;
+	double alpha = 60;
 	public static NIVision.Range TARGET_HUE_RANGE = new NIVision.Range(RobotPreferences.visionHueMin(), RobotPreferences.visionHueMax());	//Default hue range for yellow tote
 	public static NIVision.Range TARGET_SAT_RANGE = new NIVision.Range(RobotPreferences.visionSatMin(), RobotPreferences.visionSatMax());	//Default saturation range for yellow tote
 	public static NIVision.Range TARGET_VAL_RANGE = new NIVision.Range(RobotPreferences.visionValMin(), RobotPreferences.visionValMax());	//Default value range for yellow tote
