@@ -5,16 +5,15 @@ import org.usfirst.frc.team3255.robot2016.RobotPreferences;
 /**
  *
  */
-public class SallyMoveToStow extends CommandBase {
-
-    public SallyMoveToStow() {
-    	requires(sallyArm);
+public class DriveSallyDistance extends CommandBase {
+	
+    public DriveSallyDistance() {
+    	requires(drivetrain);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	sallyArm.setSetpoint(RobotPreferences.sallyStowPosition());
-    	sallyArm.enable();
+    	drivetrain.resetEncoders();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -23,13 +22,12 @@ public class SallyMoveToStow extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return sallyArm.onRawTarget() || sallyArm.isSallyStowed();
+    	return (Math.abs(RobotPreferences.driveSallyDistance() - drivetrain.getEncoderDistance()) < 0.1);
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	sallyArm.disable();
-    	sallyArm.resetEncoders();
+    	drivetrain.setSpeed(0.0);
     }
 
     // Called when another command which requires one or more of the same
