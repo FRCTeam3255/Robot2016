@@ -315,7 +315,7 @@ public class RobotPreferences {
 	}
 	
 	public static double visionAreaMin() {
-		return Preferences.getInstance().getDouble("VisionAreaMin", 0.0);
+		return Preferences.getInstance().getDouble("VisionAreaMin", 115.0);
 	}
 	
 	public static int imageReplayMin() {
@@ -332,5 +332,9 @@ public class RobotPreferences {
 
 	public static boolean useCamera() {
 		return Preferences.getInstance().getBoolean("UseCamera", true);
+	}
+	
+	public static double visionAspectMin() {
+		return Preferences.getInstance().getDouble("AspectMin", 1.3);
 	}
 }
