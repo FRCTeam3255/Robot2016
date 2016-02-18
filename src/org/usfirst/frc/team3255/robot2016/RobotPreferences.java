@@ -27,6 +27,18 @@ public class RobotPreferences {
 		return Preferences.getInstance().getDouble("LowSpeedMax", 0.7);
 	}
 	
+	public static double driveSallyDistance() {
+		return Preferences.getInstance().getDouble("driveSallyDistance", 0.6);
+	}
+	
+	public static double driveSallyDistance2() {
+		return Preferences.getInstance().getDouble("driveSallyDistance2", 0.8);
+	}
+	
+	public static double driveSallyDistance3() {
+		return Preferences.getInstance().getDouble("driveSallyDistance3", 1.0);
+	}
+	
 	// ================== Shooter ==================
 	public static double shooterVoltageRamp() {
 		return Preferences.getInstance().getDouble("ShooterVoltageRamp", 48.0);
@@ -62,11 +74,15 @@ public class RobotPreferences {
 	}
 
 	public static double collectorLowPosition() {
-		return Preferences.getInstance().getDouble("CollectorLow", -25.0);
+		return Preferences.getInstance().getDouble("CollectorLow", -28.0);
 	}
 
 	public static double collectorStowPosition() {
 		return Preferences.getInstance().getDouble("CollectorStow", 0.0);
+	}
+	
+	public static double collectorShootPosition() {
+		return Preferences.getInstance().getDouble("CollectorShoot", -5.0);
 	}
 
 	public static double collectorTimeout() {
@@ -109,6 +125,10 @@ public class RobotPreferences {
 	public static double sallyStowPosition() {
 		return Preferences.getInstance().getDouble("SallyStow", 0.0);
 	}
+	
+	public static double sallyDrawbridgePosition() {
+		return Preferences.getInstance().getDouble("SallyDrawbridge", 50.0);
+	}
 
 	public static double maxSallySpeed() {
 		return Preferences.getInstance().getDouble("SallyMax", 1.0);
@@ -124,6 +144,10 @@ public class RobotPreferences {
 	
 	public static double sallyDriveSpeed() {
 		return Preferences.getInstance().getDouble("SallyDriveSpeed", -0.5);
+	}
+
+	public static double sallyDeploySafety() {
+		return Preferences.getInstance().getDouble("SallyDeploySafety", 1.0);
 	}
 	
 	// ================== Auto ==================

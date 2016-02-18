@@ -5,16 +5,17 @@ import org.usfirst.frc.team3255.robot2016.RobotPreferences;
 /**
  *
  */
-public class SallyMoveToStow extends CommandBase {
+public class CollectorMoveToShoot extends CommandBase {
 
-    public SallyMoveToStow() {
-    	requires(sallyArm);
+    public CollectorMoveToShoot() {
+    	requires(collector);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	sallyArm.setSetpoint(RobotPreferences.sallyStowPosition());
-    	sallyArm.enable();
+    	setTimeout(RobotPreferences.collectorPIDTimeout());
+    	collector.setSetpoint(RobotPreferences.collectorShootPosition());
+    	collector.enable();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -23,13 +24,12 @@ public class SallyMoveToStow extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return sallyArm.onRawTarget() || sallyArm.isSallyStowed();
+    	return collector.onRawTarget() || isTimedOut();
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	sallyArm.disable();
-    	sallyArm.resetEncoders();
+    	collector.disable();
     }
 
     // Called when another command which requires one or more of the same

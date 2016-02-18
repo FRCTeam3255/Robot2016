@@ -40,6 +40,9 @@ public class Telemetry extends Subsystem {
 		SmartDashboard.putData("Sally Grab", new SallyMoveToGrab());
 		SmartDashboard.putData("Sally Stow", new SallyMoveToStow());
 		SmartDashboard.putData("Sally Stow Switch", new SallyMoveToStowSwitch());
+		SmartDashboard.putData("Sally Prep Grab", new SallyPrepGrab());
+		SmartDashboard.putData("Sally Drawbridge", new SallyDrawbridge());
+		SmartDashboard.putData("Sally Retract", new SallyRetract());
 		
 		// Lighting
 		SmartDashboard.putData("Blue LED", new LightingBlueOn());
