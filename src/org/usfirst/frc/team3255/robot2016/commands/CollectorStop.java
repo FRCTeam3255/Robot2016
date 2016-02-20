@@ -1,22 +1,20 @@
 package org.usfirst.frc.team3255.robot2016.commands;
 
-import org.usfirst.frc.team3255.robot2016.RobotPreferences;
-
 /**
  *
  */
-public class CollectorMoveToStow extends CommandBase {
+public class CollectorStop extends CommandBase {
 
-    public CollectorMoveToStow() {
+    public CollectorStop() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
     	requires(collector);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	collector.setIntakeSpeed(0.0);
-    	setTimeout(RobotPreferences.collectorPIDTimeout());
-    	collector.setSetpoint(RobotPreferences.collectorStowPosition());
-    	collector.enable();
+    	collector.disable();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -25,12 +23,11 @@ public class CollectorMoveToStow extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return collector.onRawTarget() || isTimedOut();
+        return true;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	collector.disable();
     }
 
     // Called when another command which requires one or more of the same
