@@ -1,5 +1,8 @@
 <xml version="1.0">
 <dashboard>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
+		<location x="755" y="331"/>
+	</static-widget>
 	<widget field="Particles" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
 		<location x="584" y="413"/>
 	</widget>
@@ -142,9 +145,6 @@
 		<location x="1084" y="5"/>
 		<width>499</width>
 		<height>593</height>
-	</static-widget>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
-		<location x="727" y="344"/>
 	</static-widget>
 	<widget field="Collector Reset Encoders" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
 		<location x="387" y="93"/>
