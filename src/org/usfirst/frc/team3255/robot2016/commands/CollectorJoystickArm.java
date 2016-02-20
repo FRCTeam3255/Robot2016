@@ -2,6 +2,7 @@ package org.usfirst.frc.team3255.robot2016.commands;
 
 import org.usfirst.frc.team3255.robot2016.OI;
 import org.usfirst.frc.team3255.robot2016.RobotMap;
+import org.usfirst.frc.team3255.robot2016.RobotPreferences;
 
 /**
  *
@@ -23,7 +24,12 @@ public class CollectorJoystickArm extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        if (collector.getArmSpeed() > 0.0 && collector.getEncoderPosition() < RobotPreferences.collectorLowPosition()) {
+        	return true;
+        }
+        else {
+        	return false;
+        }
     }
 
     // Called once after isFinished returns true

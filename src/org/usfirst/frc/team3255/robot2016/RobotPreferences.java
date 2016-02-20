@@ -93,6 +93,10 @@ public class RobotPreferences {
 		return Preferences.getInstance().getDouble("CollectorIntakeSpeed", 1.0);
 	}
 	
+	public static double collectorIntakeReverseSpeed() {
+		return Preferences.getInstance().getDouble("CollectorIntakeReverseSpeed", 0.5);
+	}
+	
 	public static double collectorEncoderCompression() {
 		return Preferences.getInstance().getDouble("CollectorEncoderCompression", 0.01);
 	}

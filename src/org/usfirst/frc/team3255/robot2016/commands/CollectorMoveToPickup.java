@@ -29,7 +29,6 @@ public class CollectorMoveToPickup extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	collector.disable();
     }
 
     // Called when another command which requires one or more of the same
