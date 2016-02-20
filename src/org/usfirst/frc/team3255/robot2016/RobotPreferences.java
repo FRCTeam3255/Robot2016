@@ -265,6 +265,14 @@ public class RobotPreferences {
 		return Preferences.getInstance().getDouble("TargetDistance", 6.0);
 	}
 
+	public static double targetXThreshold() {
+		return Preferences.getInstance().getDouble("TargetXThreshold", 0.1);
+	}
+
+	public static double targetDistanceThreshold() {
+		return Preferences.getInstance().getDouble("TargetDistanceThreshold", 0.5);
+	}
+
 	// ================== Vision ==================
 	public static String cameraName() {
 		return Preferences.getInstance().getString("CameraName", "cam0");

@@ -1,5 +1,14 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="Is Target" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="653" y="509"/>
+	</widget>
+	<widget field="Target X" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="585" y="568"/>
+	</widget>
+	<widget field="Target Distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="551" y="538"/>
+	</widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
 		<location x="755" y="331"/>
 	</static-widget>

@@ -48,21 +48,21 @@ public class Vision extends Subsystem {
 	};
 	
 	//Images
-	Image frame;
-	Image HSVFrame;
-	Image binaryFrame;
-	int imaqError;
+	private Image frame;
+	private Image HSVFrame;
+	private Image binaryFrame;
+	private int imaqError;
 	
-	int frontSession, rearSession, currSession;
+	private int frontSession, rearSession, currSession;
 	
-	int numRawParticles = 0;
-	int numParticles = 0;
+	private int numRawParticles = 0;
+	private int numParticles = 0;
 	
-	boolean isTarget = false;
-	double distance = 0.0;
-	boolean started = false;
+	private boolean isTarget = false;
+	private double distance = 0.0;
+	private boolean started = false;
 	
-	boolean frontCamera = true;
+	private boolean frontCamera = true;
 	
 	// variables for navigating image files
 	private String imagePrefix = "/home/lvuser/SampleImages/";
@@ -76,11 +76,10 @@ public class Vision extends Subsystem {
 	NIVision.Rect rect = new NIVision.Rect(10, 10, 100, 100);
 	
 	//Constants
-	double fov = 68.5;
-	double imageWidthPixels = 160;
-	double targetWidthInches = 20;
-	double targetwidthPixels = 150;
-	double alpha = 60;
+	final double FOV_DEGREES = 68.5;
+	final double FOV_RADIANS = (FOV_DEGREES/180) * Math.PI;
+	final double IMAGE_WIDTH_PIXELS = 160;
+	final double TARGET_WIDTH_INCHES = 20;
 	public static NIVision.Range TARGET_HUE_RANGE = new NIVision.Range(RobotPreferences.visionHueMin(), RobotPreferences.visionHueMax());	//Default hue range for yellow tote
 	public static NIVision.Range TARGET_SAT_RANGE = new NIVision.Range(RobotPreferences.visionSatMin(), RobotPreferences.visionSatMax());	//Default saturation range for yellow tote
 	public static NIVision.Range TARGET_VAL_RANGE = new NIVision.Range(RobotPreferences.visionValMin(), RobotPreferences.visionValMax());	//Default value range for yellow tote
@@ -249,6 +248,7 @@ public class Vision extends Subsystem {
 			double aspectRatio = ((double) (rect.width))/rect.height;
             if (aspectRatio > RobotPreferences.visionAspectMin()) {
             	isTarget = true;
+            	distance = computeDistance(rect.width);
             }
             else {
             	isTarget = false;
@@ -268,10 +268,21 @@ public class Vision extends Subsystem {
 		}
 
 		if (isTarget) {
-			CommandBase.lighting.blueOn(true);
+			boolean centered = Math.abs(getTargetCenterX()) < RobotPreferences.targetXThreshold();
+			boolean atDistance = Math.abs(distance - RobotPreferences.targetDistance()) < RobotPreferences.targetDistanceThreshold();
+			
+			if(centered && atDistance) {
+				CommandBase.lighting.redOn(true);
+				CommandBase.lighting.blueOn(false);
+			}
+			else {
+				CommandBase.lighting.blueOn(true);
+				CommandBase.lighting.redOn(false);
+			}
 		}
 		else {
 			CommandBase.lighting.blueOn(false);
+			CommandBase.lighting.redOn(false);	
 		}
 
 		// Send images to Dashboard
@@ -329,8 +340,8 @@ public class Vision extends Subsystem {
 		return isTarget;
 	}
 	
-	public double getToteCenterX() {
-		return ((rect.left + (rect.width/2))-80)/80.0;
+	public double getTargetCenterX() {
+		return ((rect.left + (rect.width / 2))-(IMAGE_WIDTH_PIXELS / 2)) / (IMAGE_WIDTH_PIXELS / 2);
 	}
 	
 	public double getTargetDistance() {
@@ -377,7 +388,7 @@ public class Vision extends Subsystem {
 		return ratioToScore((report.Area/report.ConvexHullArea)*1.18);
 	}
 
-	double computeDistance (Image image, ParticleReport report, boolean isLong) {
+	double computeDistance(Image image, ParticleReport report, boolean isLong) {
 		double normalizedWidth, targetWidth;
 		NIVision.GetImageSizeResult size;
 
@@ -386,6 +397,22 @@ public class Vision extends Subsystem {
 		targetWidth = isLong ? 26.0 : 16.9;
 
 		return  targetWidth/(normalizedWidth*12*Math.tan(VIEW_ANGLE*Math.PI/(180*2)));
+	}
+	
+	// returns target distance in feet
+	double computeDistance(int targetWidthPixels) {
+		double alpha;
+		double distance;
+
+		alpha = (FOV_RADIANS * targetWidthPixels)/IMAGE_WIDTH_PIXELS;
+		
+		// compute distance in inches
+		distance = TARGET_WIDTH_INCHES/(2 * Math.tan(alpha/2));
+		
+		// convert distance to feet
+		distance = distance / 12;
+		
+		return distance;
 	}
 	
 	public void updateReplayRange() {

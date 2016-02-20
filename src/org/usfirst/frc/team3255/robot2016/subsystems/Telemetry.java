@@ -96,6 +96,9 @@ public class Telemetry extends Subsystem {
 		// Vision
 		SmartDashboard.putNumber("Raw Particles", CommandBase.vision.getNumRawParticles());
 		SmartDashboard.putNumber("Particles", CommandBase.vision.getNumParticles());
+		SmartDashboard.putBoolean("Is Target", CommandBase.vision.isTarget());
+		SmartDashboard.putNumber("Target X", CommandBase.vision.getTargetCenterX());
+		SmartDashboard.putNumber("Target Distance", CommandBase.vision.getTargetDistance());
 	}
 
 	// ================== Vision ==================

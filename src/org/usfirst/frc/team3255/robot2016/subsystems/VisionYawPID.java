@@ -43,7 +43,7 @@ public class VisionYawPID extends PIDSubsystem {
     	}
     	outputValid = true;
     	// TODO Change getToteCenterX to getTargetCenterX
-    	return CommandBase.vision.getToteCenterX();
+    	return CommandBase.vision.getTargetCenterX();
     }
     
     
