@@ -9,9 +9,7 @@ public class DriveOverLowBar extends CommandGroup {
     
     public  DriveOverLowBar() {
     	addSequential(new CollectorMoveToLow());
-    	addSequential(new DriveUntilPitched());
-    	addSequential(new DoDelay(0.1));
-    	addSequential(new DriveUntilFlat());
+    	addSequential(new DriveOverLowBar());
     	addSequential(new CollectorMoveToStow());
     }
 }

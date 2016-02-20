@@ -53,3 +53,5 @@ Temporary Items
 *.class
 dist/FRCUserProgram.jar
 *.class
+*.class
+dist/FRCUserProgram.jar
