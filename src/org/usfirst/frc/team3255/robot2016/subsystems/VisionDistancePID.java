@@ -10,7 +10,9 @@ import edu.wpi.first.wpilibj.command.PIDSubsystem;
  */
 public class VisionDistancePID extends PIDSubsystem {
 	
-	double output = 0.0;
+	double inputValue = 0.0;
+	boolean inputValid = false;
+	double outputValue = 0.0;
 	boolean outputValid = false;
 
     // Initialize your subsystem here
@@ -25,46 +27,49 @@ public class VisionDistancePID extends PIDSubsystem {
     			RobotPreferences.visionDistanceI(),
     			RobotPreferences.visionDistanceD());
     	
-    	this.setAbsoluteTolerance(RobotPreferences.distanceTolerance());
-    	
         this.setSetpoint(RobotPreferences.targetDistance());
     	
     	double maxSpeed = RobotPreferences.maxMoveSpeed();
     	this.setOutputRange(-maxSpeed, maxSpeed);
-    	   
+    
+    	inputValid = false;
+    	outputValid = false;
+    	
         super.enable();
     }
     
     public double returnPIDInput() {
     	// TODO Change isTote to isTarget
     	if(CommandBase.vision.isTarget() == false) {
-    		outputValid = false;
+    		inputValid = false;
     		return this.getSetpoint();
     	}
-    	outputValid = true;
-    	// TODO Change getToteDistance to getTargetDistance
-    	return CommandBase.vision.getTargetDistance();
+
+    	inputValue = CommandBase.vision.getTargetDistance();
+    	inputValid = true;
+    	
+    	return inputValue;
     }
     
     
     protected void usePIDOutput(double output) {
-    	this.output = output;
+    	this.outputValue = output;
+    	outputValid = true;
     }
     
     public double getOutput() {
-    	if(this.getPIDController().isEnabled() == false || outputValid == false) {
+    	if(this.getPIDController().isEnabled() == false || inputValid == false || outputValid == false) {
     		return 0.0;
     	}
-    	return output;
+    	return outputValue;
     }
     
 	public boolean onRawTarget() {
-		if (Math.abs(CommandBase.drivetrain.getEncoderDistance() - getPIDController().getSetpoint()) < RobotPreferences.distanceTolerance()) {
-			return true;
-		}
-		else {
+		if (inputValid == false) {
 			return false;
 		}
+		
+		return (Math.abs(inputValue - getPIDController().getSetpoint()) < RobotPreferences.targetDistanceThreshold());
 	}
     
     public void initDefaultCommand() {

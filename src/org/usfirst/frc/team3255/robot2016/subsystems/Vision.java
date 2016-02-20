@@ -51,7 +51,6 @@ public class Vision extends Subsystem {
 	private Image frame;
 	private Image HSVFrame;
 	private Image binaryFrame;
-	private int imaqError;
 	
 	private int frontSession, rearSession, currSession;
 	
@@ -123,6 +122,11 @@ public class Vision extends Subsystem {
         }
     }
 	
+	public void setTargetInvalid() {
+		distance = 0;
+		isTarget = false;
+	}
+	
 	public void update() {
 		if(frontCamera) {
 			newSession = frontSession;
@@ -143,13 +147,9 @@ public class Vision extends Subsystem {
 			}
 		}
 		
-		// set up the default return values, so that if this routine returns early, it has
-		// set reasonable values
-		distance = 0;
-		isTarget = false;
-
 		if(RobotPreferences.useCamera()) {
 			if(currSession < 0) {
+				setTargetInvalid();
 				return;
 			}
 	        NIVision.IMAQdxGrab(currSession, frame, 1);
@@ -175,6 +175,7 @@ public class Vision extends Subsystem {
 			
 			if(!imageFound) {
 				DriverStation.reportError("No images found", false);
+				setTargetInvalid();
 				return;
 			}
 		}
@@ -201,6 +202,7 @@ public class Vision extends Subsystem {
 				CameraServer.getInstance().setImage(frame);
 			}
 			
+			setTargetInvalid();
 			return;
 		}
 
@@ -210,7 +212,7 @@ public class Vision extends Subsystem {
 		//filter out small particles
 		float areaMin = (float) RobotPreferences.visionAreaMin();
 		criteria[0].lower = areaMin;
-		imaqError = NIVision.imaqParticleFilter4(binaryFrame, HSVFrame, criteria, filterOptions, null);
+		NIVision.imaqParticleFilter4(binaryFrame, HSVFrame, criteria, filterOptions, null);
 
 		//Send particle count after filtering to dashboard
 		numParticles = NIVision.imaqCountParticles(binaryFrame, 1);
@@ -251,7 +253,7 @@ public class Vision extends Subsystem {
             	distance = computeDistance(rect.width);
             }
             else {
-            	isTarget = false;
+    			setTargetInvalid();
             }
             
             /*
@@ -264,7 +266,7 @@ public class Vision extends Subsystem {
 			*/
 		} 
 		else {
-			isTarget = false;
+			setTargetInvalid();
 		}
 
 		if (isTarget) {

@@ -10,7 +10,9 @@ import edu.wpi.first.wpilibj.command.PIDSubsystem;
  */
 public class VisionYawPID extends PIDSubsystem {
 	
-	double output = 0.0;
+	double inputValue = 0;
+	boolean inputValid = false;
+	double outputValue = 0.0;
 	boolean outputValid = false;
 
     // Initialize your subsystem here
@@ -25,12 +27,13 @@ public class VisionYawPID extends PIDSubsystem {
     			RobotPreferences.visionYawI(),
     			RobotPreferences.visionYawD());
     	
-    	this.setAbsoluteTolerance(RobotPreferences.yawTolerance());
-    	
         this.setSetpoint(0.0);
     	
     	double maxSpeed = RobotPreferences.maxYawSpeed();
     	this.setOutputRange(-maxSpeed, maxSpeed);
+    	
+    	inputValid = false;
+    	outputValid = false;
     	
     	super.enable();
     }
@@ -38,33 +41,36 @@ public class VisionYawPID extends PIDSubsystem {
     public double returnPIDInput() {
     	// TODO Change isTote to isTarget
     	if(CommandBase.vision.isTarget() == false) {
-    		outputValid = false;
+    		inputValid = false;
     		return this.getSetpoint();
     	}
-    	outputValid = true;
-    	// TODO Change getToteCenterX to getTargetCenterX
-    	return CommandBase.vision.getTargetCenterX();
+
+    	inputValue = CommandBase.vision.getTargetCenterX();
+    	inputValid = true;
+    	
+    	return inputValue;
     }
     
     
     protected void usePIDOutput(double output) {
-    	this.output = output;
+    	this.outputValue = output;
+    	outputValid = true;
     }
     
     public double getOutput() {
-    	if(this.getPIDController().isEnabled() == false || outputValid == false) {
+    	if(this.getPIDController().isEnabled() == false || inputValid == false || outputValid == false) {
     		return 0.0;
     	}
-    	return output;
+    	return outputValue;
     }
     
 	public boolean onRawTarget() {
-		if (Math.abs(CommandBase.navigation.getYaw() - getPIDController().getSetpoint()) < RobotPreferences.yawTolerance()) {
-			return true;
-		}
-		else {
+		if(inputValid == false) {
 			return false;
 		}
+
+		// return (abs(input-setpoint) < threshold)
+		return (Math.abs(inputValue - getPIDController().getSetpoint()) < RobotPreferences.targetXThreshold());
 	}
     
     public void initDefaultCommand() {

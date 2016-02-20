@@ -251,6 +251,10 @@ public class RobotPreferences {
 	public static double visionYawD() {
 		return Preferences.getInstance().getDouble("VisionYawD", 0.0);
 	}
+	
+	public static double targetXThreshold() {
+		return Preferences.getInstance().getDouble("TargetXThreshold", 0.1);
+	}
 
 	// ================== Vision Distance PID ==================
 	public static double visionDistanceP() {
@@ -267,10 +271,6 @@ public class RobotPreferences {
 	
 	public static double targetDistance() {
 		return Preferences.getInstance().getDouble("TargetDistance", 6.0);
-	}
-
-	public static double targetXThreshold() {
-		return Preferences.getInstance().getDouble("TargetXThreshold", 0.1);
 	}
 
 	public static double targetDistanceThreshold() {
