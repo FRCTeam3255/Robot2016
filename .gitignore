@@ -14,6 +14,11 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 
+# FRC Exclusions
+*.class
+FRCUserProgram.jar
+sysProps.xml
+
 # Windows shortcuts
 *.lnk
 
