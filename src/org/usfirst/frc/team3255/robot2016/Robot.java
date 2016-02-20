@@ -2,11 +2,16 @@
 package org.usfirst.frc.team3255.robot2016;
 
 import org.usfirst.frc.team3255.robot2016.commands.CommandBase;
+import org.usfirst.frc.team3255.robot2016.commands.DoDelay;
+import org.usfirst.frc.team3255.robot2016.commands.DriveOverLowBar;
+import org.usfirst.frc.team3255.robot2016.commands.DriveOverObstacle;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -17,6 +22,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  */
 public class Robot extends IterativeRobot {
 
+	SendableChooser autoChooser;
     Command autonomousCommand;
 
     /**
@@ -27,6 +33,11 @@ public class Robot extends IterativeRobot {
     	CommandBase.init();
     	CommandBase.collector.resetEncoders();
     	CommandBase.drivetrain.resetEncoders();
+    	autoChooser = new SendableChooser();
+    	autoChooser.addDefault("Drive Over Obstacle", new DriveOverObstacle());
+    	autoChooser.addObject("Drive Over Low Bar", new DriveOverLowBar());
+    	autoChooser.addObject("Do Nothing", new DoDelay(0.1));
+    	SmartDashboard.putData("Auto mode", autoChooser);
     }
 	
 	/**
@@ -51,18 +62,9 @@ public class Robot extends IterativeRobot {
 	 * You can add additional auto modes by adding additional commands to the chooser code above (like the commented example)
 	 * or additional comparisons to the switch structure below with additional strings & commands.
 	 */
-    public void autonomousInit() {
-        
-		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-		switch(autoSelected) {
-		case "My Auto":
-			autonomousCommand = new MyAutoCommand();
-			break;
-		case "Default Auto":
-		default:
-			autonomousCommand = new ExampleCommand();
-			break;
-		} */
+    
+	public void autonomousInit() {
+		autonomousCommand = (Command) autoChooser.getSelected();
     	
     	// schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();

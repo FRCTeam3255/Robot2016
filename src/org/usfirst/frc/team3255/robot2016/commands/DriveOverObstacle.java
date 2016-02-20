@@ -28,6 +28,7 @@ public class DriveOverObstacle extends CommandGroup {
     	addSequential(new NavigationZeroYaw());
     	addSequential(new DoDelay(0.5));
     	addSequential(new DriveUntilPitched());
+    	addSequential(new DoDelay(0.1));
     	addSequential(new DriveUntilFlat());
     	addSequential(new DriveToYaw(0.0));
     }
