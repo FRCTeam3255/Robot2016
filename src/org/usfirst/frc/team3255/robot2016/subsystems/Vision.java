@@ -63,8 +63,6 @@ public class Vision extends Subsystem {
 	boolean started = false;
 	
 	boolean frontCamera = true;
-
-	boolean useCamera = true;
 	
 	// variables for navigating image files
 	private String imagePrefix = "/home/lvuser/SampleImages/";
@@ -78,6 +76,11 @@ public class Vision extends Subsystem {
 	NIVision.Rect rect = new NIVision.Rect(10, 10, 100, 100);
 	
 	//Constants
+	double fov = 68.5;
+	double imageWidthPixels = 160;
+	double targetWidthInches = 20;
+	double targetwidthPixels = 150;
+	double alpha = 60;
 	public static NIVision.Range TARGET_HUE_RANGE = new NIVision.Range(RobotPreferences.visionHueMin(), RobotPreferences.visionHueMax());	//Default hue range for yellow tote
 	public static NIVision.Range TARGET_SAT_RANGE = new NIVision.Range(RobotPreferences.visionSatMin(), RobotPreferences.visionSatMax());	//Default saturation range for yellow tote
 	public static NIVision.Range TARGET_VAL_RANGE = new NIVision.Range(RobotPreferences.visionValMin(), RobotPreferences.visionValMax());	//Default value range for yellow tote
@@ -146,11 +149,14 @@ public class Vision extends Subsystem {
 		distance = 0;
 		isTarget = false;
 
-		if(useCamera) {
+		if(RobotPreferences.useCamera()) {
 			if(currSession < 0) {
 				return;
 			}
-	        NIVision.IMAQdxGrab(currSession, frame, 1);			
+	        NIVision.IMAQdxGrab(currSession, frame, 1);
+
+	        // scale the image down by a factor of two in both directions
+			NIVision.imaqScale(frame, frame, 4, 4, ScalingMode.SCALE_SMALLER, NIVision.NO_RECT);
 		}
 		else {
 			//read file in from disk. For this example to run you need to copy image20.jpg from the SampleImages folder to the
@@ -181,22 +187,21 @@ public class Vision extends Subsystem {
 		TARGET_SAT_RANGE.maxValue = RobotPreferences.visionSatMax();
 		TARGET_VAL_RANGE.minValue = RobotPreferences.visionValMin();
 		TARGET_VAL_RANGE.maxValue = RobotPreferences.visionValMax();
-		
-		// scale the image down by a factor of two in both directions
-		NIVision.imaqScale(frame, frame, 4, 4, ScalingMode.SCALE_SMALLER, NIVision.NO_RECT);
 
 		//Threshold the image looking for yellow (tote color)
 		NIVision.imaqColorThreshold(HSVFrame, frame, 255, NIVision.ColorMode.HSV, TARGET_HUE_RANGE, TARGET_SAT_RANGE, TARGET_VAL_RANGE);
 		
-		// Send images to Dashboard
-		if(RobotPreferences.visionProcessedImage()) {
-			CameraServer.getInstance().setImage(HSVFrame);
-		}
-		else {
-			CameraServer.getInstance().setImage(frame);
-		}
+		// NIVision.imaqConvexHull(HSVFrame, HSVFrame, 0);
 		
 		if (!RobotPreferences.visionEnabled()) {
+			// Send images to Dashboard
+			if(RobotPreferences.visionProcessedImage()) {
+				CameraServer.getInstance().setImage(HSVFrame);
+			}
+			else {
+				CameraServer.getInstance().setImage(frame);
+			}
+			
 			return;
 		}
 
@@ -241,12 +246,22 @@ public class Vision extends Subsystem {
 			//This example only scores the largest particle. Extending to score all particles and choosing the desired one is left as an exercise
 			//for the reader. Note that the long and short side scores expect a single tote and will not work for a stack of 2 or more totes.
 			//Modification of the code to accommodate 2 or more stacked totes is left as an exercise for the reader.
-			scores.LongAspect = horizontalRectangleScore(particles.elementAt(0));
+			double aspectRatio = ((double) (rect.width))/rect.height;
+            if (aspectRatio > RobotPreferences.visionAspectMin()) {
+            	isTarget = true;
+            }
+            else {
+            	isTarget = false;
+            }
+            
+            /*
+            scores.LongAspect = horizontalRectangleScore(particles.elementAt(0));
 			scores.ShortAspect = verticalRectanlgeScore(particles.elementAt(0));
 			scores.AreaToConvexHullArea = ConvexHullAreaScore(particles.elementAt(0));
 			boolean isLong = scores.LongAspect > scores.ShortAspect;
 			distance = computeDistance(binaryFrame, particles.elementAt(0), isLong);
 			isTarget = (scores.LongAspect > SCORE_MIN || scores.ShortAspect > SCORE_MIN) && scores.AreaToConvexHullArea > SCORE_MIN;
+			*/
 		} 
 		else {
 			isTarget = false;
@@ -258,14 +273,14 @@ public class Vision extends Subsystem {
 		else {
 			CommandBase.lighting.blueOn(false);
 		}
-	}
-	
-	public void useCamera(boolean cameraOn) {
-		useCamera = cameraOn;
-	}
-	
-	public boolean isUsingCamera() {
-		return useCamera;
+
+		// Send images to Dashboard
+		if(RobotPreferences.visionProcessedImage()) {
+			CameraServer.getInstance().setImage(HSVFrame);
+		}
+		else {
+			CameraServer.getInstance().setImage(frame);
+		}
 	}
 	
 	public void nextImage() {
