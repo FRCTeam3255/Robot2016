@@ -14,7 +14,7 @@ public class CollectorReverseToSwitch extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	collector.setIntakeSpeed(-RobotPreferences.collectorIntakeSpeed());
+    	collector.setIntakeSpeed(-RobotPreferences.collectorIntakeReverseSpeed());
     }
 
     // Called repeatedly when this Command is scheduled to run
