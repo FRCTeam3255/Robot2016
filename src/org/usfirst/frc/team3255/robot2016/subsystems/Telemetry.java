@@ -54,6 +54,8 @@ public class Telemetry extends Subsystem {
 		
 		// Vision
 		SmartDashboard.putData("Update Replay Range", new VisionUpdateReplayRange());
+		SmartDashboard.putData("Next Image", new VisionNextImage());
+		SmartDashboard.putData("Prev Image", new VisionPrevImage());
 		
 		// Auto
 		SmartDashboard.putData("Drive Over Obstacle", new DriveOverObstacle());
@@ -90,6 +92,10 @@ public class Telemetry extends Subsystem {
 		SmartDashboard.putNumber("Yaw", CommandBase.navigation.getYaw());
 		SmartDashboard.putNumber("Pitch", CommandBase.navigation.getPitch());
 		SmartDashboard.putBoolean("Calibrated", !CommandBase.navigation.isCalibrating());
+		
+		// Vision
+		SmartDashboard.putNumber("Raw Particles", CommandBase.vision.getNumRawParticles());
+		SmartDashboard.putNumber("Particles", CommandBase.vision.getNumParticles());
 	}
 
 	// ================== Vision ==================
