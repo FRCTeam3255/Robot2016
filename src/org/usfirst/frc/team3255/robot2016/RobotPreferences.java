@@ -86,7 +86,7 @@ public class RobotPreferences {
 	}
 
 	public static double collectorTimeout() {
-		return Preferences.getInstance().getDouble("CollectorTimeout", 0.0);
+		return Preferences.getInstance().getDouble("CollectorTimeout", 0.1);
 	}
 	
 	public static double collectorIntakeSpeed() {
