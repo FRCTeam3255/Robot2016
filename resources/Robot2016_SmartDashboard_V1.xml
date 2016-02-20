@@ -1,5 +1,29 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="Particles" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="584" y="413"/>
+	</widget>
+	<widget field="Raw Particles" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="559" y="381"/>
+	</widget>
+	<widget field="Prev Image" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="582" y="469"/>
+	</widget>
+	<widget field="Next Image" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="581" y="439"/>
+	</widget>
+	<widget field="Auto mode" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="331" y="370"/>
+	</widget>
+	<widget field="Sally Retract" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="210" y="131"/>
+	</widget>
+	<widget field="Sally Prep Grab" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="641" y="261"/>
+	</widget>
+	<widget field="Sally Drawbridge" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="634" y="297"/>
+	</widget>
 	<widget field="Sally Stowed" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
 		<location x="661" y="101"/>
 		<width>93</width>
@@ -26,7 +50,7 @@
 		<location x="48" y="312"/>
 	</widget>
 	<widget field="Update Replay Range" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="468" y="311"/>
+		<location x="532" y="343"/>
 	</widget>
 	<widget field="LEDs off" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
 		<location x="875" y="88"/>
@@ -115,12 +139,12 @@
 		<location x="441" y="196"/>
 	</widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.RobotPreferences">
-		<location x="1083" y="6"/>
+		<location x="1084" y="5"/>
 		<width>499</width>
 		<height>593</height>
 	</static-widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
-		<location x="669" y="306"/>
+		<location x="727" y="344"/>
 	</static-widget>
 	<widget field="Collector Reset Encoders" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
 		<location x="387" y="93"/>

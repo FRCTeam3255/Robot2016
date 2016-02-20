@@ -50,3 +50,6 @@ sysProps.xml
 Network Trash Folder
 Temporary Items
 .apdisk
+*.class
+dist/FRCUserProgram.jar
+*.class
