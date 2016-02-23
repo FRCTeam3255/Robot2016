@@ -7,6 +7,8 @@ import org.usfirst.frc.team3255.robot2016.RobotPreferences;
  */
 public class CollectorReverseToSwitch extends CommandBase {
 	
+	boolean sawSwitch = false;
+	
     public CollectorReverseToSwitch() {
     	requires(collector);
     	requires(shooter);
@@ -15,16 +17,23 @@ public class CollectorReverseToSwitch extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
     	collector.setIntakeSpeed(-RobotPreferences.collectorIntakeReverseSpeed());
+    	sawSwitch = false;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	if((sawSwitch == false) && (shooter.isBallHoldSwitchClosed())) {
+    		sawSwitch = true;
+    		startTimer(RobotPreferences.collectorReverseTimeout());
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return shooter.isBallHoldSwitchClosed();
-
+    	if((sawSwitch) && isTimerExpired()) {
+    		return true;
+    	}
+    	return false;
     }
 
     // Called once after isFinished returns true

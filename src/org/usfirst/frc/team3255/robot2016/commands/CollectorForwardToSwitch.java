@@ -24,13 +24,13 @@ public class CollectorForwardToSwitch extends CommandBase {
     protected void execute() {
     	if((sawSwitch == false) && (shooter.isBallHoldSwitchClosed())) {
     		sawSwitch = true;
-    		this.setTimeout(RobotPreferences.collectorTimeout());
+    		startTimer(RobotPreferences.collectorForwardTimeout());
     	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if((sawSwitch) && isTimedOut()) {
+    	if((sawSwitch) && isTimerExpired()) {
     		return true;
     	}
     	return false;
@@ -38,7 +38,6 @@ public class CollectorForwardToSwitch extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	collector.disable();
     	collector.setIntakeSpeed(0.0);
     }
 

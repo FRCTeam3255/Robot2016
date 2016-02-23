@@ -34,6 +34,7 @@ public class Telemetry extends Subsystem {
 		SmartDashboard.putData("Collector Low", new CollectorMoveToLow());
 		SmartDashboard.putData("Collector Pickup", new CollectorMoveToPickup());
 		SmartDashboard.putData("Collector Stow", new CollectorMoveToStow());
+		SmartDashboard.putData("Collector Forward To Switch", new CollectorForwardToSwitch());
 		
 		// Sally Arm
 		SmartDashboard.putData("Sally Reset Encoders", new SallyResetEncoders());

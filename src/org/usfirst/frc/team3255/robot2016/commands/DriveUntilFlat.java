@@ -28,7 +28,7 @@ public class DriveUntilFlat extends CommandBase {
     	// that the first time we get an encoder value, it could still be the old
     	// value. Therefore, we are going to set a timeout to force the command
     	// to run until at least the timeout is seen.
-    	setTimeout(0.5);
+    	startTimer(0.5);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -42,7 +42,7 @@ public class DriveUntilFlat extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return ((distanceFlat > RobotPreferences.autoObstacleDistance()) && isTimedOut());
+    	return ((distanceFlat > RobotPreferences.autoObstacleDistance()) && isTimerExpired());
     }
 
     // Called once after isFinished returns true

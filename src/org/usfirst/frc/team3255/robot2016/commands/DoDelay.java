@@ -1,11 +1,9 @@
 package org.usfirst.frc.team3255.robot2016.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
-
 /**
  *
  */
-public class DoDelay extends Command {
+public class DoDelay extends CommandBase {
 	
 	double timeOut;
 
@@ -17,7 +15,7 @@ public class DoDelay extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	this.setTimeout(timeOut);
+    	this.startTimer(timeOut);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -26,7 +24,7 @@ public class DoDelay extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return this.isTimedOut();
+        return this.isTimerExpired();
     }
 
     // Called once after isFinished returns true

@@ -13,7 +13,8 @@ public class CollectorMoveToShoot extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	setTimeout(RobotPreferences.collectorPIDTimeout());
+    	collector.disable();
+    	startTimer(RobotPreferences.collectorPIDTimeout());
     	collector.setSetpoint(RobotPreferences.collectorShootPosition());
     	collector.enable();
     }
@@ -24,7 +25,7 @@ public class CollectorMoveToShoot extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return collector.onRawTarget() || isTimedOut();
+    	return collector.onRawTarget() || isTimerExpired();
     }
 
     // Called once after isFinished returns true
