@@ -34,6 +34,7 @@ public class OI {
 	Button D5 = new JoystickButton(driverStick, 5);
 	Button D7 = new JoystickButton(driverStick, 7);
 	Button D8 = new JoystickButton(driverStick, 8);
+	Button D9 = new JoystickButton(driverStick, 9);
 	Button D10 = new JoystickButton(driverStick, 10);
 	
 	public OI() {
@@ -57,8 +58,10 @@ public class OI {
 		// driveStick
 		D2.whileHeld(new DriveSpeed());
 		D5.whileHeld(new DriveToTarget());
+		//D6: Slow Drive
 		D7.whenPressed(new DriveShiftDown());
 		D8.whenPressed(new DriveShiftUp());
+		D9.whenPressed(new VisionToggleCamera());
 		D10.whenPressed(new VisionSaveFile());
 		
 	}
