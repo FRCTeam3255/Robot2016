@@ -58,15 +58,15 @@ public class RobotPreferences {
 	}
 	
 	public static double collectorI() {
-		return Preferences.getInstance().getDouble("CollectorI", 0.01);
+		return Preferences.getInstance().getDouble("CollectorI", 0.005);
 	}
 	
 	public static double collectorD() {
-		return Preferences.getInstance().getDouble("CollectorD", 0.04);
+		return Preferences.getInstance().getDouble("CollectorD", 0.08);
 	}
 
 	public static double maxCollectorSpeed() {
-		return Preferences.getInstance().getDouble("CollectorMax", 0.2);
+		return Preferences.getInstance().getDouble("CollectorMax", 0.3);
 	}
 
 	public static double collectorPickupPosition() {
@@ -232,7 +232,7 @@ public class RobotPreferences {
 	
 	// ================== Navigation Yaw PID ==================
 	public static double navYawP() {
-		return Preferences.getInstance().getDouble("NavYawP", 0.03);
+		return Preferences.getInstance().getDouble("NavYawP", 0.06);
 	}
 
 	public static double navYawI() {
@@ -240,7 +240,7 @@ public class RobotPreferences {
 	}
 
 	public static double navYawD() {
-		return Preferences.getInstance().getDouble("NavYawD", 0.0);
+		return Preferences.getInstance().getDouble("NavYawD", 0.2);
 	}
 
 	// ================== Vision Yaw PID ==================

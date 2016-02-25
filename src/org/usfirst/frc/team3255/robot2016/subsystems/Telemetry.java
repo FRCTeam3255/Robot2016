@@ -31,9 +31,10 @@ public class Telemetry extends Subsystem {
 		
 		// Collector
 		SmartDashboard.putData("Collector Reset Encoders", new CollectorResetEncoders());
-		SmartDashboard.putData("Collector Low", new CollectorMoveToLow());
-		SmartDashboard.putData("Collector Pickup", new CollectorMoveToPickup());
 		SmartDashboard.putData("Collector Stow", new CollectorMoveToStow());
+		SmartDashboard.putData("Collector Shoot", new CollectorMoveToShoot());
+		SmartDashboard.putData("Collector Pickup", new CollectorMoveToPickup());
+		SmartDashboard.putData("Collector Low", new CollectorMoveToLow());
 		SmartDashboard.putData("Collector Forward To Switch", new CollectorForwardToSwitch());
 		
 		// Sally Arm
