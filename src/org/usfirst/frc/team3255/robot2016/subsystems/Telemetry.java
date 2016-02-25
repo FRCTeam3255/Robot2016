@@ -60,8 +60,8 @@ public class Telemetry extends Subsystem {
 		
 		// Auto
 		SmartDashboard.putData("Drive Over Obstacle", new DriveOverObstacle());
-		SmartDashboard.putData("Drive Until Pitched", new DriveUntilPitched());
-		SmartDashboard.putData("Drive Until Flat", new DriveUntilFlat());
+		SmartDashboard.putData("Drive FWD Until Pitched", new DriveUntilPitched(true));
+		SmartDashboard.putData("Drive Until Flat", new DriveUntilFlat(true));
 		SmartDashboard.putData("Drive to Target", new DriveToTarget());
 		SmartDashboard.putData("Drive Over Obstacle To Target", new DriveOverObstacleToTarget());
 		SmartDashboard.putData("Drive to Target Acquired", new DriveUntilTargetAcquired());

@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class DriveOverObstacle extends CommandGroup {
+public class DriveOverObsatcleAndBack extends CommandGroup {
     
-    public  DriveOverObstacle() {
+    public  DriveOverObsatcleAndBack() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -24,13 +24,11 @@ public class DriveOverObstacle extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addSequential(new NavigationCalibrate());
+    	addSequential(new DriveOverObstacle());
     	addSequential(new DoDelay(0.1));
-    	addSequential(new NavigationZeroYaw());
-    	addSequential(new DoDelay(0.5));
-    	addSequential(new DriveUntilPitched(true));
+    	addSequential(new DriveUntilPitched(false));
     	addSequential(new DoDelay(0.1));
-    	addSequential(new DriveUntilFlat(true));
+    	addSequential(new DriveUntilFlat(false));
     	addSequential(new DriveToYaw(0.0));
     }
 }

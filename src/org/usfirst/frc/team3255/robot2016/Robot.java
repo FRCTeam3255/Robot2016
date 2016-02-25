@@ -4,6 +4,7 @@ package org.usfirst.frc.team3255.robot2016;
 import org.usfirst.frc.team3255.robot2016.commands.CommandBase;
 import org.usfirst.frc.team3255.robot2016.commands.DoDelay;
 import org.usfirst.frc.team3255.robot2016.commands.DriveOverLowBar;
+import org.usfirst.frc.team3255.robot2016.commands.DriveOverObsatcleAndBack;
 import org.usfirst.frc.team3255.robot2016.commands.DriveOverObstacle;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -37,6 +38,7 @@ public class Robot extends IterativeRobot {
     	autoChooser.addDefault("Drive Over Obstacle", new DriveOverObstacle());
     	autoChooser.addObject("Drive Over Low Bar", new DriveOverLowBar());
     	autoChooser.addObject("Do Nothing", new DoDelay(0.1));
+    	autoChooser.addObject("Drive Over & Back", new DriveOverObsatcleAndBack());
     	SmartDashboard.putData("Auto mode", autoChooser);
     }
 	
