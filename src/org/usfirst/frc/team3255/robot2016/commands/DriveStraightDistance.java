@@ -18,6 +18,9 @@ public class DriveStraightDistance extends CommandBase {
     	drivetrain.shiftLow();
     	drivetrain.resetEncoders();
     	
+    	driveDistancePID.disable();
+    	navYawPID.disable();
+    	
     	driveDistancePID.setSetpoint(RobotPreferences.driveDistance());
     	navYawPID.setSetpoint(0.0);
 
@@ -37,8 +40,8 @@ public class DriveStraightDistance extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
-    	driveDistancePID.disable();
-    	navYawPID.disable();
+    	// driveDistancePID.disable();
+    	// navYawPID.disable();
     	
     	drivetrain.setSpeed(0.0);
     }
@@ -46,6 +49,9 @@ public class DriveStraightDistance extends CommandBase {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	driveDistancePID.disable();
+    	navYawPID.disable();
+    	
     	end();
     }
 }

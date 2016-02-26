@@ -343,7 +343,8 @@ public class Vision extends Subsystem {
 	}
 	
 	public double getTargetCenterX() {
-		return ((rect.left + (rect.width / 2))-(IMAGE_WIDTH_PIXELS / 2)) / (IMAGE_WIDTH_PIXELS / 2);
+		double offset = ((rect.left + (rect.width / 2))-(IMAGE_WIDTH_PIXELS / 2)) / (IMAGE_WIDTH_PIXELS / 2);
+		return -offset * (FOV_DEGREES / 2.0);
 	}
 	
 	public double getTargetDistance() {

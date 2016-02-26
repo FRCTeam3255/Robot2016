@@ -1,5 +1,14 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="Collector Shoot" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="586"/>
+	</widget>
+	<widget field="Drive FWD Until Pitched" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="550"/>
+	</widget>
+	<widget field="Collector Forward To Switch" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="0" y="266"/>
+	</widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
 		<location x="755" y="331"/>
 	</static-widget>

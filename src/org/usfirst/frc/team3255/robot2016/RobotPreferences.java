@@ -213,6 +213,10 @@ public class RobotPreferences {
 		return Preferences.getInstance().getDouble("CollectorTolerance", 3.0);
 	}
 	
+	public static double targetXThreshold() {
+		return Preferences.getInstance().getDouble("TargetXThreshold", 1.0);
+	}
+	
 	// ================== Drivetrain Distance PID ==================
 	public static double driveDistanceP() {
 		return Preferences.getInstance().getDouble("DriveDistanceP", 0.3);
@@ -245,32 +249,28 @@ public class RobotPreferences {
 
 	// ================== Vision Yaw PID ==================
 	public static double visionYawP() {
-		return Preferences.getInstance().getDouble("VisionYawP", 0.0);
+		return Preferences.getInstance().getDouble("VisionYawP", 0.06);
 	}
 
 	public static double visionYawI() {
-		return Preferences.getInstance().getDouble("VisionYawI", 0.0);
+		return Preferences.getInstance().getDouble("VisionYawI", 0.002);
 	}
 	
 	public static double visionYawD() {
-		return Preferences.getInstance().getDouble("VisionYawD", 0.0);
-	}
-	
-	public static double targetXThreshold() {
-		return Preferences.getInstance().getDouble("TargetXThreshold", 0.1);
+		return Preferences.getInstance().getDouble("VisionYawD", 0.2);
 	}
 
 	// ================== Vision Distance PID ==================
 	public static double visionDistanceP() {
-		return Preferences.getInstance().getDouble("VisionDistanceP", 0.0);
+		return Preferences.getInstance().getDouble("VisionDistanceP", 0.7);
 	}
 	
 	public static double visionDistanceI() {
-		return Preferences.getInstance().getDouble("VisionDistanceI", 0.0);
+		return Preferences.getInstance().getDouble("VisionDistanceI", 0.004);
 	}
 	
 	public static double visionDistanceD() {
-		return Preferences.getInstance().getDouble("VisionDistanceD", 0.0);
+		return Preferences.getInstance().getDouble("VisionDistanceD", 5.0);
 	}
 	
 	public static double targetDistance() {
@@ -278,7 +278,7 @@ public class RobotPreferences {
 	}
 
 	public static double targetDistanceThreshold() {
-		return Preferences.getInstance().getDouble("TargetDistanceThreshold", 0.5);
+		return Preferences.getInstance().getDouble("TargetDistanceThreshold", 0.2);
 	}
 
 	// ================== Vision ==================

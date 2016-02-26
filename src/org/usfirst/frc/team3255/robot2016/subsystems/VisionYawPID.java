@@ -53,7 +53,7 @@ public class VisionYawPID extends PIDSubsystem {
     
     
     protected void usePIDOutput(double output) {
-    	this.outputValue = output;
+    	this.outputValue = -output;
     	outputValid = true;
     }
     
