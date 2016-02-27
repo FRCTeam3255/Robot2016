@@ -22,6 +22,7 @@ public class OI {
 	Button M3 = new JoystickButton(manipulatorStick, 3);
 	Button M4 = new JoystickButton(manipulatorStick, 4);
 	Button M5 = new JoystickButton(manipulatorStick, 5);
+	Button M6 = new JoystickButton(manipulatorStick, 6);
 	Button M7 = new JoystickButton(manipulatorStick, 7);
 	Button M8 = new JoystickButton(manipulatorStick, 8);
 	Button M9 = new JoystickButton(manipulatorStick, 9);
@@ -46,12 +47,11 @@ public class OI {
 		M4.whileHeld(new CollectorJoystickArm());
 		M5.whileHeld(new CollectorLowGoal());
 		M5.whenReleased(new CollectorMoveToStow());
+		M6.whenPressed(new VisionSaveFile());
 		M7.whileHeld(new CollectorMoveToLow());
 		M7.whenReleased(new CollectorMoveToStow());
 		M8.whileHeld(new SallyJoystick());
 		M9.whenPressed(new SallyPrepGrab());
-		M10.whileHeld(new SallyDrawbridge());
-		M10.whenReleased(new ResetSallyCollector());
 		M11.whenPressed(new ShooterPitchUp());
 		M12.whenPressed(new ShooterPitchDown());
 		
@@ -62,7 +62,6 @@ public class OI {
 		D7.whenPressed(new DriveShiftDown());
 		D8.whenPressed(new DriveShiftUp());
 		D9.whenPressed(new VisionToggleCamera());
-		D10.whenPressed(new VisionSaveFile());
 		
 	}
 	

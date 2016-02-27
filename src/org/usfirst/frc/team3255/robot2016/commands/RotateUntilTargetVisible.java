@@ -15,7 +15,7 @@ public class RotateUntilTargetVisible extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
 		double rotateSpeed = RobotPreferences.autoRotateSpeed();
-		if(CommandBase.oi.getLane() < 4) {
+		if(CommandBase.telemetry.getLane() < 4) {
 			rotateSpeed = -rotateSpeed;
 		}
 		

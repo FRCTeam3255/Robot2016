@@ -14,6 +14,7 @@ public class ShooterShoot extends CommandBase {
     }
 
 	protected void initialize() {
+		vision.saveFrame();
 		collector.setIntakeSpeed(RobotPreferences.collectorIntakeSpeed());
 	}
 

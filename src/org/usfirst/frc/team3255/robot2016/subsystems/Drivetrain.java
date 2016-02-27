@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -107,6 +108,11 @@ public class Drivetrain extends Subsystem {
 	// ================== Encoders ==================
 	public void resetEncoders() {
 		leftBackTalon.setEncPosition(0);
+	}
+	
+	public void resetEncodersAndWait() {
+		leftBackTalon.setEncPosition(0);
+		Timer.delay(0.5);
 	}
 	
 	public double getEncoderPosition() {

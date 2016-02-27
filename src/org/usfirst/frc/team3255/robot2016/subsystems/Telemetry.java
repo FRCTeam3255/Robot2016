@@ -26,18 +26,8 @@ public class Telemetry extends Subsystem {
 		// DriveTrain
 		SmartDashboard.putData("Drive Reset Encoders", new DriveResetEncoders());
 		SmartDashboard.putData("Drive Distance", new DriveDistance());
-		SmartDashboard.putData("Drive Straight Distance", new DriveStraightDistance());
-		SmartDashboard.putData("Drive Hold 0 Yaw", new DriveHoldZeroYaw());
 		
-		// Collector
-		SmartDashboard.putData("Collector Reset Encoders", new CollectorResetEncoders());
-		SmartDashboard.putData("Collector Stow", new CollectorMoveToStow());
-		SmartDashboard.putData("Collector Shoot", new CollectorMoveToShoot());
-		SmartDashboard.putData("Collector Pickup", new CollectorMoveToPickup());
-		SmartDashboard.putData("Collector Low", new CollectorMoveToLow());
-		SmartDashboard.putData("Collector Forward To Switch", new CollectorForwardToSwitch());
-		
-		// Sally Arm
+		/* Sally Arm
 		SmartDashboard.putData("Sally Reset Encoders", new SallyResetEncoders());
 		SmartDashboard.putData("Sally Grab", new SallyMoveToGrab());
 		SmartDashboard.putData("Sally Stow", new SallyMoveToStow());
@@ -45,6 +35,7 @@ public class Telemetry extends Subsystem {
 		SmartDashboard.putData("Sally Prep Grab", new SallyPrepGrab());
 		SmartDashboard.putData("Sally Drawbridge", new SallyDrawbridge());
 		SmartDashboard.putData("Sally Retract", new SallyRetract());
+		*/
 		
 		// Lighting
 		SmartDashboard.putData("Blue LED", new LightingBlueOn());
@@ -63,29 +54,25 @@ public class Telemetry extends Subsystem {
 		SmartDashboard.putData("Drive Over Obstacle", new DriveOverObstacle());
 		SmartDashboard.putData("Drive FWD Until Pitched", new DriveUntilPitched(true));
 		SmartDashboard.putData("Drive Until Flat", new DriveUntilFlat(true));
-		SmartDashboard.putData("Drive to Target", new DriveToTarget());
 		SmartDashboard.putData("Drive Over Obstacle To Target", new DriveOverObstacleToTarget());
 		SmartDashboard.putData("Drive to Target Acquired", new DriveUntilTargetAcquired());
-		SmartDashboard.putData("Drive to Target", new DriveToTarget());
 		SmartDashboard.putData("Drive Over Obstacle Shoot", new DriveOverObstacleShoot());
+		SmartDashboard.putNumber("Lane", 1.0);
 	}
 	
 	public void update() {
 		// Drivetrain
-		SmartDashboard.putNumber("Drivetrain Position", CommandBase.drivetrain.getEncoderPosition());
 		SmartDashboard.putNumber("Drivetrain Distance", CommandBase.drivetrain.getEncoderDistance());
-		SmartDashboard.putNumber("Drive Speed", CommandBase.drivetrain.getDriveSpeed());
-		SmartDashboard.putBoolean("Low Gear", CommandBase.drivetrain.isLowGear());
 		
 		// Collector
 		SmartDashboard.putNumber("Collector Position", CommandBase.collector.getEncoderPosition());
-		SmartDashboard.putNumber("Collector Arm Output", CommandBase.collector.getArmSpeed());
 		
-		// Sally Arm
+		/* Sally Arm
 		SmartDashboard.putNumber("Sally Position", CommandBase.sallyArm.getEncoderPosition());
 		SmartDashboard.putNumber("Sally Output", CommandBase.sallyArm.getSallySpeed());
 		SmartDashboard.putBoolean("Sally Deployed", CommandBase.sallyArm.isDeployed());
 		SmartDashboard.putBoolean("Sally Stowed", CommandBase.sallyArm.isSallyStowed());
+		*/
 		
 		// Shooter
 		SmartDashboard.putBoolean("Ball Switched Closed", CommandBase.shooter.isBallHoldSwitchClosed());
@@ -101,6 +88,11 @@ public class Telemetry extends Subsystem {
 		SmartDashboard.putBoolean("Is Target", CommandBase.vision.isTarget());
 		SmartDashboard.putNumber("Target X", CommandBase.vision.getTargetCenterX());
 		SmartDashboard.putNumber("Target Distance", CommandBase.vision.getTargetDistance());
+		SmartDashboard.putBoolean("Shoot", CommandBase.lighting.isRedOn());
+	}
+	
+	public int getLane() {
+		return (int) SmartDashboard.getNumber("Lane");
 	}
 
 	// ================== Vision ==================

@@ -16,7 +16,6 @@ public class DriveLaneDistance extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
     	drivetrain.shiftLow();
-    	drivetrain.resetEncoders();
     	
     	driveDistancePID.setSetpoint(getLaneDistance());
     	navYawPID.setSetpoint(0.0);
@@ -50,19 +49,17 @@ public class DriveLaneDistance extends CommandBase {
     }
     
     private double getLaneDistance() {
-    	int lane = CommandBase.oi.getLane();
+    	int lane = CommandBase.telemetry.getLane();
 		
 		switch(lane) {
 			case 1:
-				return RobotPreferences.distanceLane1();
-			case 2:
-				return RobotPreferences.distanceLane2();
-			case 3:
-				return RobotPreferences.distanceLane3();
-			case 4:
-				return RobotPreferences.distanceLane4();
 			case 5:
-				return RobotPreferences.distanceLane5();
+				return RobotPreferences.distanceOuterLane();
+			case 2:
+			case 4:
+				return RobotPreferences.distanceInnerLane();
+			case 3:
+				return RobotPreferences.distanceCenterLane();
 		}
 		return 0.0;
     }

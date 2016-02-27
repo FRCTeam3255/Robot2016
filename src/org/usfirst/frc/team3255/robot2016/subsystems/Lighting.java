@@ -55,6 +55,24 @@ public class Lighting extends Subsystem {
 			redRelay.set(Relay.Value.kOff);
 		}
 	}
+	
+	public boolean isRedOn() {
+		if (redRelay.get() == Relay.Value.kOn) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public boolean isBlueOn() {
+		if (blueRelay.get() == Relay.Value.kOn) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 
 	public void initDefaultCommand() {
         // Set the default command for a subsystem here.

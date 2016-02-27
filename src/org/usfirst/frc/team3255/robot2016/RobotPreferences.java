@@ -180,24 +180,16 @@ public class RobotPreferences {
 	}
 	
 	// ================== Lane Distances ==================
-	public static double distanceLane1() {
-		return Preferences.getInstance().getDouble("DistanceLane1", 0.0);
+	public static double distanceOuterLane() {
+		return Preferences.getInstance().getDouble("DistanceOuterLane", 0.0);
 	}
 	
-	public static double distanceLane2() {
-		return Preferences.getInstance().getDouble("DistanceLane2", 0.0);
+	public static double distanceInnerLane() {
+		return Preferences.getInstance().getDouble("DistanceInnerLane", 0.0);
 	}
 	
-	public static double distanceLane3() {
-		return Preferences.getInstance().getDouble("DistanceLane3", 0.0);
-	}
-	
-	public static double distanceLane4() {
-		return Preferences.getInstance().getDouble("DistanceLane4", 0.0);
-	}
-	
-	public static double distanceLane5() {
-		return Preferences.getInstance().getDouble("DistanceLane5", 0.0);
+	public static double distanceCenterLane() {
+		return Preferences.getInstance().getDouble("DistanceCenterLane", 0.0);
 	}
 	
 	// ================== PID Tolerances ==================

@@ -2,10 +2,10 @@
 package org.usfirst.frc.team3255.robot2016;
 
 import org.usfirst.frc.team3255.robot2016.commands.CommandBase;
-import org.usfirst.frc.team3255.robot2016.commands.DoDelay;
 import org.usfirst.frc.team3255.robot2016.commands.DriveOverLowBar;
 import org.usfirst.frc.team3255.robot2016.commands.DriveOverObsatcleAndBack;
 import org.usfirst.frc.team3255.robot2016.commands.DriveOverObstacle;
+import org.usfirst.frc.team3255.robot2016.commands.NavigationCalibrate;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -34,10 +34,11 @@ public class Robot extends IterativeRobot {
     	CommandBase.init();
     	CommandBase.collector.resetEncoders();
     	CommandBase.drivetrain.resetEncoders();
+    	
     	autoChooser = new SendableChooser();
     	autoChooser.addDefault("Drive Over Obstacle", new DriveOverObstacle());
     	autoChooser.addObject("Drive Over Low Bar", new DriveOverLowBar());
-    	autoChooser.addObject("Do Nothing", new DoDelay(0.1));
+    	autoChooser.addObject("Do Nothing", new NavigationCalibrate());
     	autoChooser.addObject("Drive Over & Back", new DriveOverObsatcleAndBack());
     	SmartDashboard.putData("Auto mode", autoChooser);
     }
