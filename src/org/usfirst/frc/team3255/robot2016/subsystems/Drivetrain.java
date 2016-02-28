@@ -90,6 +90,15 @@ public class Drivetrain extends Subsystem {
 		return leftFrontTalon.get();
 	}
 	
+	public void setBraking(boolean on) {
+		leftFrontTalon.enableBrakeMode(on);
+		leftMiddleTalon.enableBrakeMode(on);
+		leftBackTalon.enableBrakeMode(on);
+		rightFrontTalon.enableBrakeMode(on);
+		rightMiddleTalon.enableBrakeMode(on);
+		rightBackTalon.enableBrakeMode(on);
+	}
+	
 	// ================== Solenoids ==================
 	public void shiftHi() {
 		shifterSolenoid.set(Value.kReverse);

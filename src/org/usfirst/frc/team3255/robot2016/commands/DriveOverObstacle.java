@@ -25,11 +25,13 @@ public class DriveOverObstacle extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	addSequential(new NavigationCalibrate());
+    	addSequential(new DriveEnableBraking(true));
     	addSequential(new DoDelay(0.5));
     	addSequential(new DriveUntilPitched(true));
     	addSequential(new DriveResetEncoders());
-    	// addSequential(new DoDelay(1.0));
     	addSequential(new DriveUntilFlat(true));
+    	addSequential(new DoDelay(1.0));
+    	addSequential(new DriveEnableBraking(false));
     	addSequential(new DriveToYaw(0.0));
     }
 }

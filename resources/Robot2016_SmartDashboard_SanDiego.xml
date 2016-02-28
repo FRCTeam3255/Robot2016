@@ -1,5 +1,10 @@
 <xml version="1.0">
 <dashboard>
+	<widget field="Pitch" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
+		<location x="424" y="83"/>
+		<width>273</width>
+		<height>200</height>
+	</widget>
 	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
 		<location x="627" y="286"/>
 		<width>524</width>
@@ -89,9 +94,6 @@
 	</widget>
 	<widget field="Auto mode" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
 		<location x="29" y="572"/>
-	</widget>
-	<widget field="Pitch" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="16" y="40"/>
 	</widget>
 	<widget field="LEDs off" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
 		<location x="998" y="78"/>
