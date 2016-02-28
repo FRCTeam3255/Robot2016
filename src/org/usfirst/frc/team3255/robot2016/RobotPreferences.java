@@ -160,7 +160,11 @@ public class RobotPreferences {
 	
 	// ================== Auto ==================
 	public static double autoPitchThreshold() {
-		return Preferences.getInstance().getDouble("AutoPitchThreshold", 5.0);
+		return Preferences.getInstance().getDouble("AutoPitchThreshold", 10.0);
+	}
+	
+	public static double autoFlatThreshold() {
+		return Preferences.getInstance().getDouble("AutoFlatThreshold", 2.0);
 	}
 
 	public static double autoObstacleDriveSpeed() {

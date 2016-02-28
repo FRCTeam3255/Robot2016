@@ -27,7 +27,8 @@ public class DriveOverObsatcleAndBack extends CommandGroup {
     	addSequential(new DriveOverObstacle());
     	addSequential(new DoDelay(0.1));
     	addSequential(new DriveUntilPitched(false));
-    	addSequential(new DoDelay(0.1));
+    	addSequential(new DriveResetEncoders());
+    	addSequential(new DoDelay(1.0));
     	addSequential(new DriveUntilFlat(false));
     	addSequential(new DriveToYaw(0.0));
     }

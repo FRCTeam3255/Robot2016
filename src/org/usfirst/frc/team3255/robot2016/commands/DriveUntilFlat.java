@@ -25,14 +25,14 @@ public class DriveUntilFlat extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
     	drivetrain.shiftLow();
-    	drivetrain.resetEncodersAndWait();
+    	drivetrain.resetEncoders();
 
     	navYawPID.setSetpoint(0.0);
     	navYawPID.enable();
     	
     	distanceFlat = 0.0;
     	targetDistance = RobotPreferences.autoObstacleDistance();
-    	pitchThreshold = RobotPreferences.autoPitchThreshold();
+    	pitchThreshold = RobotPreferences.autoFlatThreshold();
     	moveSpeed = RobotPreferences.autoObstacleDriveSpeed();
     	
     	if (!driveForward) {

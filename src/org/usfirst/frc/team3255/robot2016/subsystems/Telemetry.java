@@ -27,20 +27,25 @@ public class Telemetry extends Subsystem {
 		SmartDashboard.putData("Drive Reset Encoders", new DriveResetEncoders());
 		SmartDashboard.putData("Drive Distance", new DriveDistance());
 		
-		/* Sally Arm
+		// Sally Arm
 		SmartDashboard.putData("Sally Reset Encoders", new SallyResetEncoders());
+		SmartDashboard.putData("Sally Retract", new SallyRetract());
+		
+		/*
 		SmartDashboard.putData("Sally Grab", new SallyMoveToGrab());
 		SmartDashboard.putData("Sally Stow", new SallyMoveToStow());
 		SmartDashboard.putData("Sally Stow Switch", new SallyMoveToStowSwitch());
 		SmartDashboard.putData("Sally Prep Grab", new SallyPrepGrab());
 		SmartDashboard.putData("Sally Drawbridge", new SallyDrawbridge());
-		SmartDashboard.putData("Sally Retract", new SallyRetract());
 		*/
 		
 		// Lighting
 		SmartDashboard.putData("Blue LED", new LightingBlueOn());
 		SmartDashboard.putData("Red LED", new LightingRedOn());
 		SmartDashboard.putData("LEDs off", new LightingOff());
+		
+		// Collector
+		SmartDashboard.putData("Reset Collector Encoder", new CollectorResetEncoders());
 		
 		// Navigation
 		SmartDashboard.putData("Reset Yaw", new NavigationZeroYaw());
@@ -67,12 +72,12 @@ public class Telemetry extends Subsystem {
 		// Collector
 		SmartDashboard.putNumber("Collector Position", CommandBase.collector.getEncoderPosition());
 		
-		/* Sally Arm
+		// Sally Arm
 		SmartDashboard.putNumber("Sally Position", CommandBase.sallyArm.getEncoderPosition());
-		SmartDashboard.putNumber("Sally Output", CommandBase.sallyArm.getSallySpeed());
-		SmartDashboard.putBoolean("Sally Deployed", CommandBase.sallyArm.isDeployed());
-		SmartDashboard.putBoolean("Sally Stowed", CommandBase.sallyArm.isSallyStowed());
-		*/
+		// SmartDashboard.putNumber("Sally Output", CommandBase.sallyArm.getSallySpeed());
+		// SmartDashboard.putBoolean("Sally Deployed", CommandBase.sallyArm.isDeployed());
+		// SmartDashboard.putBoolean("Sally Stowed", CommandBase.sallyArm.isSallyStowed());
+		
 		
 		// Shooter
 		SmartDashboard.putBoolean("Ball Switched Closed", CommandBase.shooter.isBallHoldSwitchClosed());

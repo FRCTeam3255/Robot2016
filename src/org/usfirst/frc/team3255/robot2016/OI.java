@@ -31,6 +31,7 @@ public class OI {
 	Button M12 = new JoystickButton(manipulatorStick, 12);
 	
 	// driveStick
+	Button D1 = new JoystickButton(driverStick, 1);
 	Button D2 = new JoystickButton(driverStick, 2);
 	Button D5 = new JoystickButton(driverStick, 5);
 	Button D7 = new JoystickButton(driverStick, 7);
@@ -56,12 +57,12 @@ public class OI {
 		M12.whenPressed(new ShooterPitchDown());
 		
 		// driveStick
+		D1.whenPressed(new VisionToggleCamera());
 		D2.whileHeld(new DriveSpeed());
 		D5.whileHeld(new DriveToTarget());
 		//D6: Slow Drive
 		D7.whenPressed(new DriveShiftDown());
 		D8.whenPressed(new DriveShiftUp());
-		D9.whenPressed(new VisionToggleCamera());
 		
 	}
 	
