@@ -28,7 +28,7 @@ public class DriveOverObstacle extends CommandGroup {
     	addSequential(new DoDelay(0.5));
     	addSequential(new DriveUntilPitched(true));
     	addSequential(new DriveResetEncoders());
-    	addSequential(new DoDelay(1.0));
+    	// addSequential(new DoDelay(1.0));
     	addSequential(new DriveUntilFlat(true));
     	addSequential(new DriveToYaw(0.0));
     }
