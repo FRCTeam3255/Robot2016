@@ -20,7 +20,7 @@ public class RobotPreferences {
 	}
 	
 	public static double driveSpeed() {
-		return Preferences.getInstance().getDouble("DriveSpeed", 0.7);
+		return Preferences.getInstance().getDouble("DriveSpeed", -0.7);
 	}
 	
 	public static double lowSpeedMax() {
@@ -70,11 +70,11 @@ public class RobotPreferences {
 	}
 
 	public static double collectorPickupPosition() {
-		return Preferences.getInstance().getDouble("CollectorPickup", -20.0);
+		return Preferences.getInstance().getDouble("CollectorPickup", -22.0);
 	}
 
 	public static double collectorLowPosition() {
-		return Preferences.getInstance().getDouble("CollectorLow", -28.0);
+		return Preferences.getInstance().getDouble("CollectorLow", -26.0);
 	}
 
 	public static double collectorStowPosition() {
@@ -82,7 +82,7 @@ public class RobotPreferences {
 	}
 	
 	public static double collectorShootPosition() {
-		return Preferences.getInstance().getDouble("CollectorShoot", -5.0);
+		return Preferences.getInstance().getDouble("CollectorShoot", -8.0);
 	}
 
 	public static double collectorForwardTimeout() {
@@ -90,11 +90,11 @@ public class RobotPreferences {
 	}
 	
 	public static double collectorReverseTimeout() {
-		return Preferences.getInstance().getDouble("CollectorReverseTimeout", 0.0);
+		return Preferences.getInstance().getDouble("CollectorReverseTimeout", 0.05);
 	}
 	
 	public static double collectorIntakeSpeed() {
-		return Preferences.getInstance().getDouble("CollectorIntakeSpeed", 1.0);
+		return Preferences.getInstance().getDouble("CollectorIntakeSpeed", 0.6);
 	}
 	
 	public static double collectorIntakeReverseSpeed() {
@@ -127,7 +127,7 @@ public class RobotPreferences {
 	}
 	
 	public static double sallyGrabPosition() {
-		return Preferences.getInstance().getDouble("SallyGrab", 38.0);
+		return Preferences.getInstance().getDouble("SallyGrab", 34.0);
 	}
 	
 	public static double sallyStowPosition() {
@@ -160,19 +160,19 @@ public class RobotPreferences {
 	
 	// ================== Auto ==================
 	public static double autoPitchThreshold() {
-		return Preferences.getInstance().getDouble("AutoPitchThreshold", 10.0);
+		return Preferences.getInstance().getDouble("AutoPitchThreshold", 15.0);
 	}
 	
 	public static double autoFlatThreshold() {
-		return Preferences.getInstance().getDouble("AutoFlatThreshold", 2.0);
+		return Preferences.getInstance().getDouble("AutoFlatThreshold", 6.0);
 	}
 
 	public static double autoObstacleDriveSpeed() {
-		return Preferences.getInstance().getDouble("AutoObstacleDriveSpeed", 0.5);
+		return Preferences.getInstance().getDouble("AutoObstacleDriveSpeed", 0.8);
 	}
 
 	public static double autoObstacleDistance() {
-		return Preferences.getInstance().getDouble("AutoObstacleDistance", 0.0);
+		return Preferences.getInstance().getDouble("AutoObstacleDistance", 3.0);
 	}
 
 	public static double autoFlatDistance() {
@@ -202,32 +202,32 @@ public class RobotPreferences {
 	}
 	
 	public static double yawTolerance() {
-		return Preferences.getInstance().getDouble("YawTolerance", 1.0);
+		return Preferences.getInstance().getDouble("YawTolerance", 2.0);
 	}
 	
 	public static double collectorTolerance() {
-		return Preferences.getInstance().getDouble("CollectorTolerance", 3.0);
+		return Preferences.getInstance().getDouble("CollectorTolerance", 0.5);
 	}
 	
 	public static double targetXThreshold() {
-		return Preferences.getInstance().getDouble("TargetXThreshold", 1.0);
+		return Preferences.getInstance().getDouble("TargetXThreshold", 2.0);
 	}
 	
 	// ================== Drivetrain Distance PID ==================
 	public static double driveDistanceP() {
-		return Preferences.getInstance().getDouble("DriveDistanceP", 0.3);
+		return Preferences.getInstance().getDouble("DriveDistanceP", 0.7);
 	}
 	
 	public static double driveDistanceI() {
-		return Preferences.getInstance().getDouble("DriveDistanceI", 0.0);
+		return Preferences.getInstance().getDouble("DriveDistanceI", 0.04);
 	}
 	
 	public static double driveDistanceD() {
-		return Preferences.getInstance().getDouble("DriveDistanceD", 0.2);
+		return Preferences.getInstance().getDouble("DriveDistanceD", 5.0);
 	}
 
 	public static double driveDistance() {
-		return Preferences.getInstance().getDouble("DriveDistance", 5.0);
+		return Preferences.getInstance().getDouble("DriveDistance", 3.0);
 	}
 	
 	// ================== Navigation Yaw PID ==================
@@ -262,7 +262,7 @@ public class RobotPreferences {
 	}
 	
 	public static double visionDistanceI() {
-		return Preferences.getInstance().getDouble("VisionDistanceI", 0.004);
+		return Preferences.getInstance().getDouble("VisionDistanceI", 0.04);
 	}
 	
 	public static double visionDistanceD() {
@@ -270,11 +270,11 @@ public class RobotPreferences {
 	}
 	
 	public static double targetDistance() {
-		return Preferences.getInstance().getDouble("TargetDistance", 6.0);
+		return Preferences.getInstance().getDouble("TargetDistance", 5.6);
 	}
 
 	public static double targetDistanceThreshold() {
-		return Preferences.getInstance().getDouble("TargetDistanceThreshold", 0.2);
+		return Preferences.getInstance().getDouble("TargetDistanceThreshold", 0.1);
 	}
 
 	// ================== Vision ==================
@@ -323,11 +323,11 @@ public class RobotPreferences {
 	}
 	
 	public static double visionDistance() {
-		return Preferences.getInstance().getDouble("VisionDistance", 5.0);
+		return Preferences.getInstance().getDouble("VisionDistance", 5.1);
 	}
 	
 	public static double visionAreaMin() {
-		return Preferences.getInstance().getDouble("VisionAreaMin", 115.0);
+		return Preferences.getInstance().getDouble("VisionAreaMin", 0.5);
 	}
 	
 	public static int imageReplayMin() {
