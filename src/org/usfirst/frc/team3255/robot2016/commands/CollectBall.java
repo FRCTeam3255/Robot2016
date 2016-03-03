@@ -8,8 +8,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CollectBall extends CommandGroup {
     
     public  CollectBall() {
+    	addSequential(new ShooterPitchUp());
     	addSequential(new CollectorMoveToPickup());
     	addSequential(new CollectorForwardToSwitch());
     	addSequential(new CollectorMoveToStow());
+    	addSequential(new ShooterPitchDown());
     }
 }
