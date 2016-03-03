@@ -47,6 +47,10 @@ public class RobotPreferences {
 	public static double shooterVoltage() {
 		return Preferences.getInstance().getDouble("ShooterVoltage", 7.0);
 	}
+	
+	public static double ejectVoltage() {
+		return Preferences.getInstance().getDouble("EjectVoltage", 6.0);
+	}
 
 	public static double shooterSpinUpDelay() {
 		return Preferences.getInstance().getDouble("ShooterSpinUpDelay", 0.0);

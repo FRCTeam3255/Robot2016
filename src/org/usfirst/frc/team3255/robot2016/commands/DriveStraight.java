@@ -5,44 +5,48 @@ import org.usfirst.frc.team3255.robot2016.RobotPreferences;
 /**
  *
  */
-public class ShooterSpinUp extends CommandBase {
+public class DriveStraight extends CommandBase {
 
-	boolean eject = false;
-	
-    public ShooterSpinUp(boolean ejectShot) {
-    	requires(shooter);
-    	eject = ejectShot;
+    public DriveStraight() {
+    	requires(drivetrain);
+    	requires(navYawPID);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if (!eject) {
-        	shooter.set(RobotPreferences.shooterVoltage());
-        	this.startTimer(0.0);
-    	}
-    	else {
-    		shooter.set(RobotPreferences.ejectVoltage());
-    		this.startTimer(RobotPreferences.shooterSpinUpDelay());
-    	}
+    	drivetrain.shiftLow();
+    	drivetrain.resetEncoders();
+    	
+    	navYawPID.disable();
+    	
+    	navYawPID.setSetpoint(0.0);
+
+    	navYawPID.enable();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	drivetrain.arcadeDrive(RobotPreferences.autoObstacleDriveSpeed(), navYawPID.getOutput());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return this.isTimerExpired();
+    	return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	// driveDistancePID.disable();
+    	// navYawPID.disable();
+    	
+    	drivetrain.setSpeed(0.0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	shooter.set(0.0);
+    	navYawPID.disable();
+    	
     	end();
     }
 }

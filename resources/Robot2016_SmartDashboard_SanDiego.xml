@@ -1,129 +1,120 @@
 <xml version="1.0">
 <dashboard>
-	<widget field="Pitch" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.LinePlot">
-		<location x="424" y="83"/>
-		<width>273</width>
-		<height>200</height>
-	</widget>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
-		<location x="627" y="286"/>
-		<width>524</width>
-		<height>406</height>
-	</static-widget>
-	<widget field="Ball Switched Closed" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="761" y="115"/>
-		<width>175</width>
-		<height>16</height>
-	</widget>
-	<widget field="Calibrated" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="42" y="108"/>
-		<width>85</width>
-	</widget>
 	<widget field="Shoot" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="463" y="414"/>
-		<width>143</width>
-		<height>82</height>
-	</widget>
-	<widget field="Is Target" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
-		<location x="463" y="505"/>
-		<width>159</width>
-		<height>84</height>
-		<property name="Color to show when true" value="0.51.255.255"/>
-	</widget>
-	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.RobotPreferences">
-		<location x="1179" y="4"/>
-		<width>458</width>
-		<height>684</height>
-	</static-widget>
-	<widget field="Sally Reset Encoders" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="202" y="41"/>
-	</widget>
-	<widget field="Sally Retract" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="249" y="75"/>
-	</widget>
-	<widget field="Drive Over Obstacle" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="75" y="282"/>
-	</widget>
-	<widget field="Drive FWD Until Pitched" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="54" y="247"/>
-	</widget>
-	<widget field="Drivetrain Distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="462" y="12"/>
-	</widget>
-	<widget field="Target X" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="466" y="634"/>
-		<width>120</width>
-		<height>22</height>
-	</widget>
-	<widget field="Update Replay Range" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="407" y="367"/>
-	</widget>
-	<widget field="Drive Over Obstacle Shoot" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="38" y="179"/>
-	</widget>
-	<widget field="Drive Distance" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="105" y="355"/>
-	</widget>
-	<widget field="Red LED" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="1002" y="8"/>
-	</widget>
-	<widget field="Sally Position" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="206" y="12"/>
-	</widget>
-	<widget field="Reset Yaw" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="15" y="68"/>
-	</widget>
-	<widget field="Drive Over Obstacle To Target" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="16" y="142"/>
-	</widget>
-	<widget field="Raw Particles" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="716" y="258"/>
-		<width>138</width>
-	</widget>
-	<widget field="Drive Until Flat" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="104" y="319"/>
-	</widget>
-	<widget field="Drive Reset Encoders" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="476" y="40"/>
-	</widget>
-	<widget field="Prev Image" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="464" y="329"/>
+		<location x="478" y="274"/>
+		<width>123</width>
+		<height>71</height>
 	</widget>
 	<widget field="Reset Collector Encoder" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="738" y="72"/>
-	</widget>
-	<widget field="Auto mode" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
-		<location x="29" y="572"/>
-	</widget>
-	<widget field="LEDs off" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="998" y="78"/>
-	</widget>
-	<widget field="Next Image" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="464" y="294"/>
-	</widget>
-	<widget field="Blue LED" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="998" y="43"/>
-	</widget>
-	<widget field="Collector Position" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="737" y="39"/>
-	</widget>
-	<widget field="Yaw" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="17" y="7"/>
+		<location x="391" y="44"/>
 	</widget>
 	<widget field="Lane" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="36" y="540"/>
+		<location x="283" y="366"/>
+	</widget>
+	<widget field="Drive FWD Until Pitched" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="39" y="356"/>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.WebcamViewerExtension">
+		<location x="626" y="234"/>
+		<width>449</width>
+		<height>337</height>
+	</static-widget>
+	<widget field="Is Target" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="478" y="193"/>
+		<width>136</width>
+		<height>67</height>
+		<property name="Color to show when true" value="0.51.255.255"/>
+	</widget>
+	<widget field="Target X" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="489" y="485"/>
 	</widget>
 	<widget field="Target Distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="434" y="605"/>
-		<width>152</width>
-		<height>22</height>
+		<location x="456" y="458"/>
 	</widget>
 	<widget field="Particles" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="951" y="258"/>
-		<width>104</width>
+		<location x="900" y="208"/>
+	</widget>
+	<widget field="Raw Particles" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="646" y="208"/>
+	</widget>
+	<widget field="Prev Image" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="490" y="421"/>
+	</widget>
+	<widget field="Next Image" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="487" y="390"/>
+	</widget>
+	<widget field="Auto mode" type="String Chooser" class="edu.wpi.first.smartdashboard.gui.elements.Chooser">
+		<location x="261" y="383"/>
+	</widget>
+	<widget field="Sally Retract" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="661" y="79"/>
+	</widget>
+	<widget field="Drive Over Obstacle Shoot" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="25" y="287"/>
 	</widget>
 	<widget field="Drive to Target Acquired" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
-		<location x="48" y="211"/>
+		<location x="36" y="320"/>
+	</widget>
+	<widget field="Drive Over Obstacle To Target" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="5" y="255"/>
+	</widget>
+	<widget field="Drive Until Flat" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="78" y="217"/>
+	</widget>
+	<widget field="Drive Over Obstacle" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="53" y="184"/>
+	</widget>
+	<widget field="Update Replay Range" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="440" y="358"/>
+	</widget>
+	<widget field="LEDs off" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="875" y="88"/>
+	</widget>
+	<widget field="Red LED" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="875" y="51"/>
+	</widget>
+	<widget field="Blue LED" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="873" y="18"/>
+	</widget>
+	<widget field="Reset Yaw" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="231" y="67"/>
+	</widget>
+	<widget field="Drive Distance" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="82" y="147"/>
+	</widget>
+	<widget field="Ball Switched Closed" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="428" y="83"/>
+		<width>128</width>
+	</widget>
+	<widget field="Calibrated" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.BooleanBox">
+		<location x="254" y="104"/>
+		<width>87</width>
+	</widget>
+	<widget field="Drivetrain Distance" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="26" y="13"/>
+	</widget>
+	<widget field="Sally Position" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="638" y="19"/>
+	</widget>
+	<widget field="Pitch" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="240" y="39"/>
+	</widget>
+	<widget field="Yaw" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="242" y="12"/>
+	</widget>
+	<widget field="Collector Position" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="412" y="18"/>
+	</widget>
+	<widget field="Sally Reset Encoders" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="623" y="46"/>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.RobotPreferences">
+		<location x="1084" y="5"/>
+		<width>499</width>
+		<height>593</height>
+	</static-widget>
+	<widget field="Drive Reset Encoders" type="Command" class="edu.wpi.first.smartdashboard.gui.elements.Command">
+		<location x="21" y="39"/>
 	</widget>
 </dashboard>
 <live-window>

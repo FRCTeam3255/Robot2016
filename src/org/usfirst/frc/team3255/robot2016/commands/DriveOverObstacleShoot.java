@@ -9,7 +9,7 @@ public class DriveOverObstacleShoot extends CommandGroup {
     
     public  DriveOverObstacleShoot() {
     	addSequential(new DriveOverObstacleToTarget());
-    	addSequential(new ShooterPrep());
-    	addSequential(new ShooterShoot());
+    	addSequential(new ShooterPrep(false));
+    	addSequential(new ShooterShoot(false));
     }
 }

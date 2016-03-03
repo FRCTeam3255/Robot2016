@@ -7,10 +7,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class ShooterPrep extends CommandGroup {
     
-    public  ShooterPrep() {
+    public  ShooterPrep(boolean eject) {
     	addSequential(new ShooterPitchDown());
     	addSequential(new CollectorReverseToSwitch());
     	addParallel(new CollectorMoveToShoot());
-    	addParallel(new ShooterSpinUp());
+    	addParallel(new ShooterSpinUp(eject));
     }
 }

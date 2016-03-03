@@ -6,15 +6,23 @@ import org.usfirst.frc.team3255.robot2016.RobotPreferences;
  *
  */
 public class ShooterShoot extends CommandBase {
+	
+	boolean eject = false;
     
-    public  ShooterShoot() {
+    public  ShooterShoot(boolean ejectShot) {
     	requires(collector);
     	requires(shooter);
     	requires(lighting);
+    	eject = ejectShot;
     }
 
 	protected void initialize() {
-		vision.saveFrame();
+		if (eject) {
+			this.startTimer(1.0);
+		}
+		else {
+			vision.saveFrame();
+		}
 		collector.setIntakeSpeed(RobotPreferences.collectorIntakeSpeed());
 	}
 
@@ -23,8 +31,10 @@ public class ShooterShoot extends CommandBase {
 	}
 
 	protected boolean isFinished() {
-		// command never finishes, but gets interrupted when button released
-		return false;
+		if (!eject) {
+			return false;
+		}
+		return this.isTimerExpired();
 	}
 
 	protected void end() {
