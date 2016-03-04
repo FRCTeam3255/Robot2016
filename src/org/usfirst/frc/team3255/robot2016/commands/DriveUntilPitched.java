@@ -33,6 +33,8 @@ public class DriveUntilPitched extends CommandBase {
     	if (!driveForward) {
     		moveSpeed = -moveSpeed;
     	}
+    	
+    	startTimer(RobotPreferences.autoCommandTimeout());
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -42,7 +44,7 @@ public class DriveUntilPitched extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return (Math.abs(navigation.getPitch()) > pitchThreshold);
+    	return ((Math.abs(navigation.getPitch()) > pitchThreshold) || isTimerExpired());
     }
 
     // Called once after isFinished returns true

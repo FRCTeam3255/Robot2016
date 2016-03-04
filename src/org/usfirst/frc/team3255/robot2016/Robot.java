@@ -58,6 +58,8 @@ public class Robot extends IterativeRobot {
 	
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
+		CommandBase.telemetry.update();
+		CommandBase.vision.update();
 	}
 
 	/**
@@ -72,6 +74,7 @@ public class Robot extends IterativeRobot {
     
 	public void autonomousInit() {
 		autonomousCommand = (Command) autoChooser.getSelected();
+		// autonomousCommand = new DriveOverObstacle();
     	
     	// schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
@@ -82,6 +85,8 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        CommandBase.telemetry.update();
+        CommandBase.vision.update();
     }
 
     public void teleopInit() {
@@ -98,6 +103,8 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        CommandBase.telemetry.update();
+        CommandBase.vision.update();
     }
     
     /**

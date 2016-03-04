@@ -39,6 +39,7 @@ public class DriveUntilFlat extends CommandBase {
     		moveSpeed = -moveSpeed;
     	}
     	
+    	startTimer(RobotPreferences.autoCommandTimeout());
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -56,7 +57,7 @@ public class DriveUntilFlat extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return (Math.abs(distanceFlat) > targetDistance);
+    	return ((Math.abs(distanceFlat) > targetDistance) || isTimerExpired());
     }
 
     // Called once after isFinished returns true

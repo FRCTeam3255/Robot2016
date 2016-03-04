@@ -11,7 +11,7 @@ public class CollectBall extends CommandGroup {
     	addSequential(new ShooterPitchUp());
     	addSequential(new CollectorMoveToPickup());
     	addSequential(new CollectorForwardToSwitch());
-    	addSequential(new CollectorMoveToStow());
     	addSequential(new ShooterPitchDown());
+    	addSequential(new CollectorMoveToStow());
     }
 }

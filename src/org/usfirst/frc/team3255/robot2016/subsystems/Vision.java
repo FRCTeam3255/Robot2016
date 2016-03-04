@@ -4,7 +4,6 @@ import java.util.Comparator;
 import java.util.Vector;
 
 import org.usfirst.frc.team3255.robot2016.commands.CommandBase;
-import org.usfirst.frc.team3255.robot2016.commands.VisionUpdate;
 import org.usfirst.frc.team3255.robot2016.RobotPreferences;
 
 import com.ni.vision.NIVision;
@@ -433,7 +432,7 @@ public class Vision extends Subsystem {
 	
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(new VisionUpdate());
+		// setDefaultCommand(new VisionUpdate());
 	}
 }
 

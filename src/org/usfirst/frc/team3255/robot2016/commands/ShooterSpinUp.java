@@ -17,12 +17,12 @@ public class ShooterSpinUp extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
     	if (!eject) {
-        	shooter.set(RobotPreferences.shooterVoltage());
-        	this.startTimer(0.0);
+        	shooter.set(RobotPreferences.shooterSpikeVoltage());
+        	this.startTimer(RobotPreferences.shooterSpinUpDelay());
     	}
     	else {
     		shooter.set(RobotPreferences.ejectVoltage());
-    		this.startTimer(RobotPreferences.shooterSpinUpDelay());
+    		this.startTimer(RobotPreferences.shooterEjectDelay());
     	}
     }
 
@@ -37,12 +37,14 @@ public class ShooterSpinUp extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
+    	if (!eject) {
+    		shooter.set(RobotPreferences.shooterVoltage());
+    	}
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
     	shooter.set(0.0);
-    	end();
     }
 }

@@ -53,7 +53,7 @@ public class OI {
 		M7.whileHeld(new CollectorMoveToLow());
 		M7.whenReleased(new CollectorMoveToStow());
 		// M8.whileHeld(new SallyJoystick());
-		// M9.whenPressed(new SallyPrepGrab());
+		M9.whileHeld(new ShooterRemoveBall());
 		M11.whenPressed(new ShooterPitchUp());
 		M12.whenPressed(new ShooterPitchDown());
 		

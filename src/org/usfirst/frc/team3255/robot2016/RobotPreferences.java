@@ -45,15 +45,27 @@ public class RobotPreferences {
 	}
 
 	public static double shooterVoltage() {
-		return Preferences.getInstance().getDouble("ShooterVoltage", 7.0);
+		return Preferences.getInstance().getDouble("ShooterVoltage", 6.0);
 	}
 	
 	public static double ejectVoltage() {
 		return Preferences.getInstance().getDouble("EjectVoltage", 6.0);
 	}
+	
+	public static double shooterSpikeVoltage() {
+		return Preferences.getInstance().getDouble("ShooterSpikeVoltage", 8.0);
+	}
 
+	public static double removeBallVoltage() {
+		return Preferences.getInstance().getDouble("RemoveVoltage", 7.0);
+	}
+	
 	public static double shooterSpinUpDelay() {
-		return Preferences.getInstance().getDouble("ShooterSpinUpDelay", 0.0);
+		return Preferences.getInstance().getDouble("ShooterSpinUpDelay", 0.5);
+	}
+	
+	public static double shooterEjectDelay() {
+		return Preferences.getInstance().getDouble("ShooterEjectDelay", 1.0);
 	}
 	
 	// ================== Collector ==================
@@ -164,11 +176,11 @@ public class RobotPreferences {
 	
 	// ================== Auto ==================
 	public static double autoPitchThreshold() {
-		return Preferences.getInstance().getDouble("AutoPitchThreshold", 15.0);
+		return Preferences.getInstance().getDouble("AutoPitchThreshold", 8.0);
 	}
 	
 	public static double autoFlatThreshold() {
-		return Preferences.getInstance().getDouble("AutoFlatThreshold", 6.0);
+		return Preferences.getInstance().getDouble("AutoFlatThreshold", 5.0);
 	}
 
 	public static double autoObstacleDriveSpeed() {
@@ -185,6 +197,10 @@ public class RobotPreferences {
 	
 	public static double autoRotateSpeed() {
 		return Preferences.getInstance().getDouble("AutoRotateSpeed", 0.0);
+	}
+	
+	public static double autoCommandTimeout() {
+		return Preferences.getInstance().getDouble("AutoCommandTimeout", 4.0);
 	}
 	
 	// ================== Lane Distances ==================
