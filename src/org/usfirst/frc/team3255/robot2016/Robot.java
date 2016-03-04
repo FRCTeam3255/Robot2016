@@ -5,10 +5,12 @@ import org.usfirst.frc.team3255.robot2016.commands.CommandBase;
 import org.usfirst.frc.team3255.robot2016.commands.DriveOverEject;
 import org.usfirst.frc.team3255.robot2016.commands.DriveOverEjectAndBack;
 import org.usfirst.frc.team3255.robot2016.commands.DriveOverLowBar;
+import org.usfirst.frc.team3255.robot2016.commands.DriveOverLowBarEject;
 import org.usfirst.frc.team3255.robot2016.commands.DriveOverObsatcleAndBack;
 import org.usfirst.frc.team3255.robot2016.commands.DriveOverObstacle;
 import org.usfirst.frc.team3255.robot2016.commands.NavigationCalibrate;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -40,6 +42,7 @@ public class Robot extends IterativeRobot {
     	autoChooser = new SendableChooser();
     	autoChooser.addDefault("Drive Over Obstacle", new DriveOverObstacle());
     	autoChooser.addObject("Drive Over Low Bar", new DriveOverLowBar());
+    	autoChooser.addObject("Drive Over Low Bar & Eject", new DriveOverLowBarEject());
     	autoChooser.addObject("Do Nothing", new NavigationCalibrate());
     	autoChooser.addObject("Drive Over & Back", new DriveOverObsatcleAndBack());
     	autoChooser.addObject("Drive Over Eject", new DriveOverEject());
@@ -58,8 +61,13 @@ public class Robot extends IterativeRobot {
 	
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
-		CommandBase.telemetry.update();
-		CommandBase.vision.update();
+		try {
+			CommandBase.telemetry.update();
+			CommandBase.vision.update();
+		}
+		catch(Exception e) {
+			DriverStation.reportError("Vision or Dashboard failed (Disabled)", false);
+		}
 	}
 
 	/**
@@ -85,8 +93,13 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
-        CommandBase.telemetry.update();
-        CommandBase.vision.update();
+	    try {
+	    	CommandBase.telemetry.update();
+	        CommandBase.vision.update();
+	    }
+	    catch (Exception e) {
+	    	DriverStation.reportError("Vision or Dashboard failed (Auto)", false);
+	    }
     }
 
     public void teleopInit() {
@@ -103,8 +116,13 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        CommandBase.telemetry.update();
-        CommandBase.vision.update();
+	    try {
+	    	CommandBase.telemetry.update();
+	        CommandBase.vision.update();
+	    }
+	    catch (Exception e) {
+	    	DriverStation.reportError("Vision or Dashboard failed (Teleop)", false);
+	    }
     }
     
     /**

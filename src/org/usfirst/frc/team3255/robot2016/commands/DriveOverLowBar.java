@@ -10,6 +10,5 @@ public class DriveOverLowBar extends CommandGroup {
     public  DriveOverLowBar() {
     	addSequential(new CollectorMoveToLow());
     	addSequential(new DriveOverObstacle());
-    	addSequential(new CollectorMoveToStow());
     }
 }

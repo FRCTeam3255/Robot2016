@@ -272,7 +272,7 @@ public class Vision extends Subsystem {
 			boolean centered = Math.abs(getTargetCenterX()) < RobotPreferences.targetXThreshold();
 			boolean atDistance = Math.abs(distance - RobotPreferences.targetDistance()) < RobotPreferences.targetDistanceThreshold();
 			
-			if(centered && atDistance) {
+			if(centered) {
 				CommandBase.lighting.redOn(true);
 				CommandBase.lighting.blueOn(false);
 			}
