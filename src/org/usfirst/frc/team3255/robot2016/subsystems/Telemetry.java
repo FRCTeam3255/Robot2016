@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3255.robot2016.subsystems;
 
+import org.usfirst.frc.team3255.robot2016.RobotPreferences;
 import org.usfirst.frc.team3255.robot2016.commands.*;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -94,6 +95,9 @@ public class Telemetry extends Subsystem {
 		SmartDashboard.putNumber("Target X", CommandBase.vision.getTargetCenterX());
 		SmartDashboard.putNumber("Target Distance", CommandBase.vision.getTargetDistance());
 		SmartDashboard.putBoolean("Shoot", CommandBase.lighting.isRedOn());
+		
+		// Calibration
+		SmartDashboard.putString("Calibration Mode", RobotPreferences.getCalibrationMode());
 	}
 	
 	public int getLane() {

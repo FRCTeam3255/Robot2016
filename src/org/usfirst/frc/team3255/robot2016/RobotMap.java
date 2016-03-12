@@ -11,7 +11,8 @@ public class RobotMap {
 	// Joysticks
 	public static final int JOYSTICK_DRIVER = 0;
 	public static final int JOYSTICK_MANIPULATOR = 1;
-	public static final int JOYSTICK_AUTO = 2;
+	public static final int JOYSTICK_AUTO = 3;
+	public static final int CALIBRATION_STICK = 2;
 	
 	// Axes
 	public static final int DRIVER_AXIS_MOVE = 1;

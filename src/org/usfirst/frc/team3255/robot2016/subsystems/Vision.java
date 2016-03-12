@@ -70,8 +70,12 @@ public class Vision extends Subsystem {
 	private int imageReplayNumber = imageReplayMin;
 	private int imageSaveNumber = RobotPreferences.imageSaveNumber();
 	
+	private boolean visionEnabled = true;
+	private boolean useProcessedImage = false;
+	
 	int newSession;
 	NIVision.Rect rect = new NIVision.Rect(10, 10, 100, 100);
+	NIVision.Rect alignmentRect = new NIVision.Rect(0, 0, 160, 160);
 	
 	//Constants
 	final double FOV_DEGREES = 68.5;
@@ -192,9 +196,11 @@ public class Vision extends Subsystem {
 		
 		// NIVision.imaqConvexHull(HSVFrame, HSVFrame, 0);
 		
-		if (!RobotPreferences.visionEnabled()) {
+		if (!isVisionEnabled()) {
+			drawAlignmentRectangle();
+
 			// Send images to Dashboard
-			if(RobotPreferences.visionProcessedImage()) {
+			if(isProcessedImage()) {
 				CameraServer.getInstance().setImage(HSVFrame);
 			}
 			else {
@@ -216,6 +222,9 @@ public class Vision extends Subsystem {
 		//Send particle count after filtering to dashboard
 		numParticles = NIVision.imaqCountParticles(binaryFrame, 1);
 
+		// need to draw the alignment rectangle after the frame have been analyzed
+		drawAlignmentRectangle();
+		
 		if(numParticles > 0) {
 			//Measure particles and sort by particle size
 			Vector<ParticleReport> particles = new Vector<ParticleReport>();
@@ -287,12 +296,26 @@ public class Vision extends Subsystem {
 		}
 
 		// Send images to Dashboard
-		if(RobotPreferences.visionProcessedImage()) {
+		if(isProcessedImage()) {
 			CameraServer.getInstance().setImage(HSVFrame);
 		}
 		else {
 			CameraServer.getInstance().setImage(frame);
 		}
+	}
+	
+	private void drawAlignmentRectangle() {
+		// Draw alignment rectangle
+		alignmentRect.left = RobotPreferences.targetXMin();
+		alignmentRect.width = (RobotPreferences.targetXMax() - RobotPreferences.targetXMin()) + 1;
+		alignmentRect.top = RobotPreferences.targetYMin();
+		alignmentRect.height = (RobotPreferences.targetYMax() - RobotPreferences.targetYMin()) + 1;
+		
+        NIVision.imaqDrawShapeOnImage(frame, frame, alignmentRect,
+        		DrawMode.DRAW_INVERT, ShapeMode.SHAPE_RECT, 255.0f);
+        
+        NIVision.imaqDrawShapeOnImage(HSVFrame, HSVFrame, alignmentRect,
+        		DrawMode.DRAW_INVERT, ShapeMode.SHAPE_RECT, 255.0f);
 	}
 	
 	public void nextImage() {
@@ -428,6 +451,22 @@ public class Vision extends Subsystem {
 		// TODO May need a color table for the save frame
 		NIVision.imaqWriteFile(frame, imagePrefix + imageSaveNumber + imageSuffix, null);
 		imageSaveNumber++;
+	}
+	
+	public void setVisionEnabled(boolean enabled) {
+		visionEnabled = enabled;
+	}
+	
+	public boolean isVisionEnabled() {
+		return visionEnabled;
+	}
+	
+	public void setProcessedImage(boolean enabled) {
+		useProcessedImage = enabled;
+	}
+	
+	public boolean isProcessedImage() {
+		return useProcessedImage;
 	}
 	
 	@Override

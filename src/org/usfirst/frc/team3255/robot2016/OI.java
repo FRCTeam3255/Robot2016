@@ -15,6 +15,7 @@ public class OI {
 	public static Joystick manipulatorStick = new Joystick(RobotMap.JOYSTICK_MANIPULATOR);
 	public static Joystick driverStick = new Joystick(RobotMap.JOYSTICK_DRIVER);
 	public static Joystick autoStick = new Joystick(RobotMap.JOYSTICK_AUTO);
+	public static Joystick calibrationStick = new Joystick(RobotMap.CALIBRATION_STICK);
 	
 	// manipulatorStick
 	Button M1 = new JoystickButton(manipulatorStick, 1);
@@ -41,6 +42,13 @@ public class OI {
 	Button D9 = new JoystickButton(driverStick, 9);
 	Button D10 = new JoystickButton(driverStick, 10);
 	
+	// calibrationStick
+	Button C1 = new JoystickButton(calibrationStick, 1);
+	Button C2 = new JoystickButton(calibrationStick, 2);
+	Button C3 = new JoystickButton(calibrationStick, 3);
+	Button C4 = new JoystickButton(calibrationStick, 4);
+	Button C6 = new JoystickButton(calibrationStick, 6);
+	
 	public OI() {
 		// manipulatorStick
 		M1.whileHeld(new ShooterShoot(false));
@@ -66,11 +74,20 @@ public class OI {
 		D5.whenReleased(new DriveEnableBraking(false));
 		// D5.whileHeld(new DriveToTarget());
 		// D6: Slow Drive
+		D6.whenPressed(new SallyDeploy());
+		D6.whenReleased(new SallyRetract());
 		D7.whenPressed(new DriveShiftDown());
 		D8.whenPressed(new DriveShiftUp());
 		
+		//calibrationStick
+		C1.whenPressed(new CalibrationPrev());
+		C2.whenPressed(new CalibrationNext());
+		C3.whenPressed(new VisionToggleEnabled());
+		C4.whenPressed(new VisionToggleProcessedImage());
+		C6.whenPressed(new CalibrationSave());
 	}
-	
+
+/*
 	public int getLane() {
 		int lane = 1;
 		
@@ -93,9 +110,30 @@ public class OI {
 		}
 		return lane;
 	}
+*/
+	public int getLane() {
+		return 1;
+	}
 	
 	public boolean isLowSpeed() {
 		return driverStick.getRawButton(6);
+	}
+	
+	public double getCalibrationStickValue(int stickAxis, double min, double max) {
+		double stickValue = calibrationStick.getRawAxis(stickAxis);
+		
+		double x = (stickValue + 1.0)/2.0;
+		
+		double y = max + ((min - max) * x);
+		
+		if(y < min) {
+			y = min;
+		}
+		else if(y > max) {
+			y = max;
+		}
+		
+		return y;
 	}
 }
 

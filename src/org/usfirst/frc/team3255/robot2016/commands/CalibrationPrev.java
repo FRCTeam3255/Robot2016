@@ -5,23 +5,16 @@ import org.usfirst.frc.team3255.robot2016.RobotPreferences;
 /**
  *
  */
-public class SallyDeploy extends CommandBase {
+public class CalibrationPrev extends CommandBase {
 
-    public SallyDeploy() {
-    	requires(sallyArm);
+    public CalibrationPrev() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	sallyArm.deploy();
-    	/*
-    	if (sallyArm.getEncoderPosition() > RobotPreferences.sallyDeploySafety()) {
-    		sallyArm.deploy();
-    	}
-    	else {
-    		end();
-    	}
-    	*/
+    	RobotPreferences.prevCalibrationMode();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -30,7 +23,7 @@ public class SallyDeploy extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return true;
+        return true;
     }
 
     // Called once after isFinished returns true

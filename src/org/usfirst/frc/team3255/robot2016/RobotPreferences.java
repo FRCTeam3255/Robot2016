@@ -1,8 +1,74 @@
 package org.usfirst.frc.team3255.robot2016;
 
+import org.usfirst.frc.team3255.robot2016.commands.CommandBase;
+
 import edu.wpi.first.wpilibj.Preferences;
 
 public class RobotPreferences {
+	
+	private static int calibrationMode = 0;
+
+	// ================== Calibration Modes ==================
+	public static String getCalibrationMode() {
+		switch(calibrationMode) {
+			case 0:
+				return "Disabled";
+			case 1:
+				return "Target X";
+			case 2:
+				return "Target Y";
+			case 3:
+				return "Hue";
+			case 4:
+				return "Saturation";
+			case 5:
+				return "Value";
+		}
+		return "";
+	}
+	
+	public static void nextCalibrationMode() {
+		calibrationMode++;
+		
+		if (calibrationMode > 5) {
+			calibrationMode = 0;
+		}
+	}
+	
+	public static void prevCalibrationMode() {
+		calibrationMode--;
+		
+		if (calibrationMode < 0) {
+			calibrationMode = 5;
+		}
+	}
+	
+	public static void saveCalibration() {
+		switch(calibrationMode) {
+			case 0: /* disabled */
+				break;
+			case 1: /* Target X */
+				Preferences.getInstance().putInt("TargetXMin", (int) CommandBase.oi.getCalibrationStickValue(0, 0, 160));
+				Preferences.getInstance().putInt("TargetXMax", (int) CommandBase.oi.getCalibrationStickValue(1, 0, 160));
+				break;				
+			case 2: /* Target Y */
+				Preferences.getInstance().putInt("TargetYMin", (int) CommandBase.oi.getCalibrationStickValue(0, 0, 160));
+				Preferences.getInstance().putInt("TargetYMax", (int) CommandBase.oi.getCalibrationStickValue(1, 0, 160));
+				break;				
+			case 3: /* Hue */
+				Preferences.getInstance().putInt("HueMin", (int) CommandBase.oi.getCalibrationStickValue(0, 0, 255));
+				Preferences.getInstance().putInt("HueMax", (int) CommandBase.oi.getCalibrationStickValue(1, 0, 255));
+				break;				
+			case 4: /* Saturation */
+				Preferences.getInstance().putInt("SatMin", (int) CommandBase.oi.getCalibrationStickValue(0, 0, 255));
+				Preferences.getInstance().putInt("SatMax", (int) CommandBase.oi.getCalibrationStickValue(1, 0, 255));
+				break;
+			case 5: /* Value */
+				Preferences.getInstance().putInt("ValMin", (int) CommandBase.oi.getCalibrationStickValue(0, 0, 255));
+				Preferences.getInstance().putInt("ValMax", (int) CommandBase.oi.getCalibrationStickValue(1, 0, 255));
+				break;
+		}
+	}
 
 	// Ordered by Subsystems
 
@@ -313,37 +379,53 @@ public class RobotPreferences {
 	public static String rearCamera() {
 		return Preferences.getInstance().getString("RearCamera", "cam1");
 	}
-	
-	public static boolean visionEnabled() {
-		return Preferences.getInstance().getBoolean("VisionEnabled", true);
-	}
-
-	public static boolean visionProcessedImage() {
-		return Preferences.getInstance().getBoolean("ProcessedImage", false);
-	}
 
 	public static int visionHueMin() {
-		return Preferences.getInstance().getInt("HueMin", 119);
+		if(calibrationMode != 3) {
+			return Preferences.getInstance().getInt("HueMin", 119);
+		}
+		
+		return (int) CommandBase.oi.getCalibrationStickValue(0, 0, 255);
 	}
 
 	public static int visionHueMax() {
-		return Preferences.getInstance().getInt("HueMax", 203);
+		if(calibrationMode != 3) {
+			return Preferences.getInstance().getInt("HueMax", 203);
+		}
+		
+		return (int) CommandBase.oi.getCalibrationStickValue(1, 0, 255);
 	}
 
 	public static int visionSatMin() {
-		return Preferences.getInstance().getInt("SatMin", 41);
+		if(calibrationMode != 4) {
+			return Preferences.getInstance().getInt("SatMin", 41);
+		}
+		
+		return (int) CommandBase.oi.getCalibrationStickValue(0, 0, 255);
 	}
 
 	public static int visionSatMax() {
-		return Preferences.getInstance().getInt("SatMax", 255);
+		if(calibrationMode != 4) {
+			return Preferences.getInstance().getInt("SatMax", 255);
+		}
+		
+		return (int) CommandBase.oi.getCalibrationStickValue(1, 0, 255);
 	}
 
 	public static int visionValMin() {
-		return Preferences.getInstance().getInt("ValMin", 114);
+		if(calibrationMode != 5) {
+			return Preferences.getInstance().getInt("ValMin", 114);
+		}
+		
+		return (int) CommandBase.oi.getCalibrationStickValue(0, 0, 255);
 	}
 
 	public static int visionValMax() {
-		return Preferences.getInstance().getInt("ValMax", 246);
+		if(calibrationMode != 5) {
+			return Preferences.getInstance().getInt("ValMax", 246);
+		}
+		
+		return (int) CommandBase.oi.getCalibrationStickValue(1, 0, 255);
 	}
 	
 	public static double visionDistance() {
@@ -372,5 +454,37 @@ public class RobotPreferences {
 	
 	public static double visionAspectMin() {
 		return Preferences.getInstance().getDouble("AspectMin", 1.3);
+	}
+	
+	public static int targetXMin() {
+		if(calibrationMode != 1) {
+			return Preferences.getInstance().getInt("TargetXMin", 0);
+		}
+		
+		return (int) CommandBase.oi.getCalibrationStickValue(0, 0, 160);
+	}
+	
+	public static int targetXMax() {
+		if(calibrationMode != 1) {
+			return Preferences.getInstance().getInt("TargetXMax", 160);	
+		}
+		
+		return (int) CommandBase.oi.getCalibrationStickValue(1, 0, 160);
+	}
+	
+	public static int targetYMin() {
+		if(calibrationMode != 2) {
+			return Preferences.getInstance().getInt("TargetYMin", 0);
+		}
+		
+		return (int) CommandBase.oi.getCalibrationStickValue(0, 0, 160);	
+	}
+	
+	public static int targetYMax() {
+		if(calibrationMode != 2) {
+			return Preferences.getInstance().getInt("TargetYMax", 160);
+		}
+		
+		return (int) CommandBase.oi.getCalibrationStickValue(1, 0, 160);	
 	}
 }
