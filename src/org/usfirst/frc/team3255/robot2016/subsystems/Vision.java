@@ -102,7 +102,7 @@ public class Vision extends Subsystem {
 			frontSession = NIVision.IMAQdxOpenCamera(RobotPreferences.frontCamera(),
 			        NIVision.IMAQdxCameraControlMode.CameraControlModeController);
 		} catch (Exception e) {
-			DriverStation.reportError("Camera " + RobotPreferences.frontCamera() + " not found", false);
+			DriverStation.reportError("Camera " + RobotPreferences.frontCamera() + " not found", true);
 			frontSession = -1;
 		}
 
@@ -110,7 +110,7 @@ public class Vision extends Subsystem {
 	        rearSession = NIVision.IMAQdxOpenCamera(RobotPreferences.rearCamera(),
 	                NIVision.IMAQdxCameraControlMode.CameraControlModeController);
 		} catch (Exception e) {
-			DriverStation.reportError("Camera " + RobotPreferences.rearCamera() + " not found", false);
+			DriverStation.reportError("Camera " + RobotPreferences.rearCamera() + " not found", true);
 			rearSession = -1;
 		}
         

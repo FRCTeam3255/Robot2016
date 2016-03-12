@@ -110,7 +110,11 @@ public class RobotPreferences {
 	}
 	
 	public static double collectorIntakeSpeed() {
-		return Preferences.getInstance().getDouble("CollectorIntakeSpeed", 0.6);
+		return Preferences.getInstance().getDouble("CollectorIntakeSpeed", 0.8);
+	}
+	
+	public static double collectorShootSpeed() {
+		return Preferences.getInstance().getDouble("CollectorShootSpeed", 0.6);
 	}
 	
 	public static double collectorIntakeReverseSpeed() {

@@ -6,6 +6,7 @@ import org.usfirst.frc.team3255.robot2016.commands.DriveOverEject;
 import org.usfirst.frc.team3255.robot2016.commands.DriveOverEjectAndBack;
 import org.usfirst.frc.team3255.robot2016.commands.DriveOverLowBar;
 import org.usfirst.frc.team3255.robot2016.commands.DriveOverLowBarEject;
+import org.usfirst.frc.team3255.robot2016.commands.DriveOverLowBarTest;
 import org.usfirst.frc.team3255.robot2016.commands.DriveOverObsatcleAndBack;
 import org.usfirst.frc.team3255.robot2016.commands.DriveOverObstacle;
 import org.usfirst.frc.team3255.robot2016.commands.NavigationCalibrate;
@@ -43,6 +44,7 @@ public class Robot extends IterativeRobot {
     	autoChooser.addDefault("Drive Over Obstacle", new DriveOverObstacle());
     	autoChooser.addObject("Drive Over Low Bar", new DriveOverLowBar());
     	autoChooser.addObject("Drive Over Low Bar & Eject", new DriveOverLowBarEject());
+    	autoChooser.addObject("Drive Over Low Bar Test", new DriveOverLowBarTest());
     	autoChooser.addObject("Do Nothing", new NavigationCalibrate());
     	autoChooser.addObject("Drive Over & Back", new DriveOverObsatcleAndBack());
     	autoChooser.addObject("Drive Over Eject", new DriveOverEject());
@@ -66,7 +68,7 @@ public class Robot extends IterativeRobot {
 			CommandBase.vision.update();
 		}
 		catch(Exception e) {
-			DriverStation.reportError("Vision or Dashboard failed (Disabled)", false);
+			DriverStation.reportError("Vision or Dashboard failed (Disabled)", true);
 		}
 	}
 
@@ -98,7 +100,7 @@ public class Robot extends IterativeRobot {
 	        CommandBase.vision.update();
 	    }
 	    catch (Exception e) {
-	    	DriverStation.reportError("Vision or Dashboard failed (Auto)", false);
+	    	DriverStation.reportError("Vision or Dashboard failed (Auto)", true);
 	    }
     }
 
@@ -121,7 +123,7 @@ public class Robot extends IterativeRobot {
 	        CommandBase.vision.update();
 	    }
 	    catch (Exception e) {
-	    	DriverStation.reportError("Vision or Dashboard failed (Teleop)", false);
+	    	DriverStation.reportError("Vision or Dashboard failed (Teleop)", true);
 	    }
     }
     
