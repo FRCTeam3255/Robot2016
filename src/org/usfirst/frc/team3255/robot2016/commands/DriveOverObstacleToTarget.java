@@ -17,12 +17,15 @@ public class DriveOverObstacleToTarget extends CommandGroup {
     	addSequential(new DriveLaneDistance());
     	
     	// yaw command angle will get updated when this command group initializes
-    	yawCommand = new DriveToYaw(0.0);
-    	addSequential(yawCommand);
-    	
+    	// yawCommand = new DriveToYaw(0.0);
+    	// addSequential(yawCommand);
+    	addSequential(new DoDelay(0.1));
+    	addSequential(new DriveToAutoYaw());
+    	addSequential(new DoDelay(0.3));
     	addSequential(new DriveUntilStopped());
     }
     
+    /*
     protected void initialize() {
     	int lane = CommandBase.telemetry.getLane();
     	double laneAngle = 0;
@@ -47,4 +50,5 @@ public class DriveOverObstacleToTarget extends CommandGroup {
 		
 		yawCommand.setAngle(laneAngle);
     }
+    */
 }

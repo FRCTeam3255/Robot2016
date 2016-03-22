@@ -2,6 +2,8 @@ package org.usfirst.frc.team3255.robot2016.commands;
 
 import org.usfirst.frc.team3255.robot2016.RobotPreferences;
 
+import edu.wpi.first.wpilibj.DriverStation;
+
 /**
  *
  */
@@ -19,6 +21,8 @@ public class DriveUntilStopped extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	DriverStation.reportError("Started Drive Until Stopped", false);
+    	navigation.resetYaw();
     	drivetrain.shiftLow();
 
     	navYawPID.setSetpoint(0.0);
@@ -48,6 +52,7 @@ public class DriveUntilStopped extends CommandBase {
     	
     	drivetrain.setSpeed(0.0);
     	sallyArm.retract();
+    	DriverStation.reportError("Finished Drive Until Stopped", false);
     }
 
     // Called when another command which requires one or more of the same

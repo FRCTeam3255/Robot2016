@@ -273,6 +273,10 @@ public class RobotPreferences {
 		return Preferences.getInstance().getDouble("AutoCommandTimeout", 4.0);
 	}
 	
+	public static double laneDistanceTimeout() {
+		return Preferences.getInstance().getDouble("LaneDistanceTimeout", 4.0);
+	}
+	
 	public static double autoDecelerationThreshold() {
 		return Preferences.getInstance().getDouble("AutoDecelerationThreshold", 0.0);
 	}
@@ -306,6 +310,10 @@ public class RobotPreferences {
 	// ================== PID Tolerances ==================
 	public static double distanceTolerance() {
 		return Preferences.getInstance().getDouble("DistanceTolerance", 0.2);
+	}
+	
+	public static double autoDistanceTolerance() {
+		return Preferences.getInstance().getDouble("DistanceTolerance", 0.3);
 	}
 	
 	public static double yawTolerance() {

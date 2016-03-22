@@ -60,6 +60,15 @@ public class DrivetrainDistancePID extends PIDSubsystem {
 			return false;
 		}
 	}
+	
+	public boolean onAutoRawTarget() {
+		if (Math.abs(CommandBase.drivetrain.getEncoderPosition() - getPIDController().getSetpoint()) < RobotPreferences.autoDistanceTolerance()) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
     
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.

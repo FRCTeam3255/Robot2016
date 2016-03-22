@@ -1,5 +1,7 @@
 package org.usfirst.frc.team3255.robot2016.commands;
 
+import edu.wpi.first.wpilibj.DriverStation;
+
 /**
  *
  */
@@ -15,6 +17,7 @@ public class DriveToYaw extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	DriverStation.reportError("Started Lane Angle", false);
     	drivetrain.shiftLow();
     	
     	navYawPID.enable();
@@ -35,6 +38,7 @@ public class DriveToYaw extends CommandBase {
     	navYawPID.disable();
     	
     	drivetrain.setSpeed(0.0);
+    	DriverStation.reportError("Finished Lane Angle", false);
     }
 
     // Called when another command which requires one or more of the same

@@ -9,6 +9,7 @@ import org.usfirst.frc.team3255.robot2016.commands.DriveOverLowBarEject;
 import org.usfirst.frc.team3255.robot2016.commands.DriveOverLowBarTest;
 import org.usfirst.frc.team3255.robot2016.commands.DriveOverObsatcleAndBack;
 import org.usfirst.frc.team3255.robot2016.commands.DriveOverObstacle;
+import org.usfirst.frc.team3255.robot2016.commands.DriveOverObstacleShoot;
 import org.usfirst.frc.team3255.robot2016.commands.NavigationCalibrate;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -49,6 +50,7 @@ public class Robot extends IterativeRobot {
     	autoChooser.addObject("Drive Over & Back", new DriveOverObsatcleAndBack());
     	autoChooser.addObject("Drive Over Eject", new DriveOverEject());
     	autoChooser.addObject("Drive Over Eject & Back", new DriveOverEjectAndBack());
+    	autoChooser.addObject("Drive Over & Shoot", new DriveOverObstacleShoot());
     	SmartDashboard.putData("Auto mode", autoChooser);
     }
 	

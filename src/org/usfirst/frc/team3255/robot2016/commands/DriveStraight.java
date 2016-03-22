@@ -24,6 +24,7 @@ public class DriveStraight extends CommandBase {
     	navYawPID.setSetpoint(0.0);
 
     	navYawPID.enable();
+    	sallyArm.deploy();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -42,6 +43,7 @@ public class DriveStraight extends CommandBase {
     	// navYawPID.disable();
     	
     	drivetrain.setSpeed(0.0);
+    	sallyArm.retract();
     }
 
     // Called when another command which requires one or more of the same

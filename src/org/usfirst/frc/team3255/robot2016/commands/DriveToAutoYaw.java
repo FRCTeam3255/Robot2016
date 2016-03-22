@@ -7,44 +7,43 @@ import edu.wpi.first.wpilibj.DriverStation;
 /**
  *
  */
-public class DriveLaneDistance extends CommandBase {
+public class DriveToAutoYaw extends CommandBase {
+	
+	double angle = 0.0;
 
-    public DriveLaneDistance() {
+    public DriveToAutoYaw() {
     	requires(drivetrain);
-    	requires(driveDistancePID);
     	requires(navYawPID);
+    	requires(navigation);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	DriverStation.reportError("Started Lane Distance", false);
+    	DriverStation.reportError("Started Lane Angle", false);
+    	getAngle();
+    	navYawPID.setSetpoint(angle);
+    	
     	drivetrain.shiftLow();
     	
-    	driveDistancePID.setSetpoint(getLaneDistance());
-    	navYawPID.setSetpoint(0.0);
-    	
-    	driveDistancePID.enable();
     	navYawPID.enable();
-    	startTimer(RobotPreferences.laneDistanceTimeout());
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	drivetrain.arcadeDrive(driveDistancePID.getOutput(), navYawPID.getOutput());
+    	drivetrain.arcadeDrive(0.0, navYawPID.getOutput());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return ((driveDistancePID.onAutoRawTarget() && navYawPID.onRawTarget()) || isTimerExpired());
+    	return (navYawPID.onRawTarget());
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	driveDistancePID.disable();
     	navYawPID.disable();
     	
     	drivetrain.setSpeed(0.0);
-    	DriverStation.reportError("Finished Lane Distance", false);
+    	DriverStation.reportError("Finished Lane Angle", false);
     }
 
     // Called when another command which requires one or more of the same
@@ -53,19 +52,28 @@ public class DriveLaneDistance extends CommandBase {
     	end();
     }
     
-    private double getLaneDistance() {
+    protected void getAngle() {
     	int lane = CommandBase.telemetry.getLane();
+    	double laneAngle = 0;
 		
 		switch(lane) {
 			case 1:
+				laneAngle = RobotPreferences.angleOuterLane();
+				break;
 			case 5:
-				return RobotPreferences.distanceOuterLane();
+				laneAngle = -RobotPreferences.angleOuterLane();
+				break;
 			case 2:
+				laneAngle = RobotPreferences.angleInnerLane();
+				break;
 			case 4:
-				return RobotPreferences.distanceInnerLane();
+				laneAngle = -RobotPreferences.angleInnerLane();
+				break;
 			case 3:
-				return RobotPreferences.distanceCenterLane();
+				laneAngle = RobotPreferences.angleCenterLane();
+				break;
 		}
-		return 0.0;
+		
+		angle = laneAngle;
     }
 }
