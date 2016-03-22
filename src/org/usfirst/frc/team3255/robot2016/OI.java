@@ -70,9 +70,7 @@ public class OI {
 		D1.whenPressed(new VisionToggleCamera());
 		D2.whileHeld(new DriveStraight());
 		D4.whenPressed(new EjectBall());
-		D5.whileHeld(new DriveEnableBraking(true));
-		D5.whenReleased(new DriveEnableBraking(false));
-		// D5.whileHeld(new DriveToTarget());
+		D5.whileHeld(new DriveToTarget());
 		// D6: Slow Drive
 		D6.whenPressed(new SallyDeploy());
 		D6.whenReleased(new SallyRetract());

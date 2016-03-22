@@ -8,7 +8,8 @@ import org.usfirst.frc.team3255.robot2016.RobotPreferences;
 public class CollectorMoveToPickup extends CommandBase {
 
     public CollectorMoveToPickup() {
-    	requires(collector);
+    	// Can't require collector if running parallel with collecting a ball
+    	// requires(collector);
     }
 
     // Called just before this Command runs the first time

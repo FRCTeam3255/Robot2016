@@ -273,6 +273,11 @@ public class RobotPreferences {
 		return Preferences.getInstance().getDouble("AutoCommandTimeout", 4.0);
 	}
 	
+	public static double autoDecelerationThreshold() {
+		return Preferences.getInstance().getDouble("AutoDecelerationThreshold", 0.0);
+	}
+	
+	
 	// ================== Lane Distances ==================
 	public static double distanceOuterLane() {
 		return Preferences.getInstance().getDouble("DistanceOuterLane", 0.0);
@@ -284,6 +289,18 @@ public class RobotPreferences {
 	
 	public static double distanceCenterLane() {
 		return Preferences.getInstance().getDouble("DistanceCenterLane", 0.0);
+	}
+	
+	public static double angleOuterLane() {
+		return Preferences.getInstance().getDouble("AngleOuterLane", 0.0);
+	}
+	
+	public static double angleInnerLane() {
+		return Preferences.getInstance().getDouble("AngleInnerLane", 0.0);
+	}
+	
+	public static double angleCenterLane() {
+		return Preferences.getInstance().getDouble("AngleCenterLane", 0.0);
 	}
 	
 	// ================== PID Tolerances ==================

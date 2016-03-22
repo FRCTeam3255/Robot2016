@@ -9,7 +9,7 @@ public class DriveOverObstacleShoot extends CommandGroup {
     
     public  DriveOverObstacleShoot() {
     	addSequential(new DriveOverObstacleToTarget());
-    	addSequential(new ShooterPrep(false));
+    	addSequential(new ShooterPrep(false)); // Adjust spin up delay
     	addSequential(new ShooterShoot(false));
     }
 }

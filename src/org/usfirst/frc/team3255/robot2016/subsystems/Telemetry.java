@@ -60,9 +60,9 @@ public class Telemetry extends Subsystem {
 		SmartDashboard.putData("Drive Over Obstacle", new DriveOverObstacle());
 		SmartDashboard.putData("Drive FWD Until Pitched", new DriveUntilPitched(true));
 		SmartDashboard.putData("Drive Until Flat", new DriveUntilFlat(true));
-		SmartDashboard.putData("Drive Over Obstacle To Target", new DriveOverObstacleToTarget());
+		SmartDashboard.putData("Drive Over Obstacle To Target", new DriveOverObstacleToVisionTarget());
 		SmartDashboard.putData("Drive to Target Acquired", new DriveUntilTargetAcquired());
-		SmartDashboard.putData("Drive Over Obstacle Shoot", new DriveOverObstacleShoot());
+		SmartDashboard.putData("Drive Over Obstacle Shoot", new DriveOverObstacleVisionShoot());
 		SmartDashboard.putNumber("Lane", 1.0);
 	}
 	
@@ -87,6 +87,7 @@ public class Telemetry extends Subsystem {
 		SmartDashboard.putNumber("Yaw", CommandBase.navigation.getYaw());
 		SmartDashboard.putNumber("Pitch", CommandBase.navigation.getPitch());
 		SmartDashboard.putBoolean("Calibrated", !CommandBase.navigation.isCalibrating());
+		SmartDashboard.putNumber("Acceleration", CommandBase.navigation.getAccel());
 		
 		// Vision
 		SmartDashboard.putNumber("Raw Particles", CommandBase.vision.getNumRawParticles());

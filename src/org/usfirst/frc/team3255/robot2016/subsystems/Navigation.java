@@ -51,6 +51,11 @@ public class Navigation extends Subsystem {
 	public boolean isCalibrating() {
 		return ahrs.isCalibrating();
 	}
+	
+	public double getAccel() {
+		// might need to be linear acceleration
+		return ahrs.getRawAccelX();
+	}
 
     public void initDefaultCommand() {
     	
