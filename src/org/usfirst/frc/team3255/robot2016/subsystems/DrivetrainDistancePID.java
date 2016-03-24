@@ -53,16 +53,7 @@ public class DrivetrainDistancePID extends PIDSubsystem {
     }
     
 	public boolean onRawTarget() {
-		if (Math.abs(CommandBase.drivetrain.getEncoderPosition() - getPIDController().getSetpoint()) < RobotPreferences.distanceTolerance()) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-	
-	public boolean onAutoRawTarget() {
-		if (Math.abs(CommandBase.drivetrain.getEncoderPosition() - getPIDController().getSetpoint()) < RobotPreferences.autoDistanceTolerance()) {
+		if (Math.abs(CommandBase.drivetrain.getEncoderDistance() - getPIDController().getSetpoint()) < RobotPreferences.distanceTolerance()) {
 			return true;
 		}
 		else {

@@ -2,6 +2,8 @@ package org.usfirst.frc.team3255.robot2016.commands;
 
 import org.usfirst.frc.team3255.robot2016.RobotPreferences;
 
+import edu.wpi.first.wpilibj.DriverStation;
+
 /**
  *
  */

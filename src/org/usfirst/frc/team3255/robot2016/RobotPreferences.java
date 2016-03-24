@@ -309,10 +309,6 @@ public class RobotPreferences {
 	
 	// ================== PID Tolerances ==================
 	public static double distanceTolerance() {
-		return Preferences.getInstance().getDouble("DistanceTolerance", 0.2);
-	}
-	
-	public static double autoDistanceTolerance() {
 		return Preferences.getInstance().getDouble("DistanceTolerance", 0.3);
 	}
 	

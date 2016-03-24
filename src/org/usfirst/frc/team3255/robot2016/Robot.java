@@ -2,6 +2,7 @@
 package org.usfirst.frc.team3255.robot2016;
 
 import org.usfirst.frc.team3255.robot2016.commands.CommandBase;
+import org.usfirst.frc.team3255.robot2016.commands.DriveLaneFlatDistance;
 import org.usfirst.frc.team3255.robot2016.commands.DriveOverEject;
 import org.usfirst.frc.team3255.robot2016.commands.DriveOverEjectAndBack;
 import org.usfirst.frc.team3255.robot2016.commands.DriveOverLowBar;
@@ -51,6 +52,7 @@ public class Robot extends IterativeRobot {
     	autoChooser.addObject("Drive Over Eject", new DriveOverEject());
     	autoChooser.addObject("Drive Over Eject & Back", new DriveOverEjectAndBack());
     	autoChooser.addObject("Drive Over & Shoot", new DriveOverObstacleShoot());
+    	autoChooser.addObject("Drive Lane Distance", new DriveLaneFlatDistance());
     	SmartDashboard.putData("Auto mode", autoChooser);
     }
 	
@@ -113,6 +115,7 @@ public class Robot extends IterativeRobot {
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
         CommandBase.drivetrain.setBraking(false);
+        CommandBase.sallyArm.retract();
     }
 
     /**

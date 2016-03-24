@@ -2,6 +2,8 @@ package org.usfirst.frc.team3255.robot2016.commands;
 
 import org.usfirst.frc.team3255.robot2016.RobotPreferences;
 
+import edu.wpi.first.wpilibj.DriverStation;
+
 /**
  *
  */
@@ -57,6 +59,9 @@ public class DriveUntilFlat extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+    	if(isTimerExpired()) {
+    		DriverStation.reportError("DriveUntilFlat timed out", false);
+    	}
     	return ((Math.abs(distanceFlat) > targetDistance) || isTimerExpired());
     }
 

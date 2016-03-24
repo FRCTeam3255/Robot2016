@@ -7,9 +7,11 @@ import edu.wpi.first.wpilibj.DriverStation;
 /**
  *
  */
-public class DriveLaneDistance extends CommandBase {
+public class DriveLaneFlatDistance extends CommandBase {
 
-    public DriveLaneDistance() {
+	double pitchThreshold;
+	
+    public DriveLaneFlatDistance() {
     	requires(drivetrain);
     	requires(driveDistancePID);
     	requires(navYawPID);
@@ -17,12 +19,16 @@ public class DriveLaneDistance extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	DriverStation.reportError("Started Lane Distance", false);
     	drivetrain.shiftLow();
     	
     	drivetrain.resetEncoders();
     	
-    	driveDistancePID.setSetpoint(getLaneDistance());
+    	double laneDistance = getLaneDistance();
+    	pitchThreshold = RobotPreferences.autoFlatThreshold();
+
+    	DriverStation.reportError("Started Lane Distance = " + laneDistance + " threshold = " + pitchThreshold, false);
+    	
+    	driveDistancePID.setSetpoint(laneDistance);
     	navYawPID.setSetpoint(0.0);
     	
     	driveDistancePID.enable();
@@ -32,12 +38,31 @@ public class DriveLaneDistance extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	if (Math.abs(navigation.getPitch()) > pitchThreshold) {
+    		drivetrain.resetEncoders();
+    	}
     	drivetrain.arcadeDrive(driveDistancePID.getOutput(), navYawPID.getOutput());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return ((driveDistancePID.onRawTarget() && navYawPID.onRawTarget()) || isTimerExpired());
+    	boolean expired = isTimerExpired();
+    	
+    	if(expired) {
+    		DriverStation.reportError("Drive Lane Flat Distance: timer expired", false);
+    	}
+    	
+    	boolean distanceReached = driveDistancePID.onRawTarget();
+    	if(distanceReached) {
+    		DriverStation.reportError("Drive Lane Flat Distance: distance reached = " + drivetrain.getEncoderDistance(), false);
+    	}
+    	
+    	boolean yawReached = navYawPID.onRawTarget();
+    	if(yawReached) {
+    		// DriverStation.reportError("Drive Lane Flat Distance: yaw reached = " + navigation.getYaw(), false);
+    	}
+    	
+    	return ((distanceReached && yawReached) || expired);
     }
 
     // Called once after isFinished returns true

@@ -12,17 +12,24 @@ public class DriveOverObstacleToTarget extends CommandGroup {
 	DriveToYaw yawCommand = null;
 	
     public  DriveOverObstacleToTarget() {
-    	addSequential(new DriveOverObstacle());
-    	addSequential(new DriveUntilPitched(false));
-    	addSequential(new DriveLaneDistance());
+    	// Drive over Obstacle
+    	addSequential(new NavigationCalibrate());
+    	addSequential(new DriveEnableBraking(true));
+    	addSequential(new DoDelay(0.5));
+    	addSequential(new DriveUntilPitched(true));
+    	addSequential(new DriveResetEncoders());
+    	
+    	addSequential(new DriveLaneFlatDistance());
     	
     	// yaw command angle will get updated when this command group initializes
     	// yawCommand = new DriveToYaw(0.0);
     	// addSequential(yawCommand);
     	addSequential(new DoDelay(0.1));
     	addSequential(new DriveToAutoYaw());
+    	addSequential(new NavigationZeroYaw());
     	addSequential(new DoDelay(0.3));
     	addSequential(new DriveUntilStopped());
+    	addSequential(new DriveEnableBraking(false));
     }
     
     /*
