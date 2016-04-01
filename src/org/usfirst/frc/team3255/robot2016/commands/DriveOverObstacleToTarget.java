@@ -17,7 +17,9 @@ public class DriveOverObstacleToTarget extends CommandGroup {
     	addSequential(new DriveEnableBraking(true));
     	addSequential(new DoDelay(0.5));
     	addSequential(new DriveUntilPitched(true));
+    	addSequential(new DoDelay(0.1));
     	addSequential(new DriveResetEncoders());
+    	addSequential(new DoDelay(0.1));
     	
     	addSequential(new DriveLaneFlatDistance());
     	

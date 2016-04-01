@@ -8,6 +8,7 @@ import org.usfirst.frc.team3255.robot2016.commands.DriveOverEjectAndBack;
 import org.usfirst.frc.team3255.robot2016.commands.DriveOverLowBar;
 import org.usfirst.frc.team3255.robot2016.commands.DriveOverLowBarEject;
 import org.usfirst.frc.team3255.robot2016.commands.DriveOverLowBarTest;
+import org.usfirst.frc.team3255.robot2016.commands.DriveOverLowObstacleShoot;
 import org.usfirst.frc.team3255.robot2016.commands.DriveOverObsatcleAndBack;
 import org.usfirst.frc.team3255.robot2016.commands.DriveOverObstacle;
 import org.usfirst.frc.team3255.robot2016.commands.DriveOverObstacleShoot;
@@ -46,13 +47,13 @@ public class Robot extends IterativeRobot {
     	autoChooser.addDefault("Drive Over Obstacle", new DriveOverObstacle());
     	autoChooser.addObject("Drive Over Low Bar", new DriveOverLowBar());
     	autoChooser.addObject("Drive Over Low Bar & Eject", new DriveOverLowBarEject());
-    	autoChooser.addObject("Drive Over Low Bar Test", new DriveOverLowBarTest());
     	autoChooser.addObject("Do Nothing", new NavigationCalibrate());
     	autoChooser.addObject("Drive Over & Back", new DriveOverObsatcleAndBack());
     	autoChooser.addObject("Drive Over Eject", new DriveOverEject());
     	autoChooser.addObject("Drive Over Eject & Back", new DriveOverEjectAndBack());
     	autoChooser.addObject("Drive Over & Shoot", new DriveOverObstacleShoot());
-    	autoChooser.addObject("Drive Lane Distance", new DriveLaneFlatDistance());
+    	autoChooser.addObject("Drive Over Low & Shoot", new DriveOverLowObstacleShoot());
+    	autoChooser.addObject("Drive Lane Distance", new DriveLaneFlatDistance());    	
     	SmartDashboard.putData("Auto mode", autoChooser);
     }
 	

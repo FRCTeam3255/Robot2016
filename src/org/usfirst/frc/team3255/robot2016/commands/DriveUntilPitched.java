@@ -36,7 +36,7 @@ public class DriveUntilPitched extends CommandBase {
     		moveSpeed = -moveSpeed;
     	}
     	
-    	startTimer(RobotPreferences.autoCommandTimeout());
+    	startTimer(RobotPreferences.autoPitchedTimeout());
     }
 
     // Called repeatedly when this Command is scheduled to run

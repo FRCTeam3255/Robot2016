@@ -272,6 +272,10 @@ public class RobotPreferences {
 	public static double autoCommandTimeout() {
 		return Preferences.getInstance().getDouble("AutoCommandTimeout", 4.0);
 	}
+
+	public static double autoPitchedTimeout() {
+		return Preferences.getInstance().getDouble("AutoPitchedTimeout", 4.0);
+	}
 	
 	public static double laneDistanceTimeout() {
 		return Preferences.getInstance().getDouble("LaneDistanceTimeout", 4.0);
@@ -288,7 +292,7 @@ public class RobotPreferences {
 	}
 	
 	public static double distanceInnerLane() {
-		return Preferences.getInstance().getDouble("DistanceInnerLane", 0.0);
+		return Preferences.getInstance().getDouble("DistanceInnerLane", 3.5);
 	}
 	
 	public static double distanceCenterLane() {
